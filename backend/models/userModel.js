@@ -69,7 +69,7 @@ userSchema.statics.signup = async function ({email,password,name}) {
         return user
 
     } catch (error) {
-        throw new Error(error);
+        throw new Error(error.message);
     }
 }
 
@@ -95,7 +95,7 @@ userSchema.statics.verifyToken = async function (verificationToken) {
         await sendWelcomeEmail({email,userName})
         return
     } catch (error) {
-        throw new Error(error);
+        throw new Error(error.message);
     }
 }
 
@@ -104,6 +104,25 @@ userSchema.statics.login = async function ({email,password}) {
         throw new Error("All fields must be filled")
     }
     if (!validator.isEmail(email)) {
+        throw new Error("Please enter a valid email address");
+    }
+    try {
+        const user = await this.findOne({email})
+
+        if (!user) {
+            throw new Error("Invalid login credentials");
+        }
+
+        const isCorrectPassword = await bcrypt.compare(password,user.password)
+
+        if (!isCorrectPassword) {
+            throw new Error("Invalid login credentials");
+        }
+
+        return user
+
+    } catch (error) {
+        throw new Error(error.messsage);
         
     }
 }

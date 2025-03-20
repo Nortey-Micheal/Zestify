@@ -21,3 +21,14 @@ export const verifyEmail = async (req,res) => {
         res.status(500).json({message: error.message})
     }
 }
+
+export const login = async (req,res) => {
+    const { email, password } = req.body
+
+    try {
+        const user = await User.login({email,password})
+        res.status(200).json({...user._doc, password: undefined})
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}
