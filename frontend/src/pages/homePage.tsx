@@ -1,12 +1,9 @@
-import { Button } from "@/components/ui/button";
+import Navbar from "@/components/ui/navbar";
 
 export default function Home() {
     return (
-        <section>
-            <p>Welcome to Zestify</p>
-            <div className="flex flex-col items-center justify-center min-h-svh">
-      <Button>Click me</Button>
-    </div>
-        </section>
+        <div className="max-w-[1300px] w-[95vw] py-5 h-[100vh] mx-auto flex ">
+            <Navbar />
+        </div>
     )
 }
