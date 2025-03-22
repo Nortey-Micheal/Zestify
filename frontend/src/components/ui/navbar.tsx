@@ -9,7 +9,7 @@ import { Heart, HomeIcon, LibraryBigIcon, PlusIcon, SearchIcon, UtensilsCrossedI
 
 export default function Navbar() {
     return (
-        <nav className="w-[120px] h-full rounded-2xl bg-cyan-50 flex flex-col items-center justify-between ">
+        <nav className="w-[10vw] min-w-[100px] h-full rounded-2xl bg-cyan-50 flex flex-col items-center justify-between ">
             <div className="flex flex-col items-center h-[15%] gap-4 lg:gap-8 borde justify-between ">
                 <img className="w-20 aspect-square mt-2 rounded-3xl bg-amber-50 mx-auto" src="/assets/zestify-full.svg" alt="" />
                 <TooltipProvider>
