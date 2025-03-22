@@ -36,25 +36,37 @@ export default function Categories() {
 
     const popular:recipe[] = [
         {
-            image: '',
+            image: '/assets/waakye.jpg',
             title: 'Waakye',
             prepTime: '30 mins',
             author: 'John Doe'
         },
         {
-            image: '',
+            image: '/assets/waakye.jpg',
             title: 'Jollof',
             prepTime: '30 mins',
             author: 'John Doe'
         },
         {
-            image: '',
+            image: '/assets/waakye.jpg',
             title: 'Banku',
             prepTime: '30 mins',
             author: 'John Doe'
         },
         {
-            image: '',
+            image: '/assets/waakye.jpg',
+            title: 'Tuo zaafi',
+            prepTime: '30 mins',
+            author: 'John Doe'
+        },
+        {
+            image: '/assets/waakye.jpg',
+            title: 'Banku',
+            prepTime: '30 mins',
+            author: 'John Doe'
+        },
+        {
+            image: '/assets/waakye.jpg',
             title: 'Tuo zaafi',
             prepTime: '30 mins',
             author: 'John Doe'
@@ -63,33 +75,45 @@ export default function Categories() {
 
     const newRecipes:recipe[] = [
         {
-            image: '',
+            image: '/assets/waakye.jpg',
             title: 'Waakye1',
             prepTime: '30 mins',
             author: 'John Doe'
         },
         {
-            image: '',
+            image: '/assets/waakye.jpg',
             title: 'Jollof1',
             prepTime: '30 mins',
             author: 'John Doe'
         },
         {
-            image: '',
+            image: '/assets/waakye.jpg',
             title: 'Banku1',
             prepTime: '30 mins',
             author: 'John Doe'
         },
         {
-            image: '',
+            image: '/assets/waakye.jpg',
             title: 'Tuo zaafi1',
+            prepTime: '30 mins',
+            author: 'John Doe'
+        },
+        {
+            image: '/assets/waakye.jpg',
+            title: 'Banku',
+            prepTime: '30 mins',
+            author: 'John Doe'
+        },
+        {
+            image: '/assets/waakye.jpg',
+            title: 'Tuo zaafi',
             prepTime: '30 mins',
             author: 'John Doe'
         }
     ]
 
     return (
-        <section className="py-5 h-[100vh] overflow-scroll w-[53vw] ">
+        <section className="py-5 h-[100vh] overflow-scroll w-[57vw] ">
             <h1 className="text-6xl font-extrabold text-amber-600 font-serif">Welcome to Zestify</h1>
             <p className="text-4xl mt-2 font-extrabold">Where recipes are shared and  <br /><span className="text-amber-500 font-serif"> feasts are born</span></p>
 
@@ -98,7 +122,7 @@ export default function Categories() {
                     {
                         categories.map((category) => (
                             <div className=" bg-amber-100 p-1 pr-6 rounded-4xl flex items-center gap-2 min-w-fit" key={category.name}>
-                                <category.Icon className="h-12 w-12 p-2 bg-red-500 rounded-full"/>
+                                <category.Icon className="h-12 w-12 p-2 bg-red-200 rounded-full"/>
                                 <h3 className="text-xl font-bold">{category.name}</h3>
                             </div>
                         ))
@@ -112,11 +136,11 @@ export default function Categories() {
                     <h2>Most Popular</h2>
                     <button className="mr-5">View all</button>
                 </div>
-                <div className="grid grid-cols-2 gap-3 ">
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-6  ">
                     {
                         popular.map(recipe => (
-                            <div className="h-[200px] bg-red-400 flex flex-col rounded-2xl" key={recipe.author + recipe.title}>
-                                <img className="h-1/2 rounded-t-3xl" src={recipe.image} alt="" />
+                            <div className="h-[600px max-w-[] bg-red-200 flex flex-col rounded-2xl" key={recipe.author + recipe.title}>
+                                <img className=" aspect-square rounded-t-xl" src={recipe.image} alt="" />
                                 <div className="p-3 flex flex-col justify-between h-1/2">
                                     <h2>{recipe.title}</h2>
                                     <div className="flex justify-between">
@@ -135,11 +159,11 @@ export default function Categories() {
                     <h2>New</h2>
                     <button className="mr-5">View all</button>
                 </div>
-                <div className="grid grid-cols-2 gap-3 ">
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 ">
                     {
                         newRecipes.map(recipe => (
-                            <div className="h-[200px] bg-red-400 flex flex-col rounded-2xl" key={recipe.author + recipe.title}>
-                                <img className="h-1/2 rounded-t-3xl" src={recipe.image} alt="" />
+                            <div className="h-[200px bg-red-200 flex flex-col rounded-2xl" key={recipe.author + recipe.title}>
+                                <img className="aspect-square rounded-t-xl" src={recipe.image} alt="" />
                                 <div className="p-3 flex flex-col justify-between h-1/2">
                                     <h2>{recipe.title}</h2>
                                     <div className="flex justify-between">

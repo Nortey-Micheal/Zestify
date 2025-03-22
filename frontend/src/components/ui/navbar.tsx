@@ -4,7 +4,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { Heart, HomeIcon, LibraryBigIcon, PlusIcon, SearchIcon, UtensilsCrossedIcon } from 'lucide-react'
+import { Heart, HomeIcon, LibraryBigIcon, PlusIcon, SearchIcon, UserCircle, UtensilsCrossedIcon } from 'lucide-react'
   
 
 export default function Navbar() {
@@ -56,7 +56,7 @@ export default function Navbar() {
                     </Tooltip>
                 </TooltipProvider>
             </div>
-            <div className="flex flex-col border h-[15%] justify-between ">
+            <div className="flex flex-col border h-[15%] justify-between items-center">
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger><PlusIcon className="w-9 h-9 text-red-900 hover:fill-red-300 "/></TooltipTrigger>
@@ -67,7 +67,7 @@ export default function Navbar() {
                 </TooltipProvider>
                 <TooltipProvider>
                     <Tooltip>
-                        <TooltipTrigger><Heart className="w-9 h-9 text-red-900 hover:fill-red-300 "/></TooltipTrigger>
+                        <TooltipTrigger><UserCircle className="w-12 h-12 text-red-900 hover:fill-red-300 "/></TooltipTrigger>
                         <TooltipContent>
                         <p className="text-lg">favorites</p>
                         </TooltipContent>
