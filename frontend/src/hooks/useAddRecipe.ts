@@ -1,22 +1,8 @@
 import { useState } from "react"
 import axios from 'axios'
+import { Recipe } from "@/redux/recipe/recipeSlice"
 
-interface Recipe {
-    title : string,
-    description: string,
-    author: string,
-    cookTime: number,
-    category: string,
-    ingredients: {
-        id: string
-        value: string
-    }[],
-    instructions: {
-        id: string
-        value: string
-    }[],
-    image: File | null,
-}
+
 
 const useAddRecipe = () => {
 
