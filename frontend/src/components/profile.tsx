@@ -4,7 +4,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { BellIcon, SettingsIcon, User2Icon } from "lucide-react";
+import { BellIcon, SettingsIcon } from "lucide-react";
 
 export default function Profile() {
     return (

@@ -69,7 +69,7 @@ export default function Navbar() {
                     <Tooltip>
                         <TooltipTrigger><UserCircle className="w-12 h-12 text-red-900 hover:fill-red-300 "/></TooltipTrigger>
                         <TooltipContent>
-                        <p className="text-lg">favorites</p>
+                        <p className="text-lg">Signup / Login</p>
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
