@@ -32,3 +32,23 @@ export const login = async (req,res) => {
         res.status(500).json({message: error.message})
     }
 }
+
+export const uploadProfile = async (req, res) => {
+    try {
+        const { email } = req.body; // Get the recipe ID
+
+        // ✅ Upload Image to Cloudinary
+        const result = await cloudinary.uploader.upload(req.file.path, {
+            upload_preset: "userProfilePic_preset",
+        });
+
+        const user = await User.findOne({email})
+
+        // ✅ Update the Profile with email
+        await Recipe.findByIdAndUpdate(user._id, { profilePicture: result.secure_url });
+
+        res.status(200).json({ message: "Profile Picture updated successfully", imageUrl: result.secure_url });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
