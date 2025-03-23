@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 // import App from './App.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router'
+const AddRecipe = lazy(() => import('./pages/addRecipe.tsx'))
 const Home = lazy(() => import('./pages/homePage.tsx'))
 const NoPageFound = lazy(() => import('./pages/404.tsx'))
 
@@ -10,6 +11,11 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    errorElement: <NoPageFound />
+  },
+  {
+    path: '/add-recipe',
+    element: <AddRecipe />,
     errorElement: <NoPageFound />
   },
 ])

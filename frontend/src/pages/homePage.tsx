@@ -1,6 +1,6 @@
-import Categories from "@/components/ui/categories";
-import Navbar from "@/components/ui/navbar";
-import Profile from "@/components/ui/profile";
+import Categories from "@/components/categories";
+import Navbar from "@/components/navbar";
+import Profile from "@/components/profile";
 
 export default function Home() {
     return (
