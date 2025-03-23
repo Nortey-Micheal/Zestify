@@ -45,9 +45,9 @@ export const uploadProfile = async (req, res) => {
         const user = await User.findOne({email})
 
         // ✅ Update the Profile with email
-        await Recipe.findByIdAndUpdate(user._id, { profilePicture: result.secure_url });
+        await Recipe.findByIdAndUpdate(user._id, { profilePicture: result.public_id });
 
-        res.status(200).json({ message: "Profile Picture updated successfully", imageUrl: result.secure_url });
+        res.status(200).json({ message: "Profile Picture updated successfully", imageUrl: result.public_id });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

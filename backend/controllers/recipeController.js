@@ -35,9 +35,9 @@ export const uploadImage = async (req, res) => {
         console.log(result)
 
         // ✅ Update the Recipe with Image URL
-        await Recipe.findByIdAndUpdate(uploadUrl, { image: result.secure_url });
+        await Recipe.findByIdAndUpdate(uploadUrl, { image: result.public_id });
 
-        res.status(200).json({ message: "Image uploaded successfully", imageUrl: result.secure_url });
+        res.status(200).json({ message: "Image uploaded successfully", imageUrl: result.public_id });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
