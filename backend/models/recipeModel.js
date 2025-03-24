@@ -10,6 +10,10 @@ const recipeSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        likes: {
+            type: Number,
+            default: 0,
+        },
         image: {
             type: String,
         },
@@ -70,6 +74,15 @@ recipeSchema.statics.addRecipe = async function ({title, description, ingredient
 
     } catch (error) {
         throw new Error(error.message);
+    }
+}
+
+recipeSchema.statics.getAllRecipes = async function () {
+    try {
+        const recipes = await this.find()
+        return recipes
+    } catch (error) {
+        throw new Error(error)
     }
 }
 

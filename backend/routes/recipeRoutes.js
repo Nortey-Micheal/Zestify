@@ -1,5 +1,5 @@
 import express from 'express'
-import { addRecipe, uploadImage } from '../controllers/recipeController.js'
+import { addRecipe, getAllRecipes, uploadImage } from '../controllers/recipeController.js'
 import multer from 'multer';
 
 const recipeRouter = express.Router()
@@ -18,5 +18,6 @@ const upload = multer({ storage });
   
 recipeRouter.post('/add-recipe', addRecipe)// ✅ JSON Upload
 recipeRouter.post('/upload-image', upload.single("image"), uploadImage); // ✅ Image Upload
+recipeRouter.get('/getAllRecipes', getAllRecipes)
 
 export default recipeRouter

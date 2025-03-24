@@ -42,3 +42,13 @@ export const uploadImage = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+export const getAllRecipes = async (req, res) => {
+
+    try {
+        const allRecipes = await Recipe.getAllRecipes()
+        res.status(200).json({...allRecipes})
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}

@@ -4,7 +4,6 @@ import bcrypt from 'bcryptjs'
 import generateVerificationToken from '../utils/generateVerificationToken.js';
 import sendVerificationToken from '../resend/email/signupEmail.js';
 import sendWelcomeEmail from '../resend/email/welcomeEmail.js';
-import isEmail from 'validator/lib/isEmail.js';
 
 const userSchema = new mongoose.Schema(
     {
@@ -23,7 +22,7 @@ const userSchema = new mongoose.Schema(
         },
         profilePicture: {
             type: String,
-            default: "https://res.cloudinary.com/dljjpkunf/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1742760575/defaultProfile_ab13io.png"
+            default: 'defaultProfile_ab13io'
         },
         isVerified: {
             type: Boolean,
@@ -39,7 +38,7 @@ userSchema.statics.signup = async function ({email,password,name}) {
     if (!email || !password || !name) {
         throw new Error("All fields need to be filled");
     }
-    if (!validator.isEmail(isEmail)) {
+    if (!validator.isEmail(email)) {
         throw new Error("Please enter a valid email address");
     }
     if (!validator.isStrongPassword(password)) {
