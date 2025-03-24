@@ -8,13 +8,14 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { AlertCircle } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import useLogin from "@/hooks/useLogin"
 
 export default function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({})
-  const [isLoading, setIsLoading] = useState(false)
+  const { login, error, isLoading} = useLogin()
 
   const validate = () => {
     const newErrors: { email?: string; password?: string } = {}
@@ -37,27 +38,19 @@ export default function LoginForm() {
     e.preventDefault()
 
     if (validate()) {
-      setIsLoading(true)
 
-      try {
-        // Here you would typically send the data to your backend
-        // For example:
-        // const response = await fetch('/api/auth/login', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({ email, password, rememberMe }),
-        // })
+      await login({email,password})
+      // try {
+        
+      //   await new Promise((resolve) => setTimeout(resolve, 1000))
 
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1000))
-
-        console.log("Login submitted:", { email, password, rememberMe })
-        // Redirect or show success message
-      } catch (error) {
-        console.error("Login failed:", error)
-      } finally {
-        setIsLoading(false)
-      }
+      //   console.log("Login submitted:", { email, password, rememberMe })
+      //   // Redirect or show success message
+      // } catch (error) {
+      //   console.error("Login failed:", error)
+      // } finally {
+      //   setIsLoading(false)
+      // }
     }
   }
 

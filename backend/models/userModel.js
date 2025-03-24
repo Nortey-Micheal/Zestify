@@ -122,8 +122,7 @@ userSchema.statics.login = async function ({email,password}) {
         return user
 
     } catch (error) {
-        throw new Error(error.messsage);
-        
+        throw new Error(error);
     }
 }
 
