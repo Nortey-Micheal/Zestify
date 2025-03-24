@@ -1,5 +1,7 @@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { Heart, LucideProps } from "lucide-react"
+import { RootState } from "@/redux/store"
+import { ChefHatIcon, CookieIcon, DrumstickIcon, EggFriedIcon, Heart, IceCreamBowlIcon, LucideProps, SandwichIcon, WineIcon } from "lucide-react"
+import { useSelector } from "react-redux"
 
 interface Category {
     name: string,
@@ -14,22 +16,36 @@ interface recipe {
 }
 
 export default function Categories() {
+    const user = useSelector((state:RootState) => state.user)
+
     const categories:Category[] = [
         {
             name: "All",
-            Icon: Heart
+            Icon: ChefHatIcon
         },
         {
-            name: "Healthy",
-            Icon: Heart
+            name: "Breakfast",
+            Icon: EggFriedIcon
         },
         {
-            name: "Festives",
-            Icon: Heart
+            name: "Lunch",
+            Icon: SandwichIcon
         },
         {
-            name: "Budget friendly",
-            Icon: Heart
+            name: "Dinner",
+            Icon: DrumstickIcon
+        },
+        {
+            name: "Dessert",
+            Icon: IceCreamBowlIcon
+        },
+        {
+            name: "Snack",
+            Icon: CookieIcon
+        },
+        {
+            name: "Beverage",
+            Icon: WineIcon
         }
     
     ]
@@ -113,7 +129,7 @@ export default function Categories() {
     ]
 
     return (
-        <section className="py-5 h-[100vh] overflow-scroll w-[57vw] ">
+        <section className={`py-5 h-[100vh] overflow-scroll ${!user.email ? 'w-[80vw]' : 'w-[57vw]'}`}>
             <h1 className="text-6xl font-extrabold text-amber-600 font-serif">Welcome to Zestify</h1>
             <p className="text-4xl mt-2 font-extrabold">Where recipes are shared and  <br /><span className="text-amber-500 font-serif"> feasts are born</span></p>
 

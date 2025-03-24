@@ -3,7 +3,7 @@ import { auto } from '@cloudinary/url-gen/actions/resize';
 import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
 import { AdvancedImage } from '@cloudinary/react';
 
-const ProfileImage = ({profilePicture}:any) => {
+const ProfileImage = ({profilePicture,width,height}:any) => {
   const cld = new Cloudinary({ cloud: { cloudName: 'dljjpkunf' } });
   
   // Use this sample image or upload your own via the Media Explorer
@@ -11,7 +11,7 @@ const ProfileImage = ({profilePicture}:any) => {
         .image(profilePicture)
         .format('auto') // Optimize delivery by resizing and applying auto-format and auto-quality
         .quality('auto')
-        .resize(auto().gravity(autoGravity()).width(500).height(500)); // Transform the image: auto-crop to square aspect_ratio
+        .resize(auto().gravity(autoGravity()).width(width).height(height)); // Transform the image: auto-crop to square aspect_ratio
 
   return (<AdvancedImage cldImg={img}/>);
 };

@@ -4,10 +4,16 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { RootState } from "@/redux/store"
 import { Heart, HomeIcon, LibraryBigIcon, PlusIcon, SearchIcon, UserCircle, UtensilsCrossedIcon } from 'lucide-react'
+import { useSelector } from "react-redux"
+import { Link, useNavigate } from "react-router"
+import ProfileImage from "./ui/profileImage"
   
 
 export default function Navbar() {
+    const user = useSelector((state:RootState) => state.user)
+    const navigate = useNavigate()
     return (
         <nav className="w-[10vw] min-w-[100px] h-full rounded-2xl bg-cyan-50 flex flex-col items-center justify-between ">
             <div className="flex flex-col items-center h-[15%] gap-4 lg:gap-8 borde justify-between ">
@@ -56,23 +62,38 @@ export default function Navbar() {
                     </Tooltip>
                 </TooltipProvider>
             </div>
-            <div className="flex flex-col border h-[15%] justify-between items-center">
+            <div className="flex flex-col borde h-[15%] justify-between items-center">
                 <TooltipProvider>
                     <Tooltip>
-                        <TooltipTrigger><PlusIcon className="w-9 h-9 text-red-900 hover:fill-red-300 "/></TooltipTrigger>
+                        <TooltipTrigger>
+                                <button onClick={() => navigate('/add-recipe')}>
+                                    <PlusIcon className="w-9 h-9 text-red-900 hover:fill-red-300 "/>
+                                </button>
+                            </TooltipTrigger>
                         <TooltipContent>
-                        <p className="text-lg">Submit Recipe</p>
+                            <p className="text-lg">Submit Recipe</p>
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger><UserCircle className="w-12 h-12 text-red-900 hover:fill-red-300 "/></TooltipTrigger>
-                        <TooltipContent>
-                        <p className="text-lg">Signup / Login</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
+                {!user.email && 
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger>
+                                <Link to={'/auth/login'}>
+                                    <UserCircle className="w-12 h-12 text-red-900 hover:fill-red-300 "/>
+                                </Link>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                            <p className="text-lg">Signup / Login</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+                }
+
+                {
+                    user.email && 
+                        <ProfileImage width={70} height={70} profilePicture={user.profilePicture}/>
+                }
 
             </div>
         </nav>

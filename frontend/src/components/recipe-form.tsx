@@ -9,6 +9,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Trash2, ImageIcon, Plus, ArrowUp, ArrowDown } from "lucide-react"
 import useAddRecipe from "@/hooks/useAddRecipe"
+import { useSelector } from "react-redux"
+import { RootState } from "@/redux/store"
 
 interface Ingredient {
   id: string
@@ -32,6 +34,7 @@ export default function RecipeForm() {
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const { error, addRecipe} = useAddRecipe()
+  const user = useSelector((state:RootState) => state.user)
 
   const addIngredient = () => {
     setIngredients([...ingredients, { id: `ingredient-${Date.now()}`, value: "" }])
@@ -198,10 +201,11 @@ export default function RecipeForm() {
                 </Label>
                 <Input
                   id="author"
-                  value={author}
+                  value={user ? user.name : author}
                   onChange={(e) => setAuthor(e.target.value)}
                   placeholder="Recipe author"
                   required
+                  disabled={user.name ? true : false}
                 />
               </div>
 
@@ -226,16 +230,16 @@ export default function RecipeForm() {
                     Category <span className="text-red-500">*</span>
                   </Label>
                   <Select value={category} onValueChange={setCategory} required>
-                    <SelectTrigger>
+                    <SelectTrigger className="cursor-pointer">
                       <SelectValue placeholder="Select category" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="breakfast">Breakfast</SelectItem>
-                      <SelectItem value="lunch">Lunch</SelectItem>
-                      <SelectItem value="dinner">Dinner</SelectItem>
-                      <SelectItem value="dessert">Dessert</SelectItem>
-                      <SelectItem value="snack">Snack</SelectItem>
-                      <SelectItem value="beverage">Beverage</SelectItem>
+                      <SelectItem className="cursor-pointer" value="breakfast">Breakfast</SelectItem>
+                      <SelectItem className="cursor-pointer" value="lunch">Lunch</SelectItem>
+                      <SelectItem className="cursor-pointer" value="dinner">Dinner</SelectItem>
+                      <SelectItem className="cursor-pointer" value="dessert">Dessert</SelectItem>
+                      <SelectItem className="cursor-pointer" value="snack">Snack</SelectItem>
+                      <SelectItem className="cursor-pointer" value="beverage">Beverage</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -289,7 +293,7 @@ export default function RecipeForm() {
                 <Label className="text-base">
                   Ingredients <span className="text-red-500">*</span>
                 </Label>
-                <Button type="button" variant="outline" size="sm" onClick={addIngredient}>
+                <Button className="cursor-pointer" type="button" variant="outline" size="sm" onClick={addIngredient}>
                   <Plus className="h-4 w-4 mr-2" /> Add Ingredient
                 </Button>
               </div>
@@ -308,7 +312,7 @@ export default function RecipeForm() {
                         type="button"
                         variant="ghost"
                         size="icon"
-                        className="h-6 w-6"
+                        className="h-6 w-6 cursor-pointer"
                         onClick={() => moveIngredient(index, "up")}
                         disabled={index === 0}
                       >
@@ -318,7 +322,7 @@ export default function RecipeForm() {
                         type="button"
                         variant="ghost"
                         size="icon"
-                        className="h-6 w-6"
+                        className="h-6 w-6 cursor-pointer"
                         onClick={() => moveIngredient(index, "down")}
                         disabled={index === ingredients.length - 1}
                       >
@@ -331,7 +335,7 @@ export default function RecipeForm() {
                       placeholder="Enter ingredient"
                       className="flex-1"
                     />
-                    <Button type="button" variant="ghost" size="icon" onClick={() => removeIngredient(ingredient.id)}>
+                    <Button className="cursor-pointer" type="button" variant="ghost" size="icon" onClick={() => removeIngredient(ingredient.id)}>
                       <Trash2 className="h-4 w-4 text-muted-foreground hover:text-destructive" />
                     </Button>
                   </div>
@@ -345,7 +349,7 @@ export default function RecipeForm() {
                 <Label className="text-base">
                   Instructions <span className="text-red-500">*</span>
                 </Label>
-                <Button type="button" variant="outline" size="sm" onClick={addInstruction}>
+                <Button className="cursor-pointer" type="button" variant="outline" size="sm" onClick={addInstruction}>
                   <Plus className="h-4 w-4 mr-2" /> Add Instruction
                 </Button>
               </div>
@@ -364,7 +368,7 @@ export default function RecipeForm() {
                         type="button"
                         variant="ghost"
                         size="icon"
-                        className="h-6 w-6"
+                        className="h-6 w-6 cursor-pointer"
                         onClick={() => moveInstruction(index, "up")}
                         disabled={index === 0}
                       >
@@ -374,7 +378,7 @@ export default function RecipeForm() {
                         type="button"
                         variant="ghost"
                         size="icon"
-                        className="h-6 w-6"
+                        className="h-6 w-6 cursor-pointer"
                         onClick={() => moveInstruction(index, "down")}
                         disabled={index === instructions.length - 1}
                       >
@@ -393,7 +397,7 @@ export default function RecipeForm() {
                       variant="ghost"
                       size="icon"
                       onClick={() => removeInstruction(instruction.id)}
-                      className="flex-shrink-0"
+                      className="flex-shrink-0 cursor-pointer"
                     >
                       <Trash2 className="h-4 w-4 text-muted-foreground hover:text-destructive" />
                     </Button>
@@ -404,7 +408,7 @@ export default function RecipeForm() {
 
             {/* Submit Button */}
             <div className="pt-4">
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full cursor-pointer">
                 Save Recipe
               </Button>
             </div>
