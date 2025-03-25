@@ -9,7 +9,7 @@ import ProfileImage from "./ui/profileImage";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useNavigate } from "react-router";
-import useLogOut from "@/hooks/useLogout";
+import useLogOut from "@/hooks/users/useLogout";
 
 export default function Profile() {
     const user = useSelector((state:RootState) => state.user)

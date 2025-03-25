@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface Recipe {
     title : string,
@@ -15,6 +15,7 @@ export interface Recipe {
         value: string
     }[],
     image: File | null,
+    likes: number,
 }
 
 const initialState: Recipe[] = []
@@ -23,8 +24,14 @@ const recipeSlice = createSlice({
     name: 'recipes',
     initialState,
     reducers: {
-           
+        setRecipes: (state,action:PayloadAction<Recipe[]>) => {
+            return action.payload
+       },
+       removeRecipes: (state) => {
+        return []
+       }
     }
 })
 
 export default recipeSlice.reducer
+export const { setRecipes, removeRecipes } = recipeSlice.actions

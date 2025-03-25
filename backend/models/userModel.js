@@ -20,6 +20,12 @@ const userSchema = new mongoose.Schema(
             required: true,
             unique: true
         },
+        favouriteRecipes: {
+            type: Array
+        },
+        postedRecipes: {
+            type: Array
+        },
         profilePicture: {
             type: String,
             default: 'defaultProfile_ab13io'

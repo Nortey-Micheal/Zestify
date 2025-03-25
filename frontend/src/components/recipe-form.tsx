@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Trash2, ImageIcon, Plus, ArrowUp, ArrowDown } from "lucide-react"
-import useAddRecipe from "@/hooks/useAddRecipe"
+import useAddRecipe from "@/hooks/recipes/useAddRecipe"
 import { useSelector } from "react-redux"
 import { RootState } from "@/redux/store"
 

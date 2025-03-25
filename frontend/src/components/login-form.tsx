@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { AlertCircle } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import useLogin from "@/hooks/useLogin"
+import useLogin from "@/hooks/users/useLogin"
 
 export default function LoginForm() {
   const [email, setEmail] = useState("")

@@ -44,10 +44,64 @@ export const uploadImage = async (req, res) => {
 };
 
 export const getAllRecipes = async (req, res) => {
+    const { limit } = req.body
+    try {
+        const allRecipes = await Recipe.getAllRecipes(limit)
+        res.status(200).json({...allRecipes})
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}
+
+export const getRecipesByCategory = async (req,res) => {
+    const { category } = req.body
 
     try {
-        const allRecipes = await Recipe.getAllRecipes()
-        res.status(200).json({...allRecipes})
+        const recipes = await Recipe.find({category})
+        res.status(200).json(recipes)
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}
+
+export const getNewRecipes = async (req,res) => {
+    const { limit } = req.body
+    try {
+        const recipes = await Recipe.find().sort({createdAt: 1}).limit(limit|| undefined)
+        res.status(200).json(recipes)
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}
+
+
+export const getPopularRecipes = async (req,res) => {
+    const { limit } = req.body
+    try {
+        const recipes = await Recipe.find().sort({likes: 1}).limit(limit|| undefined)
+        res.status(200).json(recipes)
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}
+
+export const likeRecipe = async (req,res) => {
+    const { id } = req.body
+
+    try {
+        const recipe = await Recipe.findByIdAndUpdate(id, { $inc: { likes: 1 } },{new: true})
+        res.status(200).json({message: 'Recipe has been liked'})
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}
+
+export const unLikeRecipe = async (req,res) => {
+    const { id } = req.body
+
+    try {
+        const recipe = await Recipe.findByIdAndUpdate(id, { $inc: { likes: -1 } },{new: true})
+        res.status(200).json({message: 'Recipe has been liked'})
     } catch (error) {
         res.status(500).json({message: error.message})
     }

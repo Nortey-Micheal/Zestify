@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { AlertCircle, Upload } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import useSignup from "@/hooks/useSignup"
+import useSignup from "@/hooks/users/useSignup"
 
 export default function SignupForm() {
   const [formData, setFormData] = useState({

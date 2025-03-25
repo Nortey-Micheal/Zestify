@@ -30,12 +30,6 @@ const useSignup = () => {
                 }
             )
 
-            // const data = response.data
-
-            // if (response.status !== 201) {
-            //     throw new Error (data.message)
-            // }
-
             if (profilePicture) {
                 formData.append('email', email)
                 await axios.post('http://localhost:5050/api/user/upload-profilePic', formData, {
@@ -49,6 +43,8 @@ const useSignup = () => {
 
         } catch (error:any) {
             setError(error.message)
+            setIsLoading(false)
+        } finally {
             setIsLoading(false)
         }
     }

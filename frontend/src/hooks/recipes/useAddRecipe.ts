@@ -32,14 +32,6 @@ const useAddRecipe = () => {
 
             const { uploadUrl } = response.data
             
-
-            // if (response.status !== 200) {
-            //     throw new Error(data)
-            // }
-
-            // console.log(data)
-
-            // ✅ Now send the image separately
             if (image) {
                 formData.append("uploadUrl", uploadUrl);
                 await axios.post("http://localhost:5050/api/recipe/upload-image", formData, {
@@ -51,6 +43,8 @@ const useAddRecipe = () => {
 
         } catch (error:any) {
             setError(error.message)
+        } finally {
+            setIsLoading(false)
         }
 
     }

@@ -29,6 +29,8 @@ const useLogin = () => {
         } catch (error:any) {
             setIsLoading(false)
             setError(error.message)
+        } finally {
+            setIsLoading(false)
         }
     }
 
