@@ -1,6 +1,7 @@
 import { useState } from "react"
 import axios from 'axios'
 import { Recipe } from "@/redux/recipe/recipeSlice"
+import { useNavigate } from "react-router"
 
 
 
@@ -8,6 +9,7 @@ const useAddRecipe = () => {
 
     const [ error, setError ] = useState<string | null>(null)
     const [ isLoading, setIsLoading ] = useState<boolean>(false)
+    const navigate = useNavigate()
 
     const addRecipe = async({title,description,author,cookTime,category,ingredients,instructions,image}: Recipe) => {
         const formData = new FormData()
@@ -39,7 +41,7 @@ const useAddRecipe = () => {
                 });
             }
 
-        console.log("Recipe added successfully");
+            navigate('/')
 
         } catch (error:any) {
             setError(error.message)

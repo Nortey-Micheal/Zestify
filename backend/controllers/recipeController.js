@@ -1,5 +1,6 @@
 import cloudinary from "../cloudinary/cloudinary.js";
 import Recipe from "../models/recipeModel.js"
+import fs from 'fs'
 
 export const addRecipe = async (req,res) => {
     const { title, description, ingredients, author, instructions, cookTime, category } = req.body
@@ -31,6 +32,16 @@ export const uploadImage = async (req, res) => {
         const result = await cloudinary.uploader.upload(req.file.path, {
             upload_preset: "recipeImage_Preset",
         });
+
+        // ✅ Delete the uploaded file from local server
+        fs.unlink(req.file.path, (err) => {
+            if (err) {
+              console.error("Error deleting file:", err);
+            } else {
+              console.log("File deleted successfully from server");
+            }
+        });
+      
 
         console.log(result)
 

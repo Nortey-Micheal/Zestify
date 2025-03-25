@@ -94,45 +94,6 @@ export default function Categories() {
         }
     ]
 
-    // const newRecipes:recipe[] = [
-    //     {
-    //         image: '/assets/waakye.jpg',
-    //         title: 'Waakye1',
-    //         prepTime: '30 mins',
-    //         author: 'John Doe'
-    //     },
-    //     {
-    //         image: '/assets/waakye.jpg',
-    //         title: 'Jollof1',
-    //         prepTime: '30 mins',
-    //         author: 'John Doe'
-    //     },
-    //     {
-    //         image: '/assets/waakye.jpg',
-    //         title: 'Banku1',
-    //         prepTime: '30 mins',
-    //         author: 'John Doe'
-    //     },
-    //     {
-    //         image: '/assets/waakye.jpg',
-    //         title: 'Tuo zaafi1',
-    //         prepTime: '30 mins',
-    //         author: 'John Doe'
-    //     },
-    //     {
-    //         image: '/assets/waakye.jpg',
-    //         title: 'Banku',
-    //         prepTime: '30 mins',
-    //         author: 'John Doe'
-    //     },
-    //     {
-    //         image: '/assets/waakye.jpg',
-    //         title: 'Tuo zaafi',
-    //         prepTime: '30 mins',
-    //         author: 'John Doe'
-    //     }
-    // ]
-
     useEffect(() => {
         const fetchRecipes = async () => {
             await getNewRecipes()

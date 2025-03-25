@@ -1,5 +1,6 @@
 import User from "../models/userModel.js"
 import cloudinary from '../cloudinary/cloudinary.js'
+import fs from 'fs'
 
 export const signup = async (req,res) => {
     const { email, password, name } = req.body
@@ -42,6 +43,16 @@ export const uploadProfile = async (req, res) => {
         const result = await cloudinary.uploader.upload(req.file.path, {
             upload_preset: "userProfilePic_preset",
         });
+
+        //delete image from local server after uploading to cloudinary
+        fs.unlink(req.file.path, (err) => {
+            if (err) {
+              console.error("Error deleting file:", err);
+            } else {
+              console.log("File deleted successfully from server");
+            }
+        });
+      
 
         const user = await User.findOne({email})
 
