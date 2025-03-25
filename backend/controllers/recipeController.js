@@ -88,7 +88,7 @@ export const getNewRecipes = async (req,res) => {
 export const getPopularRecipes = async (req,res) => {
     const { limit } = req.body
     try {
-        const recipes = await Recipe.find().sort({likes: 1}).limit(limit|| 6)
+        const recipes = await Recipe.find().sort({likes: -1}).limit(limit|| 6)
         res.status(200).json(recipes)
     } catch (error) {
         res.status(500).json({message: error.message})
