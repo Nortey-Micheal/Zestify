@@ -21,7 +21,7 @@ recipeRouter.post('/upload-image', upload.single("image"), uploadImage); // ✅ 
 recipeRouter.get('/getAllRecipes', getAllRecipes)
 recipeRouter.post('/recipesByCategory', getRecipesByCategory)
 recipeRouter.get('/getNewRecipes', getNewRecipes)
-recipeRouter.post('/getPopularRecipes', getPopularRecipes)
+recipeRouter.get('/getPopularRecipes', getPopularRecipes)
 recipeRouter.post('/likeRecipe', likeRecipe)
 recipeRouter.post('/unlikeRecipe', unLikeRecipe)
 

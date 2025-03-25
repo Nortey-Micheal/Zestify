@@ -5,23 +5,19 @@ import { ChefHatIcon, CookieIcon, DrumstickIcon, EggFriedIcon, IceCreamBowlIcon,
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import RecipeImage from "./ui/recipeImage"
+import useGetPopularRecipes from "@/hooks/recipes/useGetPopularRecipes"
 
 interface Category {
     name: string,
     Icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
 }
 
-interface recipe {
-    image: string,
-    title: string,
-    prepTime: string,
-    author: string,
-}
-
 export default function Categories() {
     const user = useSelector((state:RootState) => state.user)
     const newRecipes = useSelector((state:RootState) => state.newRecipes)
-    const {getNewRecipes } = useGetNewRecipes()
+    const popular = useSelector((state:RootState) => state.popularRecipes)
+    const { getNewRecipes } = useGetNewRecipes()
+    const { getPopularRecipes } = useGetPopularRecipes()
 
     const categories:Category[] = [
         {
@@ -55,47 +51,9 @@ export default function Categories() {
     
     ]
 
-    const popular:recipe[] = [
-        {
-            image: '/assets/waakye.jpg',
-            title: 'Waakye',
-            prepTime: '30 mins',
-            author: 'John Doe'
-        },
-        {
-            image: '/assets/waakye.jpg',
-            title: 'Jollof',
-            prepTime: '30 mins',
-            author: 'John Doe'
-        },
-        {
-            image: '/assets/waakye.jpg',
-            title: 'Banku',
-            prepTime: '30 mins',
-            author: 'John Doe'
-        },
-        {
-            image: '/assets/waakye.jpg',
-            title: 'Tuo zaafi',
-            prepTime: '30 mins',
-            author: 'John Doe'
-        },
-        {
-            image: '/assets/waakye.jpg',
-            title: 'Banku',
-            prepTime: '30 mins',
-            author: 'John Doe'
-        },
-        {
-            image: '/assets/waakye.jpg',
-            title: 'Tuo zaafi',
-            prepTime: '30 mins',
-            author: 'John Doe'
-        }
-    ]
-
     useEffect(() => {
         const fetchRecipes = async () => {
+            await getPopularRecipes()
             await getNewRecipes()
         }
         fetchRecipes()
@@ -129,11 +87,11 @@ export default function Categories() {
                     {
                         popular.map(recipe => (
                             <div className="h-[600px max-w-[] bg-red-200 flex flex-col rounded-2xl" key={recipe.author + recipe.title}>
-                                <img className=" aspect-square rounded-t-xl" src={recipe.image} alt="" />
+                                <RecipeImage width={500} height={500} image={recipe.image} />
                                 <div className="p-3 flex flex-col justify-between h-1/2">
                                     <h2>{recipe.title}</h2>
                                     <div className="flex justify-between">
-                                        <p>Prep Time: {recipe.prepTime}</p>
+                                        <p>Prep Time: {recipe.cookTime}</p>
                                         <p>Author: {recipe.author}</p>
                                     </div>
                                 </div>

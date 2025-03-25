@@ -1,4 +1,4 @@
-import { setRecipes } from "@/redux/recipe/recipeSlice"
+import { setPopularRecipes } from "@/redux/recipe/popularRecipes"
 import axios from "axios"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
@@ -18,7 +18,7 @@ const useGetPopularRecipes = () => {
 
             const recipes = response.data
 
-            dispatch(setRecipes(recipes))
+            dispatch(setPopularRecipes(recipes))
             setIsLoading(false)
         } catch (error:any) {
             setError(error.message)
