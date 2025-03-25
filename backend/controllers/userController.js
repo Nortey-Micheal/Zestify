@@ -1,4 +1,5 @@
 import User from "../models/userModel.js"
+import cloudinary from '../cloudinary/cloudinary.js'
 
 export const signup = async (req,res) => {
     const { email, password, name } = req.body
@@ -35,7 +36,7 @@ export const login = async (req,res) => {
 
 export const uploadProfile = async (req, res) => {
     try {
-        const { email } = req.body; // Get the recipe ID
+        const { email } = req.body; // Get the profile ID
 
         // ✅ Upload Image to Cloudinary
         const result = await cloudinary.uploader.upload(req.file.path, {
@@ -45,7 +46,7 @@ export const uploadProfile = async (req, res) => {
         const user = await User.findOne({email})
 
         // ✅ Update the Profile with email
-        await Recipe.findByIdAndUpdate(user._id, { profilePicture: result.public_id });
+        await User.findByIdAndUpdate(user._id, { profilePicture: result.public_id });
 
         res.status(200).json({ message: "Profile Picture updated successfully", imageUrl: result.public_id });
     } catch (error) {

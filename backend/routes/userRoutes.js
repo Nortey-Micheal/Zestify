@@ -19,6 +19,6 @@ const upload = multer({ storage });
 userRouter.post('/signup',signup)
 userRouter.post('/verify-email',verifyEmail)
 userRouter.post('/login',login)
-userRouter.post('/upload-profilePic', upload.single("image"), uploadProfile)
+userRouter.post('/upload-profilePic', upload.single("profilePicture"), uploadProfile)
 
 export default userRouter

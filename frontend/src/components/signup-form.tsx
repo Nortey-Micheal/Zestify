@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { AlertCircle, Upload } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import useSignup from "@/hooks/useSignup"
 
 export default function SignupForm() {
   const [formData, setFormData] = useState({
@@ -14,8 +15,10 @@ export default function SignupForm() {
     password: "",
     confirmPassword: "",
   })
-  const [profileImage, setProfileImage] = useState<string | null>(null)
+  const [profileImagePreview, setProfileImagePreview] = useState<string | null>(null)
+  const [profileImage, setProfileImage] = useState<File | null>(null)
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const { isLoading, signup} = useSignup()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -36,9 +39,10 @@ export default function SignupForm() {
     if (file) {
       const reader = new FileReader()
       reader.onload = (e) => {
-        setProfileImage(e.target?.result as string)
+        setProfileImagePreview(e.target?.result as string)
       }
       reader.readAsDataURL(file)
+      setProfileImage(file)
     }
   }
 
@@ -69,14 +73,16 @@ export default function SignupForm() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     if (validate()) {
       // Here you would typically send the data to your backend
-      console.log("Form submitted:", { ...formData, profileImage })
+      // console.log("Form submitted:", { ...formData, profileImagePreview })
+      await signup({...formData,profilePicture:profileImage!})
       // Reset form after successful submission
       setFormData({ name: "", email: "", password: "", confirmPassword: "" })
+      setProfileImagePreview(null)
       setProfileImage(null)
     }
   }
@@ -91,9 +97,9 @@ export default function SignupForm() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex flex-col items-center mb-4">
             <Avatar className="w-24 h-24 mb-2">
-              <AvatarImage src={profileImage || ""} alt="Profile" />
+              <AvatarImage src={profileImagePreview || ""} alt="Profile" />
               <AvatarFallback className="bg-muted text-muted-foreground text-lg">
-                {profileImage ? "You" : "?"}
+                {profileImagePreview ? "You" : "?"}
               </AvatarFallback>
             </Avatar>
             <div className="relative">
@@ -103,7 +109,7 @@ export default function SignupForm() {
                 className="flex items-center gap-2 text-sm cursor-pointer px-3 py-1.5 rounded-md bg-secondary hover:bg-secondary/80 transition-colors"
               >
                 <Upload size={16} />
-                {profileImage ? "Change picture" : "Upload picture (optional)"}
+                {profileImagePreview ? "Change picture" : "Upload picture (optional)"}
               </Label>
             </div>
           </div>

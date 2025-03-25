@@ -1,6 +1,6 @@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { RootState } from "@/redux/store"
-import { ChefHatIcon, CookieIcon, DrumstickIcon, EggFriedIcon, Heart, IceCreamBowlIcon, LucideProps, SandwichIcon, WineIcon } from "lucide-react"
+import { ChefHatIcon, CookieIcon, DrumstickIcon, EggFriedIcon, IceCreamBowlIcon, LucideProps, SandwichIcon, WineIcon } from "lucide-react"
 import { useSelector } from "react-redux"
 
 interface Category {
