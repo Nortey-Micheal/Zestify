@@ -67,13 +67,12 @@ export const getRecipesByCategory = async (req,res) => {
 export const getNewRecipes = async (req,res) => {
     const { limit } = req.body
     try {
-        const recipes = await Recipe.find().sort({createdAt: 1}).limit(limit|| undefined)
+        const recipes = await Recipe.find().sort({createdAt: -1}).limit(limit|| undefined)
         res.status(200).json(recipes)
     } catch (error) {
         res.status(500).json({message: error.message})
     }
 }
-
 
 export const getPopularRecipes = async (req,res) => {
     const { limit } = req.body

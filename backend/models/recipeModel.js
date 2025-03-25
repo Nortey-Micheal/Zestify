@@ -57,7 +57,7 @@ const recipeSchema = new mongoose.Schema(
             required: true,
         }
     },
-    {timeStamps: true}
+    {timestamps: true}
 )
 
 recipeSchema.statics.addRecipe = async function ({title, description, ingredients, image, author, instructions, cookTime, category}) {

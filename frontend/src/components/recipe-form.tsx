@@ -1,6 +1,6 @@
 import type React from "react"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -33,7 +33,7 @@ export default function RecipeForm() {
   const [image, setImage] = useState<File | null>(null)
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const { error, addRecipe} = useAddRecipe()
+  const { isLoading,error, addRecipe} = useAddRecipe()
   const user = useSelector((state:RootState) => state.user)
 
   const addIngredient = () => {
@@ -115,6 +115,17 @@ export default function RecipeForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
+    console.log({
+      title,
+      description,
+      author,
+      cookTime,
+      category,
+      ingredients,
+      instructions,
+      imagePreview,
+    })
+
     // Validate required fields
     if (
       !title ||
@@ -150,7 +161,7 @@ export default function RecipeForm() {
     await addRecipe({
       title,description,
       author,cookTime,category,
-      ingredients,instructions,image
+      ingredients,instructions,image,likes: 0
     })
 
     if (error) {
@@ -161,6 +172,12 @@ export default function RecipeForm() {
       alert("Recipe submitted successfully!")
     }
   }
+
+  useEffect(() => {
+    if (user.name) {
+      setAuthor(user.name)
+    }
+  })
 
   return (
     <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
@@ -408,8 +425,8 @@ export default function RecipeForm() {
 
             {/* Submit Button */}
             <div className="pt-4">
-              <Button type="submit" className="w-full cursor-pointer">
-                Save Recipe
+              <Button disabled={isLoading} type="submit" className="w-full cursor-pointer">
+                { isLoading ? 'Saving' : 'Save Recipe'}
               </Button>
             </div>
           </div>

@@ -66,9 +66,9 @@ export default function Navbar() {
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger>
-                                <button onClick={() => navigate('/add-recipe')}>
+                                <Link to={'/add-recipe'}>
                                     <PlusIcon className="w-9 h-9 text-red-900 hover:fill-red-300 "/>
-                                </button>
+                                </Link>
                             </TooltipTrigger>
                         <TooltipContent>
                             <p className="text-lg">Submit Recipe</p>

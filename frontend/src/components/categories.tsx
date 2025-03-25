@@ -1,7 +1,10 @@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import useGetNewRecipes from "@/hooks/recipes/useGetNewRecipes"
 import { RootState } from "@/redux/store"
 import { ChefHatIcon, CookieIcon, DrumstickIcon, EggFriedIcon, IceCreamBowlIcon, LucideProps, SandwichIcon, WineIcon } from "lucide-react"
+import { useEffect } from "react"
 import { useSelector } from "react-redux"
+import RecipeImage from "./ui/recipeImage"
 
 interface Category {
     name: string,
@@ -17,6 +20,8 @@ interface recipe {
 
 export default function Categories() {
     const user = useSelector((state:RootState) => state.user)
+    const newRecipes = useSelector((state:RootState) => state.newRecipes)
+    const {getNewRecipes } = useGetNewRecipes()
 
     const categories:Category[] = [
         {
@@ -89,44 +94,51 @@ export default function Categories() {
         }
     ]
 
-    const newRecipes:recipe[] = [
-        {
-            image: '/assets/waakye.jpg',
-            title: 'Waakye1',
-            prepTime: '30 mins',
-            author: 'John Doe'
-        },
-        {
-            image: '/assets/waakye.jpg',
-            title: 'Jollof1',
-            prepTime: '30 mins',
-            author: 'John Doe'
-        },
-        {
-            image: '/assets/waakye.jpg',
-            title: 'Banku1',
-            prepTime: '30 mins',
-            author: 'John Doe'
-        },
-        {
-            image: '/assets/waakye.jpg',
-            title: 'Tuo zaafi1',
-            prepTime: '30 mins',
-            author: 'John Doe'
-        },
-        {
-            image: '/assets/waakye.jpg',
-            title: 'Banku',
-            prepTime: '30 mins',
-            author: 'John Doe'
-        },
-        {
-            image: '/assets/waakye.jpg',
-            title: 'Tuo zaafi',
-            prepTime: '30 mins',
-            author: 'John Doe'
+    // const newRecipes:recipe[] = [
+    //     {
+    //         image: '/assets/waakye.jpg',
+    //         title: 'Waakye1',
+    //         prepTime: '30 mins',
+    //         author: 'John Doe'
+    //     },
+    //     {
+    //         image: '/assets/waakye.jpg',
+    //         title: 'Jollof1',
+    //         prepTime: '30 mins',
+    //         author: 'John Doe'
+    //     },
+    //     {
+    //         image: '/assets/waakye.jpg',
+    //         title: 'Banku1',
+    //         prepTime: '30 mins',
+    //         author: 'John Doe'
+    //     },
+    //     {
+    //         image: '/assets/waakye.jpg',
+    //         title: 'Tuo zaafi1',
+    //         prepTime: '30 mins',
+    //         author: 'John Doe'
+    //     },
+    //     {
+    //         image: '/assets/waakye.jpg',
+    //         title: 'Banku',
+    //         prepTime: '30 mins',
+    //         author: 'John Doe'
+    //     },
+    //     {
+    //         image: '/assets/waakye.jpg',
+    //         title: 'Tuo zaafi',
+    //         prepTime: '30 mins',
+    //         author: 'John Doe'
+    //     }
+    // ]
+
+    useEffect(() => {
+        const fetchRecipes = async () => {
+            await getNewRecipes()
         }
-    ]
+        fetchRecipes()
+    },[])
 
     return (
         <section className={`py-5 h-[100vh] overflow-scroll ${!user.email ? 'w-[80vw]' : 'w-[57vw]'}`}>
@@ -179,11 +191,11 @@ export default function Categories() {
                     {
                         newRecipes.map(recipe => (
                             <div className="h-[200px bg-red-200 flex flex-col rounded-2xl" key={recipe.author + recipe.title}>
-                                <img className="aspect-square rounded-t-xl" src={recipe.image} alt="" />
+                                <RecipeImage width={500} height={500} image={recipe.image}/>
                                 <div className="p-3 flex flex-col justify-between h-1/2">
                                     <h2>{recipe.title}</h2>
                                     <div className="flex justify-between">
-                                        <p>Prep Time: {recipe.prepTime}</p>
+                                        <p>Cook Time: {recipe.cookTime}</p>
                                         <p>Author: {recipe.author}</p>
                                     </div>
                                 </div>
