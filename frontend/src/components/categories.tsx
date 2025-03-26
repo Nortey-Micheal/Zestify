@@ -7,6 +7,7 @@ import { useSelector } from "react-redux"
 import RecipeImage from "./ui/recipeImage"
 import useGetPopularRecipes from "@/hooks/recipes/useGetPopularRecipes"
 import { Button } from "./ui/button"
+import { useNavigate } from "react-router"
 
 interface Category {
     name: string,
@@ -19,6 +20,7 @@ export default function Categories() {
     const popular = useSelector((state:RootState) => state.popularRecipes)
     const { getNewRecipes } = useGetNewRecipes()
     const { getPopularRecipes } = useGetPopularRecipes()
+    const navigate = useNavigate()
 
     const categories:Category[] = [
         {
@@ -105,7 +107,7 @@ export default function Categories() {
                                         <p>Author: {recipe.author}</p>
                                     </div>
                                 </div>
-                                <Button className="bg-(--zesty-orange) md:text-xl text-lg ">View Recipe</Button>
+                                <Button onClick={() => navigate(`/recipe/${recipe._id}`)} className="bg-(--zesty-orange) md:text-xl text-lg ">View Recipe</Button>
                             </div>
                         ))
                     }
@@ -138,7 +140,7 @@ export default function Categories() {
                                         <p>Author: {recipe.author}</p>
                                     </div>
                                 </div>
-                                <Button className="bg-(--zesty-orange) md:text-xl text-lg hover:bg-(--rich-brown) ">View Recipe</Button>
+                                <Button onClick={() => navigate(`/recipe/${recipe._id}`)} className="bg-(--zesty-orange) md:text-xl text-lg hover:bg-(--rich-brown) ">View Recipe</Button>
                             </div>
                         ))
                     }

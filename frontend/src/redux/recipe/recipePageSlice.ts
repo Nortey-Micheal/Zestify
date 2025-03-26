@@ -19,20 +19,20 @@ export interface Recipe {
     _id: string,
 }
 
-const initialState: Recipe[] = []
+const initialState: Recipe = {} as Recipe
 
 const recipeSlice = createSlice({
-    name: 'recipes',
+    name: 'recipesPage',
     initialState,
     reducers: {
-        setRecipes: (state,action:PayloadAction<Recipe[]>) => {
+        setRecipePage: (state,action:PayloadAction<Recipe>) => {
             return action.payload
        },
-       removeRecipes: () => {
-        return []
+       removeRecipePage: () => {
+        return {} as Recipe
        }
     }
 })
 
 export default recipeSlice.reducer
-export const { setRecipes, removeRecipes } = recipeSlice.actions
+export const { setRecipePage, removeRecipePage } = recipeSlice.actions

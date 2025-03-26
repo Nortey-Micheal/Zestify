@@ -116,3 +116,14 @@ export const unLikeRecipe = async (req,res) => {
         res.status(500).json({message: error.message})
     }
 }
+
+export const getRecipeById = async (req,res) => {
+    const { recipe_id } = req.params
+
+    try {
+        const recipe = await Recipe.findOne({ _id:recipe_id })
+        res.status(200).json(recipe)
+    } catch (error) {
+        res.status(500).json({message: error.message})   
+    }
+}

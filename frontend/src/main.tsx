@@ -7,6 +7,7 @@ import store, { persistor } from './redux/store.ts'
 const Signup = lazy(() => import('./pages/signup.tsx'))
 const Login = lazy(() => import('./pages/login.tsx'))
 import { PersistGate } from 'redux-persist/integration/react'
+import Recipe from './pages/recipe.tsx'
 const AddRecipe = lazy(() => import('./pages/addRecipe.tsx'))
 const Home = lazy(() => import('./pages/homePage.tsx'))
 const NoPageFound = lazy(() => import('./pages/404.tsx'))
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
   {
     path: '/auth/login',
     element: <Login />,
+    errorElement: <NoPageFound />
+  },
+  {
+    path: '/recipe/:recipe_id',
+    element: <Recipe />,
     errorElement: <NoPageFound />
   },
 ])
