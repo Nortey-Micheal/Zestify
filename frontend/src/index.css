@@ -108,6 +108,13 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --warm-cream: #FFF5E1;
+  --deep-charcoal: #333333;
+  --rich-brown: #8B572A;
+  --zesty-orange: #FF7F3F;
+  --soft-blush-pink: #FDECE4;
+  --dark-green: #3A6B35;
+  --light-gray: #E0E0E0;
 }
 
 @layer base {
