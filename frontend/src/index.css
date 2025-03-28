@@ -115,6 +115,47 @@
   --soft-blush-pink: #FDECE4;
   --dark-green: #3A6B35;
   --light-gray: #E0E0E0;
+  --greek-villa: #F0EBE3;
+  --white-dove: #F0EFE7;
+
+  /* Neutral colors */
+  --white: hsl(0,0%,100%);
+  --rose-white: hsl(330,100%,98%);
+  --eggshell: hsl(30,54%,90%);
+  --light-grey: hsl(30,18%,87%);
+  --wenge-brown: hsl(30,10%,34%);
+  --dark-charcoal: hsl(24,5%,18%);
+
+  /* Primary colors */
+  --nutmeg: hsl(14,45%,36%);
+  --dark-raspberry: hsl(332,51%,32%);
+
+   /* Additional colors */
+  --success-green: hsl(120,40%,40%);
+  --soft-yellow: hsl(45,90%,60%);
+  --deep-brown: hsl(20,30%,20%);
+}
+
+/* Fonts */
+/* @font-face {
+  src: url('./assets/fonts/YoungSerif-Regular.ttf');
+  font-family: 'young-serif';
+} */
+
+@font-face {
+  font-family: young-serif;
+  /* font-style: normal; */
+  font-weight: 400;
+  /* font-display: swap; */
+  src: url("../assets/fonts/YoungSerif-Regular.ttf");
+}
+
+@font-face {
+  font-family: Outfit;
+  /* font-style: normal; */
+  font-weight: 400;
+  /* font-display: swap; */
+  src: url("../assets/fonts/Outfit-VariableFont_wght.ttf") ;
 }
 
 @layer base {

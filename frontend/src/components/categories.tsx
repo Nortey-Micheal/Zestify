@@ -63,9 +63,9 @@ export default function Categories() {
     },[])
 
     return (
-        <section className={`py-5 h-[100vh] w-[90vw] mx-auto overflow-scroll ${!user.email ? 'lg:w-[80vw]' : 'lg:w-[57vw]'}`}>
-            <h1 className="text-4xl lg:text-6xl font-extrabold text-(--zesty-orange) font-serif">Welcome to Zestify</h1>
-            <p className="text-3xl lg:text-4xl mt-2 font-extrabold text-(--deep-charcoal) ">Where recipes are shared and  <br /><span className="text-(--zesty-orange) font-serif"> feasts are born</span></p>
+        <section className={`px-3 py-5 h-[100vh] w-[90vw] mx-auto bg-(--rose-white) overflow-scroll ${!user.email ? 'lg:w-[80vw]' : 'lg:w-[57vw]'}`}>
+            <h1 className="text-4xl lg:text-6xl font-extrabold text-(--zesty-orange) font-[young-serif] ">Welcome to Zestify</h1>
+            <p className="text-3xl lg:text-4xl mt-2 font-extrabold text-(--deep-charcoal) ">Where recipes are shared and  <br /><span className="text-(--zesty-orange) font-[young-serif] "> feasts are born</span></p>
 
             <ScrollArea className="my-10">
                 <div className="flex gap-8 overflow-scroll w-full">
@@ -86,28 +86,28 @@ export default function Categories() {
                     <h2>Most Popular</h2>
                     <button className="mr-5 bg-(--zesty-orange) py-1 px-3 rounded-2xl flex items-center gap-2 text-(--warm-cream) font-semibold ">View all <ArrowBigRightDashIcon /> </button>
                 </div>
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-6  ">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  gap-y-10">
                     {
                         popular.map(recipe => (
-                            <div className="h-[200px bg-(--warm-cream) border-(--light-gray) shadow-xl border flex flex-col rounded-2xl text-(--deep-charcoal) " key={recipe.author + recipe.title}>
+                            <div className=" border-(--light-gray) shadow-xl max-w-[500px] border flex flex-col rounded-2xl text-(--deep-charcoal) mx-auto " key={recipe.author + recipe.title}>
                             <div className="rounded-t-2xl overflow-hidden h-fit relative">
                                 <RecipeImage width={500} height={500} image={recipe.image} />
-                                <div className="absolute top-0 left-0 p-1 bg-linear-to-b from-(--rich-brown)  
+                                <div className="absolute top-0 left-0 p-1 bg-linear-to-b from-(--wenge-brown)  
                                  w-full ">
                                     <button className="ml-1 mt-1" aria-label="Add to favourite">
                                         <Heart className=" rounded-full drop-shadow-lg
-                                        w-9 h-9 text-(--soft-blush-pink) font-extrabold hover:fill-(--zesty-orange) "/>
+                                        w-9 h-9 text-(--rose-white) font-extrabold hover:fill-(--zesty-orange) "/>
                                     </button>
                                 </div>
                             </div>
                                 <div className="p-3 flex flex-col justify-between ">
-                                    <h2 className="text-lg font-semibold ">{recipe.title}</h2>
+                                    <h2 className="text-2xl font-semibold font-[young-serif] ">{recipe.title}</h2>
                                     <div className="flex justify-between">
                                         <p>Prep Time: {recipe.cookTime}</p>
                                         <p>Author: {recipe.author}</p>
                                     </div>
                                 </div>
-                                <Button onClick={() => navigate(`/recipe/${recipe._id}`)} className="bg-(--zesty-orange) md:text-xl text-lg ">View Recipe</Button>
+                                <Button onClick={() => navigate(`/recipe/${recipe._id}`)} className="bg-(--zesty-orange) m-2 hover:bg-(--rich-brown)  md:text-xl text-lg ">View Recipe</Button>
                             </div>
                         ))
                     }
@@ -119,13 +119,13 @@ export default function Categories() {
                     <h2>New</h2>
                     <button className="mr-5 bg-(--zesty-orange) py-1 px-3 rounded-2xl flex items-center gap-2 text-(--warm-cream) font-semibold ">View all <ArrowBigRightDashIcon /> </button>
                 </div>
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 ">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-10">
                     {
-                        newRecipes.map(recipe => (
-                            <div className="h-[200px bg-(--warm-cream) border-(--light-gray) shadow-xl border flex flex-col rounded-2xl text-(--deep-charcoal) " key={recipe.author + recipe.title}>
+                        newRecipes.map((recipe,index) => (
+                            <div className={`h border-(--light-gray) max-w-[500px] shadow-xl border flex flex-col rounded-2xl text-(--deep-charcoal) mx-auto ${index === (newRecipes.length - 1) && 'mb-10 md:mb-0'}`} key={recipe.author + recipe.title}>
                                 <div className="rounded-t-2xl overflow-hidden h-fit relative">
                                     <RecipeImage width={500} height={500} image={recipe.image} />
-                                    <div className="absolute top-0 left-0 p-1 bg-linear-to-b from-(--rich-brown)  
+                                    <div className="absolute top-0 left-0 p-1 bg-linear-to-b from-(--wenge-brown)  
                                      w-full ">
                                         <button className="ml-1 mt-1" aria-label="Add to favourite">
                                             <Heart className=" rounded-full drop-shadow-lg
@@ -134,13 +134,13 @@ export default function Categories() {
                                     </div>
                                 </div>
                                 <div className="p-3 flex flex-col justify-between ">
-                                    <h2 className="text-lg font-semibold">{recipe.title}</h2>
+                                    <h2 className="text-2xl font-semibold font-[young-serif] ">{recipe.title}</h2>
                                     <div className="flex justify-between">
                                         <p>Cook Time: {recipe.cookTime}</p>
                                         <p>Author: {recipe.author}</p>
                                     </div>
                                 </div>
-                                <Button onClick={() => navigate(`/recipe/${recipe._id}`)} className="bg-(--zesty-orange) md:text-xl text-lg hover:bg-(--rich-brown) ">View Recipe</Button>
+                                <Button onClick={() => navigate(`/recipe/${recipe._id}`)} className="bg-(--zesty-orange) md:text-xl m-2 text-lg hover:bg-(--rich-brown) ">View Recipe</Button>
                             </div>
                         ))
                     }

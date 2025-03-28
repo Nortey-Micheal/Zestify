@@ -16,32 +16,33 @@ import { RootState } from "@/redux/store"
 import { MenuIcon, User } from "lucide-react"
 import { useSelector } from "react-redux"
 import ProfileImage from "./ui/profileImage"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export function NavbarSmallScreen() {
     const user = useSelector((state:RootState) => state.user)
 
     const [visible, setVisible] = useState(true);
-    let lastScrollY = window.scrollY;
 
-    const handleScroll = () => {
-        if (window.scrollY > lastScrollY) {
-        setVisible(false); // Scrolling down
-        } else {
-        setVisible(true); // Scrolling up
-        }
-        lastScrollY = window.scrollY;
-    };
+    const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-        window.removeEventListener('scroll', handleScroll);
+        const scrollContainer = document.querySelector("section"); // Target the section directly
+        if (!scrollContainer) return;
+
+        let lastScrollY = scrollContainer.scrollTop;
+
+        const handleScroll = () => {
+            const currentScrollY = scrollContainer.scrollTop;
+            setVisible(currentScrollY <= lastScrollY); // Detects up/down scroll
+            lastScrollY = currentScrollY;
         };
+
+        scrollContainer.addEventListener("scroll", handleScroll);
+        return () => scrollContainer.removeEventListener("scroll", handleScroll);
     }, []);
 
   return (
-    <nav className={`flex lg:hidden z-50 justify-between items-center sticky top-0 transition-transform ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
+    <nav className={`flex lg:hidden z-50 justify-between items-center sticky top-0 transition-transform ${visible ? 'translate-y-0' : '-translate-y-full'} bg-(--rose-white) w-[100vw] px-5 py-2 -ml-5`}>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <MenuIcon className="w-9 h-9 text-(--zesty-orange)"/>
