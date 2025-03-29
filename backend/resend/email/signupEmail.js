@@ -15,7 +15,8 @@ async function sendVerificationToken ({email,verificationToken}) {
   });
 
   if (error) {
-    throw new Error({ error });
+    console.log(error)
+    throw new Error(error.message);
   }
 
   //console.log({ data });

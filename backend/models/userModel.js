@@ -21,10 +21,12 @@ const userSchema = new mongoose.Schema(
             unique: true
         },
         favouriteRecipes: {
-            type: Array
+            type: Array,
+            default: []
         },
         postedRecipes: {
-            type: Array
+            type: Array,
+            default: []
         },
         profilePicture: {
             type: String,

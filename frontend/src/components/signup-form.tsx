@@ -19,7 +19,7 @@ export default function SignupForm() {
   const [profileImagePreview, setProfileImagePreview] = useState<string | null>(null)
   const [profileImage, setProfileImage] = useState<File | null>(null)
   const [errors, setErrors] = useState<Record<string, string>>({})
-  const { isLoading, signup} = useSignup()
+  const { error, isLoading, signup} = useSignup()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -82,9 +82,11 @@ export default function SignupForm() {
       // console.log("Form submitted:", { ...formData, profileImagePreview })
       await signup({...formData,profilePicture:profileImage!})
       // Reset form after successful submission
-      setFormData({ name: "", email: "", password: "", confirmPassword: "" })
-      setProfileImagePreview(null)
-      setProfileImage(null)
+      if (!error) {
+        setFormData({ name: "", email: "", password: "", confirmPassword: "" })
+        setProfileImagePreview(null)
+        setProfileImage(null)
+      }
     }
   }
 

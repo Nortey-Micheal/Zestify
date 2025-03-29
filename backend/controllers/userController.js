@@ -8,7 +8,7 @@ export const signup = async (req,res) => {
     try {
         const user = await User.signup({email,password,name})
         
-        res.json({...user._doc,password: undefined}).status(200)
+        res.json({message: 'Thank you for signing up. Please verify your email with the code sent to the email address you provided'}).status(200)
     } catch (error) {
         res.status(500).json({message: error.message})
     }
