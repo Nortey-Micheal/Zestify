@@ -8,6 +8,7 @@ const Signup = lazy(() => import('./pages/signup.tsx'))
 const Login = lazy(() => import('./pages/login.tsx'))
 import { PersistGate } from 'redux-persist/integration/react'
 import Recipe from './pages/recipe.tsx'
+import VerifyEmail from './pages/verify-email.tsx'
 const AddRecipe = lazy(() => import('./pages/addRecipe.tsx'))
 const Home = lazy(() => import('./pages/homePage.tsx'))
 const NoPageFound = lazy(() => import('./pages/404.tsx'))
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
     element: <Recipe />,
     errorElement: <NoPageFound />
   },
+  {
+    path: '/auth/verify-email',
+    element: <VerifyEmail />
+  }
 ])
 
 createRoot(document.getElementById('root')!).render(

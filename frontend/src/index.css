@@ -145,18 +145,18 @@
 
 @font-face {
   font-family: young-serif;
-  /* font-style: normal; */
+  font-style: normal;
   font-weight: 400;
-  /* font-display: swap; */
-  src: url("../assets/fonts/YoungSerif-Regular.ttf");
+  font-display: swap;
+  src: url("/fonts/YoungSerif-Regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: Outfit;
-  /* font-style: normal; */
+  font-style: normal;
   font-weight: 400;
-  /* font-display: swap; */
-  src: url("../assets/fonts/Outfit-VariableFont_wght.ttf") ;
+  font-display: swap;
+  src: url("/fonts/Outfit-VariableFont_wght.ttf") format("truetype");
 }
 
 @layer base {

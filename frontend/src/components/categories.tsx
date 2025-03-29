@@ -64,7 +64,7 @@ export default function Categories() {
     },[])
 
     return (
-        <section className={`px-3 py-5 h-[100vh] w-[90vw] mx-auto bg-(--rose-whit) overflow-scroll ${!user.email ? 'lg:w-[80vw]' : 'lg:w-[57vw]'}`}>
+        <section className={`px-3 py-5 h-[100vh] w-[90vw] mx-auto overflow-scroll ${!user.email ? 'lg:w-[80vw]' : 'lg:w-[57vw]'}`}>
             <h1 className="text-4xl lg:text-6xl font-extrabold text-(--zesty-orange) font-[young-serif] ">Welcome to Zestify</h1>
             <p className="text-3xl lg:text-4xl mt-2 font-extrabold text-(--deep-charcoal) ">Where recipes are shared and  <br /><span className="text-(--zesty-orange) font-[young-serif] "> feasts are born</span></p>
 
@@ -95,7 +95,7 @@ export default function Categories() {
                                 <RecipeImage width={500} height={500} image={recipe.image} />
                                 <div className="absolute top-0 left-0 p-1 bg-linear-to-b from-(--wenge-brown)  
                                  w-full ">
-                                    <button className="ml-1 mt-1" aria-label="Add to favourite">
+                                    <div className="ml-1 mt-1" aria-label="Add to favourite">
                                         <TooltipProvider>
                                             <Tooltip>
                                                 <TooltipTrigger className="flex items-center gap-2"> <Heart className=" rounded-full drop-shadow-lg
@@ -105,7 +105,7 @@ export default function Categories() {
                                                 </TooltipContent>
                                             </Tooltip>
                                         </TooltipProvider>
-                                    </button>
+                                    </div>
                                 </div>
                             </div>
                                 <div className="p-3 flex flex-col justify-between ">
@@ -135,7 +135,7 @@ export default function Categories() {
                                     <RecipeImage width={500} height={500} image={recipe.image} />
                                     <div className="absolute top-0 left-0 p-1 bg-linear-to-b from-(--wenge-brown)  
                                      w-full ">
-                                        <button className="ml-1 mt-1" aria-label="Add to favourite">
+                                        <div className="ml-1 mt-1" aria-label="Add to favourite">
                                             <TooltipProvider>
                                                 <Tooltip>
                                                     <TooltipTrigger className="flex items-center gap-2"> <Heart className=" rounded-full drop-shadow-lg
@@ -145,7 +145,7 @@ export default function Categories() {
                                                     </TooltipContent>
                                                 </Tooltip>
                                             </TooltipProvider>
-                                        </button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="p-3 flex flex-col justify-between ">

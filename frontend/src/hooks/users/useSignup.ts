@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router";
 
 interface SignupType {
     name: string;
@@ -12,6 +13,7 @@ interface SignupType {
 const useSignup = () => {
     const [error,setError] = useState<string | null>(null)
     const [isLoading,setIsLoading] = useState<boolean>(false)
+    const navigate = useNavigate()
 
     const signup = async({email,name,password,profilePicture}: SignupType) => {
         const formData = new FormData()
@@ -40,6 +42,8 @@ const useSignup = () => {
             console.log({email,name,password,profilePicture})
 
             setIsLoading(false)
+
+            navigate('/auth/verify-email')
 
         } catch (error:any) {
             setError(error.message)

@@ -161,7 +161,7 @@ export default function RecipeForm() {
     await addRecipe({
       title,description,
       author,cookTime,category,
-      ingredients,instructions,image,likes: 0
+      ingredients,instructions,image,likes: 0,_id:''
     })
 
     if (error) {
