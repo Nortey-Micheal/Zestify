@@ -21,6 +21,9 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp"
+import useVerifyEmail from "@/hooks/users/useVerifyEmail"
+import { useEffect } from "react"
+import { useNavigate } from "react-router"
 
 const FormSchema = z.object({
   pin: z.string().min(6, {
@@ -35,13 +38,29 @@ export function InputOTPForm() {
       pin: "",
     },
   })
+  const { verifyEmail, isLoading, error, success } = useVerifyEmail()
+  const navigate = useNavigate()
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
     toast.success(
       `You submitted the following values: ${data.pin}`
     )
+
+    await verifyEmail(data.pin)
+
     console.log(data)
   }
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error)
+    } else if (success) {
+      toast.success('Email has been successfully verified')
+      setTimeout(() => {
+        navigate('/auth/login')
+      },2000)
+    }
+  },[error,success])
 
   return (
     <Form {...form}>
