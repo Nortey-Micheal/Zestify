@@ -2,17 +2,19 @@ import RecipeImage from "@/components/ui/recipeImage"
 import useGetRecipeById from "@/hooks/recipes/useGetRecipeById"
 import { setRecipePage } from "@/redux/recipe/recipePageSlice"
 import { RootState } from "@/redux/store"
+import { ArrowBigLeftDashIcon } from "lucide-react"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 
-export default function Recipe() {
+export default function RecipeContent() {
     const recipe_id = useParams<{recipe_id:string}>()
     const recipe = useSelector((state:RootState) => state.recipePage)
     const newRecipes = useSelector((state:RootState) => state.newRecipes)
     const popularRecipes = useSelector((state:RootState) => state.popularRecipes)
     const { getRecipeById } = useGetRecipeById()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchRecipe = async () => {
@@ -42,6 +44,7 @@ export default function Recipe() {
                 <div className="w-[95vw] mx-auto md:w-full rounded-2xl bg-(--dark-green) overflow-hidden flex justify-center items-center">
                     <RecipeImage width={760} height={450} image={recipe.image} />
                 </div>
+                <button onClick={() => navigate('/')} className="flex items-center fixed top-3 left-3 bg-(--zesty-orange) rounded-xl px-3 py-1 text-(--rose-white) "><ArrowBigLeftDashIcon /> <span className="hidden md:block">Back</span></button>
                 <div className="mt-7">
                     <div className=" mb-5">
                         <div className="mb-4 flex justify-between items-center">

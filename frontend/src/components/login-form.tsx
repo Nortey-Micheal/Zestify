@@ -9,6 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { AlertCircle } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import useLogin from "@/hooks/users/useLogin"
+import { Link } from "react-router"
 
 export default function LoginForm() {
   const [email, setEmail] = useState("")
@@ -40,24 +41,13 @@ export default function LoginForm() {
     if (validate()) {
 
       await login({email,password})
-      // try {
-        
-      //   await new Promise((resolve) => setTimeout(resolve, 1000))
-
-      //   console.log("Login submitted:", { email, password, rememberMe })
-      //   // Redirect or show success message
-      // } catch (error) {
-      //   console.error("Login failed:", error)
-      // } finally {
-      //   setIsLoading(false)
-      // }
     }
   }
 
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-center">Login</CardTitle>
+        <CardTitle className="text-2xl font-bold text-center font-[young-serif] ">Login</CardTitle>
         <CardDescription className="text-center">Enter your email and password to access your account</CardDescription>
       </CardHeader>
       <CardContent>
@@ -121,7 +111,7 @@ export default function LoginForm() {
             </Alert>
           )}
 
-          <Button type="submit" className="w-full" disabled={isLoading}>
+          <Button type="submit" className="w-full bg-(--zesty-orange) hover:bg-(--rich-brown) text-xl " disabled={isLoading}>
             {isLoading ? "Logging in..." : "Login"}
           </Button>
         </form>
@@ -129,9 +119,9 @@ export default function LoginForm() {
       <CardFooter className="flex justify-center">
         <p className="text-sm text-muted-foreground">
           Don't have an account?{" "}
-          <a href="#" className="text-primary hover:underline">
+          <Link to="/auth/signup" className="text-primary hover:underline decoration-2">
             Sign up
-          </a>
+          </Link>
         </p>
       </CardFooter>
     </Card>

@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { AlertCircle, Upload } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import useSignup from "@/hooks/users/useSignup"
+import { Link } from "react-router"
 
 export default function SignupForm() {
   const [formData, setFormData] = useState({
@@ -90,7 +91,7 @@ export default function SignupForm() {
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
-        <CardTitle className="text-2xl">Create an account</CardTitle>
+        <CardTitle className="text-2xl font-[young-serif] ">Create an account</CardTitle>
         <CardDescription>Enter your information to create your account</CardDescription>
       </CardHeader>
       <CardContent>
@@ -176,7 +177,7 @@ export default function SignupForm() {
             </Alert>
           )}
 
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full bg-(--zesty-orange) hover:bg-(--rich-brown) text-xl ">
             Create Account
           </Button>
         </form>
@@ -184,9 +185,9 @@ export default function SignupForm() {
       <CardFooter className="flex justify-center">
         <p className="text-sm text-muted-foreground">
           Already have an account?{" "}
-          <a href="#" className="text-primary hover:underline">
+          <Link to="/auth/login" className="text-primary hover:underline">
             Login
-          </a>
+          </Link>
         </p>
       </CardFooter>
     </Card>

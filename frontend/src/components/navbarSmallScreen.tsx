@@ -13,10 +13,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { RootState } from "@/redux/store"
-import { MenuIcon, User } from "lucide-react"
+import { MenuIcon, UserCircle } from "lucide-react"
 import { useSelector } from "react-redux"
 import ProfileImage from "./ui/profileImage"
 import { useEffect, useRef, useState } from "react"
+import { Link } from "react-router"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@radix-ui/react-tooltip"
 
 export function NavbarSmallScreen() {
     const user = useSelector((state:RootState) => state.user)
@@ -100,7 +102,19 @@ export function NavbarSmallScreen() {
         </DropdownMenu>
         <img className="w-14 " src="/assets/zestify-full.svg" alt="" />
         {
-            user.name ? <ProfileImage profilePicture={user.profilePicture} width={70} height={70}/> : <User/>
+            user.name ? <ProfileImage profilePicture={user.profilePicture} width={70} height={70}/> : <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger className="w-ful">
+                    <Link to={'/auth/login'} className="flex items-center gap-2">
+                        <UserCircle className="w-12 h-12 text-(--zesty-orange) hover:fill-red-300 "/>
+                        <p className="text-xl">Login</p>
+                    </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                <p className="text-lg">Signup / Login</p>
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
         }
     </nav>
   )

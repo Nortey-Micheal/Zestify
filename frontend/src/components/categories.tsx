@@ -8,6 +8,7 @@ import RecipeImage from "./ui/recipeImage"
 import useGetPopularRecipes from "@/hooks/recipes/useGetPopularRecipes"
 import { Button } from "./ui/button"
 import { useNavigate } from "react-router"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@radix-ui/react-tooltip"
 
 interface Category {
     name: string,
@@ -63,7 +64,7 @@ export default function Categories() {
     },[])
 
     return (
-        <section className={`px-3 py-5 h-[100vh] w-[90vw] mx-auto bg-(--rose-white) overflow-scroll ${!user.email ? 'lg:w-[80vw]' : 'lg:w-[57vw]'}`}>
+        <section className={`px-3 py-5 h-[100vh] w-[90vw] mx-auto bg-(--rose-whit) overflow-scroll ${!user.email ? 'lg:w-[80vw]' : 'lg:w-[57vw]'}`}>
             <h1 className="text-4xl lg:text-6xl font-extrabold text-(--zesty-orange) font-[young-serif] ">Welcome to Zestify</h1>
             <p className="text-3xl lg:text-4xl mt-2 font-extrabold text-(--deep-charcoal) ">Where recipes are shared and  <br /><span className="text-(--zesty-orange) font-[young-serif] "> feasts are born</span></p>
 
@@ -81,29 +82,36 @@ export default function Categories() {
                 <ScrollBar orientation="horizontal" />
             </ScrollArea>
 
-            <div>
-                <div className="flex justify-between md:text-xl text-lg mb-4 text-(--deep-charcoal) ">
+            <div className="bg-(--rose-white) p-2 rounded-2xl">
+                <div className="flex justify-between md:text-xl text-lg mb-4 text-(--deep-charcoal)  ">
                     <h2>Most Popular</h2>
                     <button className="mr-5 bg-(--zesty-orange) py-1 px-3 rounded-2xl flex items-center gap-2 text-(--warm-cream) font-semibold ">View all <ArrowBigRightDashIcon /> </button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  gap-y-10">
                     {
                         popular.map(recipe => (
-                            <div className=" border-(--light-gray) shadow-xl max-w-[500px] border flex flex-col rounded-2xl text-(--deep-charcoal) mx-auto " key={recipe.author + recipe.title}>
+                            <div className=" border-(--light-gray) shadow-xl max-w-[500px] border flex flex-col rounded-2xl text-(--deep-charcoal) bg-(--white) mx-auto " key={recipe.author + recipe.title}>
                             <div className="rounded-t-2xl overflow-hidden h-fit relative">
                                 <RecipeImage width={500} height={500} image={recipe.image} />
                                 <div className="absolute top-0 left-0 p-1 bg-linear-to-b from-(--wenge-brown)  
                                  w-full ">
                                     <button className="ml-1 mt-1" aria-label="Add to favourite">
-                                        <Heart className=" rounded-full drop-shadow-lg
-                                        w-9 h-9 text-(--rose-white) font-extrabold hover:fill-(--zesty-orange) "/>
+                                        <TooltipProvider>
+                                            <Tooltip>
+                                                <TooltipTrigger className="flex items-center gap-2"> <Heart className=" rounded-full drop-shadow-lg
+                                        w-9 h-9 text-(--rose-white) font-extrabold hover:fill-(--zesty-orange) "/></TooltipTrigger>
+                                                <TooltipContent>
+                                                <p className="text-lg p-2 rounded-xl bg-(--dark-charcoal) text-(--white) ">Add to favourites</p>
+                                                </TooltipContent>
+                                            </Tooltip>
+                                        </TooltipProvider>
                                     </button>
                                 </div>
                             </div>
                                 <div className="p-3 flex flex-col justify-between ">
                                     <h2 className="text-2xl font-semibold font-[young-serif] ">{recipe.title}</h2>
                                     <div className="flex justify-between">
-                                        <p>Prep Time: {recipe.cookTime}</p>
+                                        <p>Cook Time: {recipe.cookTime} mins</p>
                                         <p>Author: {recipe.author}</p>
                                     </div>
                                 </div>
@@ -114,29 +122,36 @@ export default function Categories() {
                 </div>
             </div>
 
-            <div>
-                <div className="flex justify-between md:text-xl text-lg mt-15 mb-4 text-(--deep-charcoal) ">
+            <div className="bg-(--rose-white) p-2 rounded-2xl mt-15">
+                <div className="flex justify-between md:text-xl text-lg mb-4 text-(--deep-charcoal) ">
                     <h2>New</h2>
                     <button className="mr-5 bg-(--zesty-orange) py-1 px-3 rounded-2xl flex items-center gap-2 text-(--warm-cream) font-semibold ">View all <ArrowBigRightDashIcon /> </button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-10">
                     {
                         newRecipes.map((recipe,index) => (
-                            <div className={`h border-(--light-gray) max-w-[500px] shadow-xl border flex flex-col rounded-2xl text-(--deep-charcoal) mx-auto ${index === (newRecipes.length - 1) && 'mb-10 md:mb-0'}`} key={recipe.author + recipe.title}>
+                            <div className={`h border-(--light-gray) max-w-[500px] shadow-xl border flex flex-col rounded-2xl text-(--deep-charcoal) bg-(--white) mx-auto ${index === (newRecipes.length - 1) && 'mb-10 md:mb-0'}`} key={recipe.author + recipe.title}>
                                 <div className="rounded-t-2xl overflow-hidden h-fit relative">
                                     <RecipeImage width={500} height={500} image={recipe.image} />
                                     <div className="absolute top-0 left-0 p-1 bg-linear-to-b from-(--wenge-brown)  
                                      w-full ">
                                         <button className="ml-1 mt-1" aria-label="Add to favourite">
-                                            <Heart className=" rounded-full drop-shadow-lg
-                                            w-9 h-9 text-(--soft-blush-pink) font-extrabold hover:fill-(--zesty-orange) "/>
+                                            <TooltipProvider>
+                                                <Tooltip>
+                                                    <TooltipTrigger className="flex items-center gap-2"> <Heart className=" rounded-full drop-shadow-lg
+                                            w-9 h-9 text-(--rose-white) font-extrabold hover:fill-(--zesty-orange) "/></TooltipTrigger>
+                                                    <TooltipContent>
+                                                    <p className="text-lg p-2 rounded-xl bg-(--dark-charcoal) text-(--white) ">Add to favourites</p>
+                                                    </TooltipContent>
+                                                </Tooltip>
+                                            </TooltipProvider>
                                         </button>
                                     </div>
                                 </div>
                                 <div className="p-3 flex flex-col justify-between ">
                                     <h2 className="text-2xl font-semibold font-[young-serif] ">{recipe.title}</h2>
                                     <div className="flex justify-between">
-                                        <p>Cook Time: {recipe.cookTime}</p>
+                                        <p>Cook Time: {recipe.cookTime} mins</p>
                                         <p>Author: {recipe.author}</p>
                                     </div>
                                 </div>
