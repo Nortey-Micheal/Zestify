@@ -110,7 +110,7 @@ export default function Categories() {
                             </div>
                                 <div className="p-3 flex flex-col justify-between ">
                                     <h2 className="text-2xl font-semibold font-[young-serif] ">{recipe.title}</h2>
-                                    <div className="flex justify-between">
+                                    <div className="flex justify-between gap-5">
                                         <p>Cook Time: {recipe.cookTime} mins</p>
                                         <p>Author: {recipe.author}</p>
                                     </div>
@@ -150,7 +150,7 @@ export default function Categories() {
                                 </div>
                                 <div className="p-3 flex flex-col justify-between ">
                                     <h2 className="text-2xl font-semibold font-[young-serif] ">{recipe.title}</h2>
-                                    <div className="flex justify-between">
+                                    <div className="flex justify-between gap-5">
                                         <p>Cook Time: {recipe.cookTime} mins</p>
                                         <p>Author: {recipe.author}</p>
                                     </div>
