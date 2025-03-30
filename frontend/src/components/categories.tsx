@@ -7,7 +7,7 @@ import { useSelector } from "react-redux"
 import RecipeImage from "./ui/recipeImage"
 import useGetPopularRecipes from "@/hooks/recipes/useGetPopularRecipes"
 import { Button } from "./ui/button"
-import { useNavigate } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@radix-ui/react-tooltip"
 
 interface Category {
@@ -85,7 +85,7 @@ export default function Categories() {
             <div className="bg-(--rose-white) p-2 rounded-2xl">
                 <div className="flex justify-between md:text-xl text-lg mb-4 text-(--deep-charcoal)  ">
                     <h2>Most Popular</h2>
-                    <button className="mr-5 bg-(--zesty-orange) py-1 px-3 rounded-2xl flex items-center gap-2 text-(--warm-cream) font-semibold ">View all <ArrowBigRightDashIcon /> </button>
+                    <Link to={'/recipes/popular'} className="mr-5 bg-(--zesty-orange) py-1 px-3 rounded-2xl flex items-center gap-2 text-(--warm-cream) font-semibold ">View all <ArrowBigRightDashIcon /> </Link>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  gap-y-10">
                     {
@@ -125,7 +125,7 @@ export default function Categories() {
             <div className="bg-(--rose-white) p-2 rounded-2xl mt-15">
                 <div className="flex justify-between md:text-xl text-lg mb-4 text-(--deep-charcoal) ">
                     <h2>New</h2>
-                    <button className="mr-5 bg-(--zesty-orange) py-1 px-3 rounded-2xl flex items-center gap-2 text-(--warm-cream) font-semibold ">View all <ArrowBigRightDashIcon /> </button>
+                    <Link to={'/recipes/new'} className="mr-5 bg-(--zesty-orange) py-1 px-3 rounded-2xl flex items-center gap-2 text-(--warm-cream) font-semibold ">View all <ArrowBigRightDashIcon /> </Link>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-10">
                     {

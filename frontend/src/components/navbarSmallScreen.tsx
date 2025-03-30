@@ -53,8 +53,8 @@ export function NavbarSmallScreen() {
             
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) "><HomeIcon className="text-[inherite]"/> Home</DropdownMenuItem>
-              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) "><MenuSquare className="text-[inherite]"/> All recipes</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate('/')} className="focus:bg-(--zesty-orange) focus:text-(--white) "><HomeIcon className="text-[inherite]"/> Home</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate('/recipes')} className="focus:bg-(--zesty-orange) focus:text-(--white) "><MenuSquare className="text-[inherite]"/> All recipes</DropdownMenuItem>
               <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) ">
                 <SearchIcon className="text-[inherite]"/> Search
                 <DropdownMenuShortcut className="text-[inherite]">⌘+T</DropdownMenuShortcut>
@@ -91,7 +91,7 @@ export function NavbarSmallScreen() {
             }
           </DropdownMenuContent>
         </DropdownMenu>
-        <img className="w-11 " src="/assets/zestify-full.svg" alt="" />
+        <img onClick={() => navigate('/')} className="w-11 " src="/assets/zestify-full.svg" alt="" />
         {
             user.name ? <ProfileImage profilePicture={user.profilePicture} width={70} height={70}/> : <TooltipProvider>
             <Tooltip>

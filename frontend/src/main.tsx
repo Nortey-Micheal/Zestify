@@ -7,8 +7,12 @@ import store, { persistor } from './redux/store.ts'
 const Signup = lazy(() => import('./pages/signup.tsx'))
 const Login = lazy(() => import('./pages/login.tsx'))
 import { PersistGate } from 'redux-persist/integration/react'
-import Recipe from './pages/recipe.tsx'
-import VerifyEmail from './pages/verify-email.tsx'
+const Recipe = lazy(() => import('./pages/recipe.tsx'))
+const VerifyEmail = lazy(() => import('./pages/verify-email.tsx'))
+const ViewRecipes = lazy(() => import('./pages/viewRecipes.tsx'))
+const AllRecipes = lazy(() => import('./pages/allRecipes.tsx'))
+const NewRecipes = lazy(() => import('./pages/newestRecipes.tsx'))
+const PopularRecipes = lazy(() => import('./pages/popularRecipes.tsx'))
 const AddRecipe = lazy(() => import('./pages/addRecipe.tsx'))
 const Home = lazy(() => import('./pages/homePage.tsx'))
 const NoPageFound = lazy(() => import('./pages/404.tsx'))
@@ -41,7 +45,28 @@ const router = createBrowserRouter([
   },
   {
     path: '/auth/verify-email',
-    element: <VerifyEmail />
+    element: <VerifyEmail />,
+    errorElement: <NoPageFound />
+  },
+  {
+    path: '/recipes',
+    element: <ViewRecipes/>,
+    errorElement: <NoPageFound />,
+    children: [
+      {
+        path: '',
+        element: <AllRecipes/>,
+        errorElement: <NoPageFound />,
+      },
+      {
+        path: 'new',
+        element: <NewRecipes/>
+      },
+      {
+        path: 'popular',
+        element: <PopularRecipes/>
+      }
+    ]
   }
 ])
 
