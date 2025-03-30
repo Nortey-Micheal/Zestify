@@ -91,7 +91,7 @@ export default function SignupForm() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-[95vw] max-w-md mx-auto">
       <CardHeader>
         <CardTitle className="text-2xl font-[young-serif] ">Create an account</CardTitle>
         <CardDescription>Enter your information to create your account</CardDescription>

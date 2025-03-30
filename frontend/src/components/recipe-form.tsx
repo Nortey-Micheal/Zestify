@@ -278,7 +278,7 @@ export default function RecipeForm() {
                 {!imagePreview ? (
                   <div
                     onClick={triggerFileInput}
-                    className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-primary"
+                    className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-(--zesty-orange) "
                   >
                     <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
                     <div className="mt-2">Click to upload an imagePreview</div>
@@ -425,7 +425,7 @@ export default function RecipeForm() {
 
             {/* Submit Button */}
             <div className="pt-4">
-              <Button disabled={isLoading} type="submit" className="w-full cursor-pointer">
+              <Button disabled={isLoading} type="submit" className="w-full cursor-pointer bg-(--zesty-orange) text-xl ">
                 { isLoading ? 'Saving' : 'Save Recipe'}
               </Button>
             </div>
