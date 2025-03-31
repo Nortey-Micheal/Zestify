@@ -1,9 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Recipe } from '../recipe/recipeSlice'
 
 interface User{
     name: string,
     email: string,
-    profilePicture: string
+    profilePicture: string,
+    favouriteRecipes: Recipe[],
+    postedRecipes: Recipe[],
+    isVerified: boolean,
 }
 
 const initialState: User | null = {} as User

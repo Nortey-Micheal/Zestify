@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import { AlertCircle, LoaderPinwheel } from "lucide-react"
+import { AlertCircle, ArrowBigLeftDashIcon, LoaderPinwheel } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import useLogin from "@/hooks/users/useLogin"
 import { Link } from "react-router"
@@ -81,6 +81,7 @@ export default function LoginForm() {
                 </div>
               )
             }
+            <Link to={'/'} className="flex items-center fixed top-3 left-3 bg-(--zesty-orange) rounded-xl px-3 py-1 text-(--rose-white) "><ArrowBigLeftDashIcon /> <span className="hidden md:block">Back</span></Link>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>

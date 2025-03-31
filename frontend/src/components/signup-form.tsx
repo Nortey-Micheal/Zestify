@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { AlertCircle, LoaderPinwheel, Upload } from "lucide-react"
+import { AlertCircle, ArrowBigLeftDashIcon, LoaderPinwheel, Upload } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import useSignup from "@/hooks/users/useSignup"
 import { Link } from "react-router"
@@ -97,7 +97,7 @@ export default function SignupForm() {
   },[error])
 
   return (
-    <Card className="w-[95vw] max-w-md mx-auto">
+    <Card className="w-[95vw] max-w-md mx-auto lg:relative ">
       <CardHeader>
         <CardTitle className="text-2xl font-[young-serif] ">Create an account</CardTitle>
         <CardDescription>Enter your information to create your account</CardDescription>
@@ -130,6 +130,8 @@ export default function SignupForm() {
               </div>
             )
           }
+
+          <Link to={'/'} className="flex items-center fixed lg:absolute lg:-left-25 top-3 left-3  bg-(--zesty-orange) rounded-xl px-3 py-1 text-(--rose-white) "><ArrowBigLeftDashIcon /> <span className="hidden md:block">Back</span></Link>
 
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>

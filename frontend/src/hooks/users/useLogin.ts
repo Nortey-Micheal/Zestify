@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { setUser } from "@/redux/user/userSlice"
 import { useNavigate } from "react-router"
+import { setAuthentication } from "@/redux/user/isAuthenticated"
 
 const useLogin = () => {
     const [ error, setError ]  = useState<string | null>(null)
@@ -25,6 +26,7 @@ const useLogin = () => {
             }
             dispatch(setUser(data))
             setIsLoading(false)
+            dispatch(setAuthentication())
             navigate('/')
         } catch (error:any) {
             setIsLoading(false)

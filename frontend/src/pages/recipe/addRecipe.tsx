@@ -1,8 +1,9 @@
 import RecipeForm from "@/components/recipe-form";
 import { ArrowBigLeftDashIcon } from "lucide-react";
 import { useNavigate } from "react-router";
+import withAuth from "../user/withAuth";
 
-export default function AddRecipe() {
+function AddRecipe() {
     const navigate = useNavigate()
     return (
         <main className="container mx-auto py-10 px-4 bg-(--eggshell) ">
@@ -13,3 +14,5 @@ export default function AddRecipe() {
       </main>
     )
 }
+
+export default withAuth(AddRecipe)
