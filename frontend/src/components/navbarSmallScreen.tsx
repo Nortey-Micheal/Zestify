@@ -45,32 +45,32 @@ export function NavbarSmallScreen() {
     <nav className={`flex lg:hidden z-50 justify-between items-center sticky top-0 transition-transform ${visible ? 'translate-y-0' : '-translate-y-full'} bg-(--rose-white) mx-auto w-[100vw] px-2 py-2 `}>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <MenuIcon className="w-9 h-9 text-(--zesty-orange)"/>
+            <MenuIcon className="w-9 h-9 text-(--zesty-orange) hover:cursor-pointer"/>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56 ml-2">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem onClick={() => navigate('/')} className="focus:bg-(--zesty-orange) focus:text-(--white) "><HomeIcon className="text-[inherite]"/> Home</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate('/recipes')} className="focus:bg-(--zesty-orange) focus:text-(--white) "><MenuSquare className="text-[inherite]"/> All recipes</DropdownMenuItem>
-              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) ">
+              <DropdownMenuItem onClick={() => navigate('/')} className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer "><HomeIcon className="text-[inherite]"/> Home</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate('/recipes')} className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer "><MenuSquare className="text-[inherite]"/> All recipes</DropdownMenuItem>
+              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer ">
                 <SearchIcon className="text-[inherite]"/> Search
                 <DropdownMenuShortcut className="text-[inherite]">⌘+T</DropdownMenuShortcut>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) "><LibraryBigIcon className="text-[inherite]"/> Categories</DropdownMenuItem>
-            <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) "><HeartIcon className="text-[inherite]"/> Favorites</DropdownMenuItem>
-            <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) " onClick={() => navigate('/add-recipe')} ><Plus className="text-[inherite]"/> Submit recipe</DropdownMenuItem>
+            <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer "><LibraryBigIcon className="text-[inherite]"/> Categories</DropdownMenuItem>
+            <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer "><HeartIcon className="text-[inherite]"/> Favorites</DropdownMenuItem>
+            <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer " onClick={() => navigate('/add-recipe')} ><Plus className="text-[inherite]"/> Submit recipe</DropdownMenuItem>
 
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) ">
+              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer ">
                  <User2 className="text-[inherite]"/> Profile
                 <DropdownMenuShortcut className="text-[inherite]">⇧⌘P</DropdownMenuShortcut>
               </DropdownMenuItem>
-              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) ">
+              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer ">
                 <Settings className="text-[inherite]"/> Settings
                 <DropdownMenuShortcut className="text-[inherite]">⌘S</DropdownMenuShortcut>
               </DropdownMenuItem>
@@ -90,7 +90,7 @@ export function NavbarSmallScreen() {
             }
           </DropdownMenuContent>
         </DropdownMenu>
-        <img onClick={() => navigate('/')} className="w-11 " src="/assets/zestify-full.svg" alt="" />
+        <img onClick={() => navigate('/')} className="w-11 hover:cursor-pointer " src="/assets/zestify-full.svg" alt="" />
         {
             user.name ? <ProfileImage profilePicture={user.profilePicture} width={70} height={70}/> : <TooltipProvider>
             <Tooltip>
