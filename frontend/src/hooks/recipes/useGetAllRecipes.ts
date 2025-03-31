@@ -8,7 +8,7 @@ const useGetAllRecipes = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const dispatch = useDispatch()
 
-    const getAllRecipes = async (limit: number) => {
+    const getAllRecipes = async (limit?: number) => {
         setError(null)
         setIsLoading(true)
 
