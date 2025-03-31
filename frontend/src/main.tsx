@@ -4,16 +4,16 @@ import './index.css'
 import { Provider } from 'react-redux'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import store, { persistor } from './redux/store.ts'
-const Signup = lazy(() => import('./pages/signup.tsx'))
-const Login = lazy(() => import('./pages/login.tsx'))
+const Signup = lazy(() => import('./pages/user/signup.tsx'))
+const Login = lazy(() => import('./pages/user/login.tsx'))
 import { PersistGate } from 'redux-persist/integration/react'
-const Recipe = lazy(() => import('./pages/recipe.tsx'))
-const VerifyEmail = lazy(() => import('./pages/verify-email.tsx'))
-const ViewRecipes = lazy(() => import('./pages/viewRecipes.tsx'))
-const AllRecipes = lazy(() => import('./pages/allRecipes.tsx'))
-const NewRecipes = lazy(() => import('./pages/newestRecipes.tsx'))
-const PopularRecipes = lazy(() => import('./pages/popularRecipes.tsx'))
-const AddRecipe = lazy(() => import('./pages/addRecipe.tsx'))
+const Recipe = lazy(() => import('./pages/recipe/recipe.tsx'))
+const VerifyEmail = lazy(() => import('./pages/user/verify-email.tsx'))
+const ViewRecipes = lazy(() => import('./pages/recipe/viewRecipes.tsx'))
+const AllRecipes = lazy(() => import('./pages/recipe/viewRecipe/allRecipes.tsx'))
+const NewRecipes = lazy(() => import('./pages/recipe/viewRecipe/newestRecipes.tsx'))
+const PopularRecipes = lazy(() => import('./pages/recipe/viewRecipe/popularRecipes.tsx'))
+const AddRecipe = lazy(() => import('./pages/recipe/addRecipe.tsx'))
 const Home = lazy(() => import('./pages/homePage.tsx'))
 const NoPageFound = lazy(() => import('./pages/404.tsx'))
 
