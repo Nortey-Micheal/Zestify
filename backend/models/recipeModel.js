@@ -63,15 +63,14 @@ const recipeSchema = new mongoose.Schema(
     {timestamps: true}
 )
 
-recipeSchema.statics.addRecipe = async function ({title, description, ingredients, image, author, instructions, cookTime, category}) {
+recipeSchema.statics.addRecipe = async function ({title, description, ingredients, image, author, instructions, cookTime, authorPic, category}) {
     
-    if (!title || !description || !ingredients || !author || !instructions || !cookTime || !category) {
-        // console.log({title, description, ingredients, image, author, instructions, cookTime, category})
+    if (!title || !description || !ingredients || !author || !instructions || !cookTime || !category || !authorPic) {
         throw new Error('All field must be filled')
     }
     
     try {
-        const recipe = await this.create({title, description, ingredients, image, author, instructions, cookTime, category})
+        const recipe = await this.create({title, description, ingredients, image, author, instructions, cookTime, authorPic, category})
 
         return recipe
 

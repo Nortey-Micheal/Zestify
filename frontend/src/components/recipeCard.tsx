@@ -12,10 +12,10 @@ interface RecipeCardType {
 
 export default function RecipeCard({recipe}:RecipeCardType) {
     return (
-        <div className={`p-3 border-(--light-gray) w-full md:max-w-[500px] shadow-xl border flex flex-col rounded-2xl text-(--deep-charcoal) bg-(--white) mx-auto `} key={recipe.author + recipe.title}>
+        <div className={`p-3 border-(--light-gray) w-full md:max-w-[500px] shadow-xl border flex flex-col rounded-2xl text-(--deep-charcoal) bg-(--white) mx-auto `} >
             <div className="flex  gap-5 mb-3">
                 <div className="w-15 h-15 overflow-hidden rounded-full border">
-                    <ProfileImage profileImage={recipe.authorPic} width={200} height={200} />
+                    <ProfileImage profilePicture={recipe.authorPic} width={70} height={70} />
                 </div>
                 <div>
                     <p className="border-b-2 mb-1">{recipe.author}</p>

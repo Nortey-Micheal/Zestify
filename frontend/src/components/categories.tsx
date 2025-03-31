@@ -87,7 +87,7 @@ export default function Categories() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  gap-y-10">
                     {
                         popular.map(recipe => (
-                            <RecipeCard recipe={recipe}/>
+                            <RecipeCard key={recipe.author + recipe.title} recipe={recipe}/>
                         ))
                     }
                 </div>
@@ -101,7 +101,7 @@ export default function Categories() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-10">
                     {
                         newRecipes.map((recipe) => (
-                            <RecipeCard recipe={recipe}/>
+                            <RecipeCard key={recipe.author + recipe.title} recipe={recipe}/>
                         ))
                     }
                 </div>

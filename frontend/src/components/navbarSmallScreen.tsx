@@ -42,7 +42,7 @@ export function NavbarSmallScreen() {
     }, []);
 
   return (
-    <nav className={`flex lg:hidden z-50 justify-between items-center sticky top-0 transition-transform ${visible ? 'translate-y-0' : '-translate-y-full'} bg-(--rose-white) mx-auto w-[98vw] py-2 `}>
+    <nav className={`flex lg:hidden z-50 justify-between items-center sticky top-0 transition-transform ${visible ? 'translate-y-0' : '-translate-y-full'} bg-(--rose-white) mx-auto w-[100vw] px-2 py-2 `}>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <MenuIcon className="w-9 h-9 text-(--zesty-orange)"/>

@@ -174,8 +174,8 @@ export default function RecipeForm() {
   }
 
   useEffect(() => {
-    if (user.name) {
-      setAuthor(user.name)
+    if (user.email) {
+      setAuthor(user.email)
     }
   })
 
