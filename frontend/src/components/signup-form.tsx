@@ -1,13 +1,14 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { AlertCircle, Upload } from "lucide-react"
+import { AlertCircle, LoaderPinwheel, Upload } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import useSignup from "@/hooks/users/useSignup"
 import { Link } from "react-router"
+import { toast } from "sonner"
 
 export default function SignupForm() {
   const [formData, setFormData] = useState({
@@ -78,17 +79,22 @@ export default function SignupForm() {
     e.preventDefault()
 
     if (validate()) {
-      // Here you would typically send the data to your backend
-      // console.log("Form submitted:", { ...formData, profileImagePreview })
+
       await signup({...formData,profilePicture:profileImage!})
-      // Reset form after successful submission
-      if (!error) {
-        setFormData({ name: "", email: "", password: "", confirmPassword: "" })
-        setProfileImagePreview(null)
-        setProfileImage(null)
-      }
+      
+    }
+
+    // Reset form after successful submission
+    if (!error && (error?.length)! > 0) {
+      setFormData({ name: "", email: "", password: "", confirmPassword: "" })
+      setProfileImagePreview(null)
+      setProfileImage(null)
     }
   }
+
+  useEffect(() => {
+    (error?.length)! > 0 && toast.error(error)
+  },[error])
 
   return (
     <Card className="w-[95vw] max-w-md mx-auto">
@@ -116,6 +122,14 @@ export default function SignupForm() {
               </Label>
             </div>
           </div>
+
+          {
+            isLoading && (
+              <div className="bg-(--dark-charcoal) h-[100vh] w-[100vw] absolute left-0 top-0 flex items-center justify-center ">
+                <LoaderPinwheel className=" w-25 h-25"/>
+              </div>
+            )
+          }
 
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>

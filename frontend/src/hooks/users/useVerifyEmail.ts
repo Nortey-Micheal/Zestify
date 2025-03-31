@@ -11,15 +11,20 @@ const useVerifyEmail = () => {
         setSuccess(false)
 
         try {
-            const response = await axios.post('http://localhost:5050/api/user/verify-email',{verificationToken})
+            await axios.post('http://localhost:5050/api/user/verify-email',{verificationToken})
 
             setIsLoading(false)
             setSuccess(true)
 
         } catch (error:any) {
             setSuccess(false)
+            console.log('error',error)
             setIsLoading(false)
-            setError(error.response.data.message)
+            if (error.response) {
+                setError(error.response.data.message)
+            } else {
+                setError(error.message)
+            }
         } finally {
             setIsLoading(false)
         }

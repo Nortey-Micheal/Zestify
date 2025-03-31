@@ -1,5 +1,3 @@
-"use client"
-
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -24,6 +22,7 @@ import {
 import useVerifyEmail from "@/hooks/users/useVerifyEmail"
 import { useEffect } from "react"
 import { useNavigate } from "react-router"
+import { LoaderPinwheel } from "lucide-react"
 
 const FormSchema = z.object({
   pin: z.string().min(6, {
@@ -52,7 +51,7 @@ export function InputOTPForm() {
   }
 
   useEffect(() => {
-    if (error) {
+    if (error || (error?.length)! > 0) {
       toast.error(error)
     } else if (success) {
       toast.success('Email has been successfully verified')
@@ -92,6 +91,14 @@ export function InputOTPForm() {
             </FormItem>
           )}
         />
+
+        {
+            isLoading && (
+            <div className="bg-(--dark-charcoal) h-[100vh] w-[100vw] absolute left-0 top-0 flex items-center justify-center ">
+              <LoaderPinwheel className=" w-25 h-25"/>
+            </div>
+          )
+        }
 
         <Button className="w-full bg-(--zesty-orange) text-lg font-bold font-[Outfit] hover:bg-(--rich-brown) " type="submit">Verify</Button>
       </form>
