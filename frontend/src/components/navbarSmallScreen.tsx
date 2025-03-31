@@ -12,7 +12,7 @@ import { RootState } from "@/redux/store"
 import { HeartIcon, HomeIcon, LibraryBigIcon, LogInIcon, LogOutIcon, MenuIcon, MenuSquare, Plus, SearchIcon, Settings, User2, UserCircle } from "lucide-react"
 import { useSelector } from "react-redux"
 import ProfileImage from "./ui/profileImage"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@radix-ui/react-tooltip"
 import useLogOut from "@/hooks/users/useLogout"
@@ -23,23 +23,22 @@ export function NavbarSmallScreen() {
     const navigate = useNavigate()
 
     const [visible, setVisible] = useState(true);
-
-    const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-
+    let lastScrollY = window.scrollY;
+  
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setVisible(false); // Scrolling down
+      } else {
+        setVisible(true); // Scrolling up
+      }
+      lastScrollY = window.scrollY;
+    };
+  
     useEffect(() => {
-        const scrollContainer = document.querySelector("section"); // Target the section directly
-        if (!scrollContainer) return;
-
-        let lastScrollY = scrollContainer.scrollTop;
-
-        const handleScroll = () => {
-            const currentScrollY = scrollContainer.scrollTop;
-            setVisible(currentScrollY <= lastScrollY); // Detects up/down scroll
-            lastScrollY = currentScrollY;
-        };
-
-        scrollContainer.addEventListener("scroll", handleScroll);
-        return () => scrollContainer.removeEventListener("scroll", handleScroll);
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
     }, []);
 
   return (
