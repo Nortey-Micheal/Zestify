@@ -17,6 +17,7 @@ export interface Recipe {
     image: File | null | string,
     likes: number,
     _id: string,
+    authorPic: string,
 }
 
 const initialState: Recipe[] = []

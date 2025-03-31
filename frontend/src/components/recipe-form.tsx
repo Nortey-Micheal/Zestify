@@ -161,7 +161,7 @@ export default function RecipeForm() {
     await addRecipe({
       title,description,
       author,cookTime,category,
-      ingredients,instructions,image,likes: 0,_id:''
+      ingredients,instructions,image,likes: 0,_id:'',authorPic:''
     })
 
     if (error) {
@@ -218,7 +218,7 @@ export default function RecipeForm() {
                 </Label>
                 <Input
                   id="author"
-                  value={user ? user.name : author}
+                  value={user ? user.email : author}
                   onChange={(e) => setAuthor(e.target.value)}
                   placeholder="Recipe author"
                   required
