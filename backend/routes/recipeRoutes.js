@@ -18,11 +18,11 @@ const upload = multer({ storage });
   
 recipeRouter.post('/add-recipe', addRecipe)// ✅ JSON Upload
 recipeRouter.post('/upload-image', upload.single("image"), uploadImage); // ✅ Image Upload
-recipeRouter.get('/getAllRecipes', getAllRecipes)
+recipeRouter.post('/getAllRecipes', getAllRecipes)
 recipeRouter.post('/recipesByCategory', getRecipesByCategory)
-recipeRouter.get('/getNewRecipes', getNewRecipes)
+recipeRouter.post('/getNewRecipes', getNewRecipes)
 recipeRouter.get('/getRecipe/:recipe_id', getRecipeById)
-recipeRouter.get('/getPopularRecipes', getPopularRecipes)
+recipeRouter.post('/getPopularRecipes', getPopularRecipes)
 recipeRouter.post('/likeRecipe', likeRecipe)
 recipeRouter.post('/unlikeRecipe', unLikeRecipe)
 

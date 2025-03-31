@@ -1,5 +1,6 @@
 import cloudinary from "../cloudinary/cloudinary.js";
 import Recipe from "../models/recipeModel.js"
+import User from "../models/userModel.js";
 import fs from 'fs'
 
 export const addRecipe = async (req,res) => {
@@ -10,10 +11,11 @@ export const addRecipe = async (req,res) => {
     try {
 
         // console.log({title, description, ingredients:ingredientsArray, author, instructions:instructionsArray, cookTime, category})
+        const uploader = await User.findOne({email:author})
 
         const newRecipe = await Recipe.addRecipe({
             title, description, 
-            ingredients:ingredientsArray, author, 
+            ingredients:ingredientsArray, author, authorPic: uploader.profilePicture, 
             instructions:instructionsArray, cookTime, category
         })
         
@@ -58,7 +60,7 @@ export const getAllRecipes = async (req, res) => {
     const { limit } = req.body
     try {
         const allRecipes = await Recipe.getAllRecipes(limit)
-        res.status(200).json({...allRecipes})
+        res.status(200).json(allRecipes)
     } catch (error) {
         res.status(500).json({message: error.message})
     }

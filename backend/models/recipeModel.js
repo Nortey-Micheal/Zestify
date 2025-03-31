@@ -17,6 +17,9 @@ const recipeSchema = new mongoose.Schema(
         image: {
             type: String,
         },
+        authorPic: {
+            type: String
+        },
         description: {
             type: String,
             required: true,
