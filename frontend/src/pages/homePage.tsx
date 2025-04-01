@@ -4,6 +4,7 @@ import { NavbarSmallScreen } from "@/components/navbarSmallScreen";
 import Profile from "@/components/profile";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
+import { Toaster } from "sonner";
 
 export default function Home() {
     const user = useSelector((state:RootState) => state.user)
@@ -13,6 +14,7 @@ export default function Home() {
             <NavbarSmallScreen />
             <Categories />
             {user.email && <Profile />}
+            <Toaster richColors position="top-center"/>
         </div>
     )
 }
