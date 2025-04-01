@@ -21,10 +21,14 @@ const userSlice = createSlice({
         },
         removeUser: (state) => {
             return {} as User
+        },
+        setFavoriteRecipes: (state,action:PayloadAction<Recipe[]>) => {
+            console.log(action.payload)
+            return {...state,favouriteRecipes:action.payload}
         }
     }
 })
 
 export default userSlice.reducer
 
-export const { setUser, removeUser } = userSlice.actions
+export const { setUser, removeUser, setFavoriteRecipes } = userSlice.actions

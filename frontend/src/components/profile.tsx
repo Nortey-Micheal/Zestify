@@ -10,14 +10,17 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useNavigate } from "react-router";
 import useLogOut from "@/hooks/users/useLogout";
+import RecipeCard from "./recipeCard";
 
-export default function Profile() {
+export default function Profile({width,display,className}: {width:string,display?:string,className:string}) {
     const user = useSelector((state:RootState) => state.user)
     const navigate = useNavigate()
     const { logout } = useLogOut()
 
+    
+
     return (
-        <section className="w-[25vw] bg-(--soft-blush-pink) border border-(--light-gray) rounded-2xl p-3 hidden lg:block ">
+        <section className={` ${display ? display : 'hidden'} ${width ? `${width}` : 'w-[25vw]'} ${className} bg-(--rose-white) my-10 border border-(--light-gray) rounded-2xl p-3  lg:block `}>
 
             <div>
                 <div className="flex w-full justify-between">
@@ -45,6 +48,18 @@ export default function Profile() {
                     <p className="text-(--deep-charcoal) text-3xl font-bold">{user.name}</p>
                 </div>
             </div>
+
+            <div className="my-5 flex flex-col justify-between text-(--deep-charcoal)">
+                <p className="text-xl my-4 ">Favorite Recipes</p>
+                <div className="grid grid-cols-1 gap-5">
+                    {
+                        user.favouriteRecipes.length > 0 && user.favouriteRecipes.map(recipe => (
+                            <RecipeCard key={recipe.title + recipe.author} recipe={recipe}/>
+                        ))
+                    }
+                </div>
+            </div>
+
             <div className="my-5 flex justify-between text-(--deep-charcoal)">
                 <p className=" text-xl">My recipes</p>
             

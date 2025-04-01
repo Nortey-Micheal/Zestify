@@ -35,6 +35,17 @@ export const login = async (req,res) => {
     }
 }
 
+// export const refresh = async (req,res) => {
+//     const { email } = req.body
+
+//     try {
+//         const user = await User.find({email})
+//         res.status(200).json({...user._doc, password: undefined})
+//     } catch (error) {
+//         res.status(500).json({message: error.message})
+//     }
+// }
+
 export const uploadProfile = async (req, res) => {
     try {
         const { email } = req.body; // Get the profile ID
@@ -64,3 +75,54 @@ export const uploadProfile = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+export const bookmarkRecipe = async (req,res) => {
+    const { recipe, email } = req.body
+
+    try {
+        if (!email) {
+            throw new Error('Please login to continue')
+        }
+        const user = await User.findOne({email})
+
+        user.favouriteRecipes = [...user.favouriteRecipes,recipe]
+        user.save()
+
+        res.status(201).json({message: 'Recipe has been bookmarked'})
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}
+
+export const removeBookmarkRecipe = async (req,res) => {
+    const { recipe, email } = req.body
+
+    try {
+        if (!email) {
+            throw new Error('Please login to continue')
+        }
+        const user = await User.findOne({email})
+
+        const newRecipes = user.favouriteRecipes.filter(favouriteRecipe => recipe._id !== favouriteRecipe._id)
+
+        user.favouriteRecipes = newRecipes
+        user.save()
+
+        res.status(201).json({message: 'Recipe has been removed from bookmarks'})
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}
+
+export const getUserFavorites = async (req,res) => {
+    const { email } = req.body
+
+    try {
+        const user = await User.findOne({email})
+        const recipes = user.favouriteRecipes
+
+        res.status(200).json(recipes)
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}

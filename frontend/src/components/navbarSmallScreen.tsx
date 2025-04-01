@@ -61,12 +61,12 @@ export function NavbarSmallScreen() {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => navigate('/categories')} className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer "><LibraryBigIcon className="text-[inherite]"/> Categories</DropdownMenuItem>
-            <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer "><HeartIcon className="text-[inherite]"/> Favorites</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigate('/profile')} className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer "><HeartIcon className="text-[inherite]"/> Favorites</DropdownMenuItem>
             <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer " onClick={() => navigate('/add-recipe')} ><Plus className="text-[inherite]"/> Submit recipe</DropdownMenuItem>
 
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer ">
+              <DropdownMenuItem onClick={() => navigate('/profile')} className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer ">
                  <User2 className="text-[inherite]"/> Profile
                 <DropdownMenuShortcut className="text-[inherite]">⇧⌘P</DropdownMenuShortcut>
               </DropdownMenuItem>
@@ -92,7 +92,9 @@ export function NavbarSmallScreen() {
         </DropdownMenu>
         <img onClick={() => navigate('/')} className="w-11 cursor-pointer " src="/assets/zestify-full.svg" alt="" />
         {
-            user.name ? <ProfileImage profilePicture={user.profilePicture} width={70} height={70}/> : <TooltipProvider>
+            user.name ? <Link to={'/profile'}>
+              <ProfileImage profilePicture={user.profilePicture} width={50} height={50}/>
+            </Link> : <TooltipProvider>
               <Tooltip>
                   <TooltipTrigger className="mr-2">
                       <Link to={'/auth/login'} className="flex items-center gap-2 cursor-pointer">
