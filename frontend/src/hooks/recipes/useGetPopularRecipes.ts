@@ -21,7 +21,11 @@ const useGetPopularRecipes = () => {
             dispatch(setPopularRecipes(recipes))
             setIsLoading(false)
         } catch (error:any) {
-            setError(error.message)
+            if (error.response) {
+                setError(error.response.data.message)
+            } else {
+                setError(error.message)
+            }
             setIsLoading(false)
         } finally {
             setIsLoading(false)

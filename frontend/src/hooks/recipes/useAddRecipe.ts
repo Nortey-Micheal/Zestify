@@ -44,7 +44,11 @@ const useAddRecipe = () => {
             navigate('/')
 
         } catch (error:any) {
-            setError(error.message)
+            if (error.response) {
+                setError(error.response.data.message)
+            } else {
+                setError(error.message)
+            }
         } finally {
             setIsLoading(false)
         }

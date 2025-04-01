@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Trash2, ImageIcon, Plus, ArrowUp, ArrowDown } from "lucide-react"
+import { Trash2, ImageIcon, Plus, ArrowUp, ArrowDown, LoaderPinwheel } from "lucide-react"
 import useAddRecipe from "@/hooks/recipes/useAddRecipe"
 import { useSelector } from "react-redux"
 import { RootState } from "@/redux/store"
@@ -180,7 +180,7 @@ export default function RecipeForm() {
   })
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
+    <form onSubmit={handleSubmit} className="max-w-3xl mx-auto relative">
       <Card>
         <CardContent className="pt-6">
           <div className="space-y-6">
@@ -429,6 +429,14 @@ export default function RecipeForm() {
                 { isLoading ? 'Saving' : 'Save Recipe'}
               </Button>
             </div>
+            {/* Loading Indicator */}
+            {
+               isLoading && (
+                <div className="bg-(--dark-charcoal) h-[100vh] w-[100vw] absolute left-0 top-0 flex items-center justify-center ">
+                  <LoaderPinwheel className=" w-25 h-25"/>
+                </div>
+              )
+            }
           </div>
         </CardContent>
       </Card>

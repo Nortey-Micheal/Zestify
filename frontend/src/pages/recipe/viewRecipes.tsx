@@ -4,6 +4,7 @@ import ProfileOrLogin from "@/components/profileOrLogin"
 import SearchSort from "@/components/searchSort"
 import SearchBar from "@/components/ui/searchBar"
 import { Outlet } from "react-router"
+import { Toaster } from "sonner"
 
 export default function ViewRecipes() {
 
@@ -26,6 +27,7 @@ export default function ViewRecipes() {
                     </div>
                     <div className="bg-(--rose-white) lg:px-5 px-2 py-1 lg:py-3 rounded-xl w-[95vw] lg:w-[80vw] mx-auto mt-5 ">
                         <Outlet />
+                        <Toaster richColors position="top-center"/>
                     </div>
                 </div>
             </section>
