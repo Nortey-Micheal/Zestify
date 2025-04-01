@@ -137,11 +137,6 @@
   --deep-brown: hsl(20,30%,20%);
 }
 
-/* Fonts */
-/* @font-face {
-  src: url('./assets/fonts/YoungSerif-Regular.ttf');
-  font-family: 'young-serif';
-} */
 
 @font-face {
   font-family: young-serif;
