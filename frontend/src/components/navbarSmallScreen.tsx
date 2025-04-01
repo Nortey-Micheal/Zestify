@@ -60,7 +60,7 @@ export function NavbarSmallScreen() {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer "><LibraryBigIcon className="text-[inherite]"/> Categories</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigate('/categories')} className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer "><LibraryBigIcon className="text-[inherite]"/> Categories</DropdownMenuItem>
             <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer "><HeartIcon className="text-[inherite]"/> Favorites</DropdownMenuItem>
             <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer " onClick={() => navigate('/add-recipe')} ><Plus className="text-[inherite]"/> Submit recipe</DropdownMenuItem>
 

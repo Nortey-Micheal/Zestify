@@ -50,7 +50,9 @@ export default function Navbar() {
                 </TooltipProvider>
                 <TooltipProvider>
                     <Tooltip>
-                        <TooltipTrigger className="flex items-center gap-2"><LibraryBigIcon className="w-9 h-9 text-(--dark-raspberry) hover:fill-red-300 "/> <p className="text-lg">Categories</p> </TooltipTrigger>
+                        <TooltipTrigger><Link className="flex items-center gap-2" to={'/category'}>
+                            <LibraryBigIcon className="w-9 h-9 text-(--dark-raspberry) hover:fill-red-300 "/> <p className="text-lg">Categories</p>
+                        </Link> </TooltipTrigger>
                         <TooltipContent>
                         <p className="text-lg"> All Categories</p>
                         </TooltipContent>
