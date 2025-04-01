@@ -57,9 +57,11 @@ export const uploadImage = async (req, res) => {
 };
 
 export const getAllRecipes = async (req, res) => {
-    const { limit } = req.body
+    let { page = 1, limit = 6} = req.body
+    page = parseInt(page);
+    limit = parseInt(limit);
     try {
-        const allRecipes = await Recipe.getAllRecipes(limit)
+        const allRecipes = await Recipe.getAllRecipes(limit,page)
         res.status(200).json(allRecipes)
     } catch (error) {
         res.status(500).json({message: error.message})
@@ -67,10 +69,14 @@ export const getAllRecipes = async (req, res) => {
 }
 
 export const getRecipesByCategory = async (req,res) => {
-    const { category } = req.body
+    let { category,page = 1, limit = 6} = req.body
+    page = parseInt(page);
+    limit = parseInt(limit);
 
     try {
         const recipes = await Recipe.find({category})
+                                    .skip((page - 1) * limit)
+                                    .limit(limit)
         res.status(200).json(recipes)
     } catch (error) {
         res.status(500).json({message: error.message})
@@ -78,9 +84,14 @@ export const getRecipesByCategory = async (req,res) => {
 }
 
 export const getNewRecipes = async (req,res) => {
-    const { limit } = req.body
+    let { page = 1, limit = 6} = req.body
+    page = parseInt(page);
+    limit = parseInt(limit);
     try {
-        const recipes = await Recipe.find().sort({createdAt: -1}).limit(limit|| 6)
+        const recipes = await Recipe.find()
+                                    .sort({createdAt: -1})
+                                    .skip((page - 1) * limit)
+                                    .limit(limit)
         res.status(200).json(recipes)
     } catch (error) {
         res.status(500).json({message: error.message})
@@ -88,9 +99,14 @@ export const getNewRecipes = async (req,res) => {
 }
 
 export const getPopularRecipes = async (req,res) => {
-    const { limit } = req.body
+    let { page = 1, limit = 6} = req.body
+    page = parseInt(page);
+    limit = parseInt(limit);
     try {
-        const recipes = await Recipe.find().sort({likes: -1}).limit(limit|| 6)
+        const recipes = await Recipe.find()
+                                    .sort({likes: -1})
+                                    .skip((page - 1) * limit)
+                                    .limit(limit)
         res.status(200).json(recipes)
     } catch (error) {
         res.status(500).json({message: error.message})

@@ -8,12 +8,12 @@ const useGetRecipeByCategory = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const dispatch = useDispatch()
 
-    const getRecipeByCategory = async (category:string) => {
+    const getRecipeByCategory = async (category:string,limit?:6,page?:number) => {
         setError(null)
         setIsLoading(true)
 
         try {
-            const response = await axios.post('http://localhost:5050/api/recipe/recipesByCategory', {category})
+            const response = await axios.post('http://localhost:5050/api/recipe/recipesByCategory', {category, limit, page})
             const recipes = response.data
             dispatch(setRecipes(recipes))
             setIsLoading(false)

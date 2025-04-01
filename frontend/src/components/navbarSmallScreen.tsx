@@ -45,66 +45,66 @@ export function NavbarSmallScreen() {
     <nav className={`flex lg:hidden z-50 justify-between items-center sticky top-0 transition-transform ${visible ? 'translate-y-0' : '-translate-y-full'} bg-(--rose-white) mx-auto w-[100vw] px-2 py-2 `}>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <MenuIcon className="w-9 h-9 text-(--zesty-orange) hover:cursor-pointer"/>
+            <MenuIcon className="w-9 h-9 text-(--zesty-orange) cursor-pointer"/>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56 ml-2">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem onClick={() => navigate('/')} className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer "><HomeIcon className="text-[inherite]"/> Home</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate('/recipes')} className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer "><MenuSquare className="text-[inherite]"/> All recipes</DropdownMenuItem>
-              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer ">
+              <DropdownMenuItem onClick={() => navigate('/')} className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer "><HomeIcon className="text-[inherite]"/> Home</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate('/recipes')} className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer "><MenuSquare className="text-[inherite]"/> All recipes</DropdownMenuItem>
+              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer ">
                 <SearchIcon className="text-[inherite]"/> Search
                 <DropdownMenuShortcut className="text-[inherite]">⌘+T</DropdownMenuShortcut>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer "><LibraryBigIcon className="text-[inherite]"/> Categories</DropdownMenuItem>
-            <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer "><HeartIcon className="text-[inherite]"/> Favorites</DropdownMenuItem>
-            <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer " onClick={() => navigate('/add-recipe')} ><Plus className="text-[inherite]"/> Submit recipe</DropdownMenuItem>
+            <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer "><LibraryBigIcon className="text-[inherite]"/> Categories</DropdownMenuItem>
+            <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer "><HeartIcon className="text-[inherite]"/> Favorites</DropdownMenuItem>
+            <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer " onClick={() => navigate('/add-recipe')} ><Plus className="text-[inherite]"/> Submit recipe</DropdownMenuItem>
 
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer ">
+              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer ">
                  <User2 className="text-[inherite]"/> Profile
                 <DropdownMenuShortcut className="text-[inherite]">⇧⌘P</DropdownMenuShortcut>
               </DropdownMenuItem>
-              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) hover:cursor-pointer ">
+              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer ">
                 <Settings className="text-[inherite]"/> Settings
                 <DropdownMenuShortcut className="text-[inherite]">⌘S</DropdownMenuShortcut>
               </DropdownMenuItem>
               
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            { user.email && <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) " onClick={() => logout()}>
+            { user.email && <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer " onClick={() => logout()}>
                   <LogOutIcon className="text-[inherite]"/> Log out
                   <DropdownMenuShortcut className="text-[inherite]">⇧⌘Q</DropdownMenuShortcut>
                 </DropdownMenuItem>
             }
             {
-              !user.email && <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) " onClick={() => navigate('/auth/login')}>
+              !user.email && <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer " onClick={() => navigate('/auth/login')}>
                   <LogInIcon className="text-[inherite]"/> Log In
                   <DropdownMenuShortcut className="text-[inherite]">⇧⌘Q</DropdownMenuShortcut>
                 </DropdownMenuItem>
             }
           </DropdownMenuContent>
         </DropdownMenu>
-        <img onClick={() => navigate('/')} className="w-11 hover:cursor-pointer " src="/assets/zestify-full.svg" alt="" />
+        <img onClick={() => navigate('/')} className="w-11 cursor-pointer " src="/assets/zestify-full.svg" alt="" />
         {
             user.name ? <ProfileImage profilePicture={user.profilePicture} width={70} height={70}/> : <TooltipProvider>
-            <Tooltip>
-                <TooltipTrigger className="mr-2">
-                    <Link to={'/auth/login'} className="flex items-center gap-2">
-                        <UserCircle className="w-10 h-10 text-(--zesty-orange) focus:fill-red-300 "/>
-                        <p className="text-xl">Login</p>
-                    </Link>
-                </TooltipTrigger>
-                <TooltipContent>
-                <p className="text-lg">Signup / Login</p>
-                </TooltipContent>
-            </Tooltip>
-        </TooltipProvider>
+              <Tooltip>
+                  <TooltipTrigger className="mr-2">
+                      <Link to={'/auth/login'} className="flex items-center gap-2 cursor-pointer">
+                          <UserCircle className="w-10 h-10 text-(--zesty-orange) focus:fill-red-300 "/>
+                          <p className="text-xl">Login</p>
+                      </Link>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                  <p className="text-lg">Signup / Login</p>
+                  </TooltipContent>
+              </Tooltip>
+          </TooltipProvider>
         }
     </nav>
   )

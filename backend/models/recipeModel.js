@@ -79,9 +79,11 @@ recipeSchema.statics.addRecipe = async function ({title, description, ingredient
     }
 }
 
-recipeSchema.statics.getAllRecipes = async function (limit) {
+recipeSchema.statics.getAllRecipes = async function (limit,page) {
     try {
-        const recipes = await this.find().limit(limit || 6)
+        const recipes = await this.find()
+                                  .skip((page - 1) * limit)
+                                  .limit(limit)
         return recipes
     } catch (error) {
         throw new Error(error)

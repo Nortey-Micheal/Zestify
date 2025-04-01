@@ -8,13 +8,14 @@ const useGetAllRecipes = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const dispatch = useDispatch()
 
-    const getAllRecipes = async (limit?: number) => {
+    const getAllRecipes = async (page?:number, limit?: number) => {
         setError(null)
         setIsLoading(true)
 
         try {
             const response = await axios.post('http://localhost:5050/api/recipe/getAllRecipes', {
-                limit
+                limit,
+                page
             })
             const recipes = response.data
             dispatch(setRecipes(recipes))

@@ -8,13 +8,13 @@ const useGetPopularRecipes = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const dispatch = useDispatch()
 
-    const getPopularRecipes = async(limit?:number) => {
+    const getPopularRecipes = async(page?:number, limit?:number) => {
         setError(null)
         setIsLoading(true)
         
         try {
             
-            const response = await axios.post('http://localhost:5050/api/recipe/getPopularRecipes',{limit})
+            const response = await axios.post('http://localhost:5050/api/recipe/getPopularRecipes',{limit,page})
 
             const recipes = response.data
 
