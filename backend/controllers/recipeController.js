@@ -114,21 +114,30 @@ export const getPopularRecipes = async (req,res) => {
 }
 
 export const likeRecipe = async (req,res) => {
-    const { id } = req.body
+    const { id,email } = req.body
 
     try {
-        const recipe = await Recipe.findByIdAndUpdate(id, { $inc: { likes: 1 } },{new: true})
+        const recipe = await Recipe.findById(id)
+        recipe.likes.value = recipe.likes.value + 1
+        recipe.likes.by = [...recipe.likes.by,email]
+        recipe.save()
+        console.log('found', {...[recipe.likes]})
         res.status(200).json({message: 'Recipe has been liked'})
     } catch (error) {
+        console.log('not found')
         res.status(500).json({message: error.message})
     }
 }
 
 export const unLikeRecipe = async (req,res) => {
-    const { id } = req.body
+    const { id,email } = req.body
 
     try {
-        const recipe = await Recipe.findByIdAndUpdate(id, { $inc: { likes: -1 } },{new: true})
+        const recipe = await Recipe.findById(id)
+        recipe.likes.value = recipe.likes.value - 1
+        const newLikeBy = recipe.likes.by.filter(by => by !== email)
+        recipe.likes.by = newLikeBy
+        recipe.save()
         res.status(200).json({message: 'Recipe has been liked'})
     } catch (error) {
         res.status(500).json({message: error.message})

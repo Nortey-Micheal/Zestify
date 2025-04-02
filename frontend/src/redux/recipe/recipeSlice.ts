@@ -15,7 +15,10 @@ export interface Recipe {
         value: string
     }[],
     image: File | null | string,
-    likes: number,
+    likes: {
+        value: number,
+        by: string[]
+    },
     _id: string,
     authorPic: string,
 }
