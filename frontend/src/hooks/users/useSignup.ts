@@ -39,8 +39,6 @@ const useSignup = () => {
                 })
             }
 
-            console.log({email,name,password,profilePicture})
-
             setIsLoading(false)
 
             navigate('/auth/verify-email')

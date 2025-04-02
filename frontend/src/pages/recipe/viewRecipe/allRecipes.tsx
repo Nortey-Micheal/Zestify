@@ -16,7 +16,6 @@ export default function AllRecipes() {
             await getAllRecipes(page)
         }
         fetchRecipe()
-        console.log(allRecipes.map(recipe => recipe.title))
     },[page])
 
     useEffect(() => {

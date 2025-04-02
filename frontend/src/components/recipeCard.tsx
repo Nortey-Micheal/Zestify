@@ -23,9 +23,9 @@ export default function RecipeCard({recipe}:RecipeCardType) {
 
     // const [recipeLikes,setRecipeLikes] = useState<number>(recipe.likes)
 
+    //handle bookmarking of recipes
     async function handleBookmarking () {
-
-        console.log(like)
+        
         if(!user.email) {
             toast.error('You need to be logged in to bookmark a recipe')
             return
@@ -69,15 +69,17 @@ export default function RecipeCard({recipe}:RecipeCardType) {
 
     // useEffect(() =>{
         
-        
+    
     // },[like])
 
     user.favouriteRecipes && useEffect(() => {
+        //check if recipe is already bookmarked
         const checkBooking = () => {
             const bookedRecipe = user.favouriteRecipes.find(favoriteRecipes => recipe._id === favoriteRecipes._id)
-
             if (bookedRecipe) {
                 setBookmark(true)
+            } else {
+                setBookmark(false) // remove bookmark 
             }
         }
         checkBooking()
@@ -85,13 +87,13 @@ export default function RecipeCard({recipe}:RecipeCardType) {
 
     return (
         <div className={`p-3 border-(--light-gray) w-full md:max-w-[500px] shadow-xl border flex flex-col rounded-2xl text-(--deep-charcoal) bg-(--white) mx-auto `} >
-            <div className="flex  gap-5 mb-3">
-                <div className="w-15 h-15 overflow-hidden rounded-full border">
-                    <ProfileImage profilePicture={recipe.authorPic} width={70} height={70} />
+            <div className="flex gap-5 mb-3">
+                <div className="w-13 h-13 overflow-hidden rounded-full border flex items-center justify-center">
+                    <ProfileImage profilePicture={recipe.authorPic || 'defaultProfile_ab13io'} width={50} height={50} />
                 </div>
                 <div>
                     <p className="border-b-2 mb-1">{(user.email === recipe.author) || (user.name === recipe.author) ? 'You' : recipe.author}</p>
-                    <p>Posted: {recipe.cookTime} mins</p>
+                    <p className="text-slate-500 ">Posted: {recipe.cookTime} mins</p>
                 </div>
             </div>
             <div className="rounded-t-2xl overflow-clip border min-h-[200px] flex items-center justify-center  h-fit relative w-full ">

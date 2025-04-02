@@ -23,7 +23,6 @@ const userSlice = createSlice({
             return {} as User
         },
         setFavoriteRecipes: (state,action:PayloadAction<Recipe[]>) => {
-            console.log(action.payload)
             return {...state,favouriteRecipes:action.payload}
         }
     }

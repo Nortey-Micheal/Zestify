@@ -11,7 +11,6 @@ const useRefresh = () => {
     const refresh = async (email:string) => {
         setIsLoading(true)
         setError(null)
-        console.log(email)
 
         try {
             const response = await axios.post('http://localhost:5050/api/user/refresh',{ email })
