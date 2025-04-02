@@ -12,7 +12,7 @@ import { useNavigate } from "react-router";
 import useLogOut from "@/hooks/users/useLogout";
 import RecipeCard from "./recipeCard";
 
-export default function Profile({width,display,className}: {width:string,display?:string,className:string}) {
+export default function Profile({width,display,className}: {width?:string,display?:string,className?:string}) {
     const user = useSelector((state:RootState) => state.user)
     const navigate = useNavigate()
     const { logout } = useLogOut()
