@@ -32,35 +32,37 @@ export default function RecipeCard({recipe}:RecipeCardType) {
         }
         
         if (user.email && !bookmark) {
-            toast.success(`${recipe.title} by ${recipe.author} has been added to bookmark`)
             await bookmarkRecipe(user.email,recipe)
             if (error) {
                 setBookmark(false)
+                return
             }
             setBookmark(true)
+            toast.success(`${recipe.title} by ${recipe.author} has been added to bookmark`)
             return
         } 
 
         if (user.email && bookmark) {
-            toast.info(`${recipe.title} by ${recipe.author} has been removed from bookmark`)
             await removeBookmarkRecipe(user.email,recipe)
             if (error) {
                 setBookmark(true)
+                return
             }
             setBookmark(false)
+            toast.info(`${recipe.title} by ${recipe.author} has been removed from bookmark`)
             return
         }
     }
 
     function handleLiking () {
         if (!like) {
-            toast.success(`You liked ${recipe.title} by ${recipe.author}.`)
             setLike(true)
+            toast.success(`You liked ${recipe.title} by ${recipe.author}.`)
             return
         }
         if (like) {
-            toast.info(`You unliked ${recipe.title} by ${recipe.author}.`)
             setLike(false)
+            toast.info(`You unliked ${recipe.title} by ${recipe.author}.`)
             return
         }
     }
