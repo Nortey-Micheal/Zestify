@@ -54,7 +54,7 @@ export function NavbarSmallScreen() {
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={() => navigate('/')} className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer "><HomeIcon className="text-[inherite]"/> Home</DropdownMenuItem>
               <DropdownMenuItem onClick={() => navigate('/recipes')} className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer "><MenuSquare className="text-[inherite]"/> All recipes</DropdownMenuItem>
-              <DropdownMenuItem className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer ">
+              <DropdownMenuItem onClick={() => navigate('/recipe-search')} className="focus:bg-(--zesty-orange) focus:text-(--white) cursor-pointer ">
                 <SearchIcon className="text-[inherite]"/> Search
                 <DropdownMenuShortcut className="text-[inherite]">⌘+T</DropdownMenuShortcut>
               </DropdownMenuItem>

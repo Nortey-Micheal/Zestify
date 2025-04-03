@@ -60,7 +60,9 @@ export default function Navbar() {
                 </TooltipProvider>
                 <TooltipProvider>
                     <Tooltip>
-                        <TooltipTrigger className="flex items-center gap-2"><SearchIcon className="w-9 h-9 text-(--dark-raspberry) hover:fill-red-300 "/> <p className="text-lg">Search</p> </TooltipTrigger>
+                        <TooltipTrigger><Link to={'/recipe-search'} className="flex items-center gap-2" >
+                            <SearchIcon className="w-9 h-9 text-(--dark-raspberry) hover:fill-red-300 "/> <p className="text-lg">Search</p> 
+                        </Link></TooltipTrigger>
                         <TooltipContent>
                         <p className="text-lg">Search for recipe</p>
                         </TooltipContent>

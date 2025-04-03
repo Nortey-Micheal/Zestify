@@ -1,5 +1,5 @@
 import express from 'express'
-import { addRecipe, getAllRecipes, getNewRecipes, getPopularRecipes, getRecipeById, getRecipesByCategory, likeRecipe, unLikeRecipe, uploadImage } from '../controllers/recipeController.js'
+import { addRecipe, getAllRecipes, getNewRecipes, getPopularRecipes, getRecipeById, getRecipesByCategory, likeRecipe, searchRecipe, unLikeRecipe, uploadImage } from '../controllers/recipeController.js'
 import multer from 'multer';
 
 const recipeRouter = express.Router()
@@ -25,5 +25,6 @@ recipeRouter.get('/getRecipe/:recipe_id', getRecipeById)
 recipeRouter.post('/getPopularRecipes', getPopularRecipes)
 recipeRouter.post('/likeRecipe', likeRecipe)
 recipeRouter.post('/unlikeRecipe', unLikeRecipe)
+recipeRouter.post('/searchRecipe',searchRecipe)
 
 export default recipeRouter

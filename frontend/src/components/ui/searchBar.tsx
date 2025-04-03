@@ -1,8 +1,29 @@
-const SearchBar = ({placeholder,className}:any) => {
-    return (
-      <div className={`${className}`} style={{ position: "relative", display: "inline-block" }}>
+import useSearchRecipe from "@/hooks/recipes/useSearchRecipe";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+
+export default function SearchBar ({placeholder,className,page}:any) {
+  const [ searchItem, setSearchItem ] = useState<string>('')
+  const { isSearching, searchError, searchRecipe } = useSearchRecipe()
+
+  const handleSearch = async() => {
+    await searchRecipe(searchItem,page)
+  }
+
+  useEffect(() => {
+    handleSearch()
+  },[page])
+
+  useEffect(() => {
+    (searchError?.length)! > 0 && toast.error(searchError)
+  },[searchError])
+  
+  return (
+    <div className={`${className} flex items-center justify-end gap-5`} >
+      <div className="w-[90%] " style={{ position: "relative", display: "inline-block" }}>
         <input
           type="text"
+          onChange={(e) => setSearchItem(e.target.value)}
           className="pl-10 text-lg lg:text-2xl p-1 border rounded-lg w-full "
           placeholder={`${placeholder}`}
         />
@@ -14,10 +35,10 @@ const SearchBar = ({placeholder,className}:any) => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
+          className="top-1/2"
           style={{
             position: "absolute",
             left: "10px",
-            top: "50%",
             transform: "translateY(-50%)",
             width: "24px",
             height: "24px",
@@ -28,8 +49,8 @@ const SearchBar = ({placeholder,className}:any) => {
           <line x1="21" y1="21" x2="16.65" y2="16.65" />
         </svg>
       </div>
-    );
-  };
-  
-  export default SearchBar;
+      <button disabled={isSearching} className="bg-(--zesty-orange) disabled:bg-(--light-grey) my-2 py-1 px-3 rounded-xl cursor-pointer font-bold text-lg " onClick={handleSearch} >Search</button>
+    </div>
+  );
+};
   

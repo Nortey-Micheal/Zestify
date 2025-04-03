@@ -60,7 +60,7 @@ export default function RecipeCard({recipe}:RecipeCardType) {
     async function handleLiking () {
 
         if(!user.email) {
-            toast.error('You need to be logged in to bookmark a recipe')
+            toast.error('You need to be logged in to like a recipe')
             return
         }
 
@@ -133,7 +133,7 @@ export default function RecipeCard({recipe}:RecipeCardType) {
                     <div className="bg-(--light-grey) w-15 h-15 rounded-full p-5 flex items-center justify-center mt-1" aria-label="Add to favourite">
                         <TooltipProvider>
                             <Tooltip>
-                                <TooltipTrigger> <button disabled={isLoading} onClick={() => handleBookmarking()} className="flex items-center gap-2">
+                                <TooltipTrigger> <button disabled={isLoading} onClick={handleBookmarking} className="flex items-center gap-2">
                                     <BookmarkIcon className={` ${bookmark ? 'fill-(--zesty-orange) hover:fill-(--zesty-orange) ' : 'hover:fill-(--rose-white)'} drop-shadow-lg w-18 h-8  font-extrabold cursor-pointer `} />
                                 </button></TooltipTrigger>
                                 <TooltipContent>
@@ -149,7 +149,7 @@ export default function RecipeCard({recipe}:RecipeCardType) {
                 <p>Cook Time: {recipe.cookTime} mins</p>
             </div>
             <div className="">
-                <Button onClick={() => handleLiking()} disabled={isLiking}  className={`flex items-center cursor-pointer gap-2 border p-2 mb-3 w-15 rounded-xl ${like ? 'bg-(--success-green) text-(--white) hover:bg-(--success-green) ' : 'bg-(--white) text-(--dark-charcoal) hover:bg-(--light-grey)'} `}>
+                <Button onClick={handleLiking} disabled={isLiking}  className={`flex items-center cursor-pointer gap-2 border p-2 mb-3 w-15 rounded-xl ${like ? 'bg-(--success-green) text-(--white) hover:bg-(--success-green) ' : 'bg-(--white) text-(--dark-charcoal) hover:bg-(--light-grey)'} `}>
                     <ThumbsUpIcon/>
                     <p>{(recipeLikes)}</p>
                 </Button>

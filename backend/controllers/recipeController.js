@@ -10,7 +10,6 @@ export const addRecipe = async (req,res) => {
 
     try {
 
-        // console.log({title, description, ingredients:ingredientsArray, author, instructions:instructionsArray, cookTime, category})
         const uploader = await User.findOne({email:author})
 
         const newRecipe = await Recipe.addRecipe({
@@ -121,10 +120,8 @@ export const likeRecipe = async (req,res) => {
         recipe.likes.value = recipe.likes.value + 1
         recipe.likes.by = [...recipe.likes.by,email]
         recipe.save()
-        console.log('found', {...[recipe.likes]})
         res.status(200).json({message: 'Recipe has been liked'})
     } catch (error) {
-        console.log('not found')
         res.status(500).json({message: error.message})
     }
 }
@@ -153,4 +150,19 @@ export const getRecipeById = async (req,res) => {
     } catch (error) {
         res.status(500).json({message: error.message})   
     }
+}
+
+export const searchRecipe = async (req,res) => {
+    const { searchItem, limit = 6, page = 1 } = req.body
+try {
+    const recipes = await Recipe.find(
+        {$text: {$search: searchItem}},
+        {score: {$meta: "textScore"}} //rank the search results by relevance
+    ).sort({score: {$meta: "textScore"}})
+     .skip((page - 1) * limit)
+     .limit(limit)
+    res.status(200).json(recipes)
+} catch (error) {
+    res.status(500).json({message: error.message})
+}
 }
