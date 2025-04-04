@@ -18,7 +18,7 @@ const useLogin = () => {
         try {
             const response = await axios.post('http://localhost:5050/api/user/login',{
                 email,password
-            })
+            },{withCredentials:true})
             const data = response.data
 
             if (response.status !== 200) {

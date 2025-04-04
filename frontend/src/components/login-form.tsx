@@ -81,13 +81,13 @@ export default function LoginForm() {
                 </div>
               )
             }
-            <Link to={'/'} className="flex items-center fixed top-3 left-3 bg-(--zesty-orange) rounded-xl px-3 py-1 text-(--rose-white) "><ArrowBigLeftDashIcon /> <span className="hidden md:block">Back</span></Link>
+            <Link to={'/'} className="flex items-center cursor-pointer fixed top-3 left-3 bg-(--zesty-orange) rounded-xl px-3 py-1 text-(--rose-white) "><ArrowBigLeftDashIcon /> <span className="hidden md:block">Back</span></Link>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
-                <a href="#" className="text-sm text-primary hover:underline">
+                <Link to="#" className="text-sm text-primary hover:underline">
                   Forgot password?
-                </a>
+                </Link>
               </div>
               <Input
                 id="password"
@@ -120,7 +120,7 @@ export default function LoginForm() {
                 <AlertDescription>Please fix the errors above before submitting.</AlertDescription>
               </Alert>
             )}
-            <Button type="submit" className="w-full bg-(--zesty-orange) hover:bg-(--rich-brown) text-xl " disabled={isLoading}>
+            <Button type="submit" className="cursor-pointer w-full bg-(--zesty-orange) hover:bg-(--rich-brown) text-xl " disabled={isLoading}>
               {isLoading ? "Logging in..." : "Login"}
             </Button>
           </form>

@@ -131,7 +131,7 @@ export default function SignupForm() {
             )
           }
 
-          <Link to={'/'} className="flex items-center fixed lg:absolute lg:-left-25 top-3 left-3  bg-(--zesty-orange) rounded-xl px-3 py-1 text-(--rose-white) "><ArrowBigLeftDashIcon /> <span className="hidden md:block">Back</span></Link>
+          <Link to={'/'} className="flex items-center cursor-pointer fixed lg:absolute lg:-left-25 top-3 left-3  bg-(--zesty-orange) rounded-xl px-3 py-1 text-(--rose-white) "><ArrowBigLeftDashIcon /> <span className="hidden md:block">Back</span></Link>
 
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
@@ -195,7 +195,7 @@ export default function SignupForm() {
             </Alert>
           )}
 
-          <Button type="submit" className="w-full bg-(--zesty-orange) hover:bg-(--rich-brown) text-xl ">
+          <Button type="submit" className="cursor-pointer w-full bg-(--zesty-orange) hover:bg-(--rich-brown) text-xl ">
             Create Account
           </Button>
         </form>

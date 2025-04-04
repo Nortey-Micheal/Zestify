@@ -1,6 +1,7 @@
 import express from 'express'
 import { addRecipe, getAllRecipes, getNewRecipes, getPopularRecipes, getRecipeById, getRecipesByCategory, likeRecipe, searchRecipe, unLikeRecipe, uploadImage } from '../controllers/recipeController.js'
 import multer from 'multer';
+import verifyJWTToken from '../middleware/verifyToken.js';
 
 const recipeRouter = express.Router()
 
@@ -15,16 +16,19 @@ const storage = multer.diskStorage({
 });
   
 const upload = multer({ storage });
-  
-recipeRouter.post('/add-recipe', addRecipe)// ✅ JSON Upload
-recipeRouter.post('/upload-image', upload.single("image"), uploadImage); // ✅ Image Upload
+
+//only verified users can do these
+recipeRouter.post('/add-recipe', verifyJWTToken, addRecipe)// ✅ JSON Upload
+recipeRouter.post('/upload-image', verifyJWTToken, upload.single("image"), uploadImage); // ✅ Image Upload
+recipeRouter.post('/likeRecipe', verifyJWTToken, likeRecipe)
+recipeRouter.post('/unlikeRecipe', verifyJWTToken, unLikeRecipe)
+
+//all users can do this
 recipeRouter.post('/getAllRecipes', getAllRecipes)
 recipeRouter.post('/recipesByCategory', getRecipesByCategory)
 recipeRouter.post('/getNewRecipes', getNewRecipes)
 recipeRouter.get('/getRecipe/:recipe_id', getRecipeById)
 recipeRouter.post('/getPopularRecipes', getPopularRecipes)
-recipeRouter.post('/likeRecipe', likeRecipe)
-recipeRouter.post('/unlikeRecipe', unLikeRecipe)
 recipeRouter.post('/searchRecipe',searchRecipe)
 
 export default recipeRouter

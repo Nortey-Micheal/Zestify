@@ -1,6 +1,7 @@
 import express from 'express'
 import { bookmarkRecipe, getUserFavorites, login, removeBookmarkRecipe, signup, uploadProfile, verifyEmail } from '../controllers/userController.js'
 import multer from 'multer';
+import verifyJWTToken from '../middleware/verifyToken.js';
 
 const userRouter = express.Router()
 
@@ -19,10 +20,9 @@ const upload = multer({ storage });
 userRouter.post('/signup',signup)
 userRouter.post('/verify-email',verifyEmail)
 userRouter.post('/login',login)
-// userRouter.post('/refresh', refresh)
 userRouter.post('/upload-profilePic', upload.single("profilePicture"), uploadProfile)
-userRouter.post('/bookmark-recipe',bookmarkRecipe)
-userRouter.post('/remove-recipeBookmark',removeBookmarkRecipe)
-userRouter.post('/getUserFavorites',getUserFavorites)
+userRouter.post('/bookmark-recipe',verifyJWTToken,bookmarkRecipe)
+userRouter.post('/remove-recipeBookmark',verifyJWTToken,removeBookmarkRecipe)
+userRouter.post('/getUserFavorites',verifyJWTToken,getUserFavorites)
 
 export default userRouter

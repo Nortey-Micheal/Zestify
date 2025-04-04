@@ -1,6 +1,7 @@
 import User from "../models/userModel.js"
 import cloudinary from '../cloudinary/cloudinary.js'
 import fs from 'fs'
+import generateJWTtoken from "../utils/generateJWTtoken.js"
 
 export const signup = async (req,res) => {
     const { email, password, name } = req.body
@@ -29,22 +30,14 @@ export const login = async (req,res) => {
 
     try {
         const user = await User.login({email,password})
+
+        generateJWTtoken(res,user._id)
+
         res.status(200).json({...user._doc, password: undefined})
     } catch (error) {
         res.status(500).json({message: error.message})
     }
 }
-
-// export const refresh = async (req,res) => {
-//     const { email } = req.body
-
-//     try {
-//         const user = await User.find({email})
-//         res.status(200).json({...user._doc, password: undefined})
-//     } catch (error) {
-//         res.status(500).json({message: error.message})
-//     }
-// }
 
 export const uploadProfile = async (req, res) => {
     try {

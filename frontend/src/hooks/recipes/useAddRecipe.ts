@@ -29,6 +29,7 @@ const useAddRecipe = () => {
                 },
                 {
                     headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
                 }
             )
 
@@ -38,6 +39,7 @@ const useAddRecipe = () => {
                 formData.append("uploadUrl", uploadUrl);
                 await axios.post("http://localhost:5050/api/recipe/upload-image", formData, {
                     headers: { "Content-Type": "multipart/form-data" },
+                    withCredentials: true,
                 });
             }
 

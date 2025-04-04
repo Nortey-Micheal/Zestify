@@ -1,12 +1,10 @@
 import axios from "axios"
 import { useState } from "react"
-// import { useDispatch } from "react-redux"
 
 const useLikeRecipe = () => {
     const [likeError,setLikeError] = useState<string | null>(null)
     const [isLiking,setIsLiking] = useState<boolean>(false)
     const [likeSuccess,setLikeSuccess] = useState<boolean>(false)
-    // const dispatch = useDispatch()
     
     const likeRecipe = async (id:string,email:string) => {
         setLikeError(null)
@@ -14,7 +12,7 @@ const useLikeRecipe = () => {
         try {
             await axios.post('http://localhost:5050/api/recipe/likeRecipe',{
                 id,email
-            })
+            },{withCredentials: true})
 
             setLikeSuccess(true)
             setIsLiking(false)
@@ -41,7 +39,7 @@ const useLikeRecipe = () => {
         try {
             await axios.post('http://localhost:5050/api/recipe/unlikeRecipe',{
                 id,email
-            })
+            },{withCredentials: true})
 
             setLikeSuccess(true)
             setIsLiking(false)

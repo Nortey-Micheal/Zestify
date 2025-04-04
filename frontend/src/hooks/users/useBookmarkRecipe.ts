@@ -14,7 +14,7 @@ const useBookmarkRecipe = () => {
         setError(null)
         setIsLoading(true)
         try {
-            const response = await axios.post('http://localhost:5050/api/user/getUserFavorites',{email})
+            const response = await axios.post('http://localhost:5050/api/user/getUserFavorites',{email},{withCredentials: true})
 
             dispatch(setFavoriteRecipes(response.data))
             setIsLoading(false)
@@ -34,9 +34,8 @@ const useBookmarkRecipe = () => {
         try {
             await axios.post('http://localhost:5050/api/user/bookmark-recipe',{
                 recipe, email
-            })
-            // await refresh(email)
-            const response = await axios.post('http://localhost:5050/api/user/getUserFavorites',{email})
+            },{withCredentials: true})
+            const response = await axios.post('http://localhost:5050/api/user/getUserFavorites',{email},{withCredentials: true})
 
             dispatch(setFavoriteRecipes(response.data))
             setSuccess(true)
@@ -64,10 +63,9 @@ const useBookmarkRecipe = () => {
         try {
             await axios.post('http://localhost:5050/api/user/remove-recipeBookmark',{
                 recipe, email
-            })
+            },{withCredentials: true})
 
-            // await refresh(email)
-            const response = await axios.post('http://localhost:5050/api/user/getUserFavorites',{email})
+            const response = await axios.post('http://localhost:5050/api/user/getUserFavorites',{email},{withCredentials: true})
 
             dispatch(setFavoriteRecipes(response.data))
             setSuccess(true)

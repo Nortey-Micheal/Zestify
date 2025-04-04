@@ -46,7 +46,7 @@ export default function RecipeContent() {
                             <div className="w-[95vw] mx-auto md:w-full rounded-2xl bg-(--dark-green) overflow-hidden flex justify-center items-center">
                                 <RecipeImage width={760} height={450} image={recipe.image} />
                             </div>
-                            <button onClick={() => navigate('/')} className="flex items-center fixed top-3 left-3 bg-(--zesty-orange) rounded-xl px-3 py-1 text-(--rose-white) "><ArrowBigLeftDashIcon /> <span className="hidden md:block">Back</span></button>
+                            <button onClick={() => navigate('/')} className="flex items-center cursor-pointer fixed top-3 left-3 bg-(--zesty-orange) rounded-xl px-3 py-1 text-(--rose-white) "><ArrowBigLeftDashIcon /> <span className="hidden md:block">Back</span></button>
                             <div className="mt-7">
                                 <div className=" mb-5">
                                     <div className="mb-4 flex justify-between items-center">
