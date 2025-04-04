@@ -1,10 +1,14 @@
 import axios from "axios"
 import { useState } from "react"
+import useGetNewRecipes from "./useGetNewRecipes"
+import useGetPopularRecipes from "./useGetPopularRecipes"
 
 const useLikeRecipe = () => {
     const [likeError,setLikeError] = useState<string | null>(null)
     const [isLiking,setIsLiking] = useState<boolean>(false)
     const [likeSuccess,setLikeSuccess] = useState<boolean>(false)
+    const {getNewRecipes} = useGetNewRecipes()
+    const {getPopularRecipes} = useGetPopularRecipes()
     
     const likeRecipe = async (id:string,email:string) => {
         setLikeError(null)
@@ -14,6 +18,8 @@ const useLikeRecipe = () => {
                 id,email
             },{withCredentials: true})
 
+            getNewRecipes()
+            getPopularRecipes()
             setLikeSuccess(true)
             setIsLiking(false)
             
@@ -41,6 +47,8 @@ const useLikeRecipe = () => {
                 id,email
             },{withCredentials: true})
 
+            getNewRecipes()
+            getPopularRecipes()
             setLikeSuccess(true)
             setIsLiking(false)
 

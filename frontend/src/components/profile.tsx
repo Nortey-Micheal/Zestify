@@ -20,7 +20,7 @@ export default function Profile({width,display,className}: {width?:string,displa
     
 
     return (
-        <section className={` ${display ? display : 'hidden'} ${width ? `${width}` : 'w-[25vw]'} ${className} bg-(--rose-white) my-10 border border-(--light-gray) rounded-2xl p-3  lg:block `}>
+        <section className={` ${display ? display : 'hidden'} ${width ? `${width}` : 'w-[25vw]'} ${className} bg-(--rose-white) my-10 lg:my-0 border border-(--light-gray) rounded-2xl p-3 lg:h-[95vh] lg:overflow-scroll lg:block `}>
 
             <div>
                 <div className="flex w-full justify-between">

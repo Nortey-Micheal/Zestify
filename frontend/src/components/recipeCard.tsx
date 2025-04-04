@@ -18,12 +18,10 @@ interface RecipeCardType {
 
 export default function RecipeCard({recipe}:RecipeCardType) {
     const { bookmarkRecipe, success, error, isLoading, removeBookmarkRecipe} = useBookmarkRecipe()
-    const {likeError, likeSuccess, isLiking, likeRecipe,unLikeRecipe } = useLikeRecipe()
+    const {likeError, isLiking, likeRecipe,unLikeRecipe } = useLikeRecipe()
     const user = useSelector((state:RootState) => state.user)
     const [bookmark,setBookmark] =  useState<boolean>(false)
     const [like,setLike] = useState<boolean>(false)
-
-    const [recipeLikes,setRecipeLikes] = useState<number>(recipe.likes.value)//manage likes
 
     //handle bookmarking of recipes
     async function handleBookmarking () {
@@ -72,7 +70,6 @@ export default function RecipeCard({recipe}:RecipeCardType) {
             }
             setLike(true)
             toast.success(`You liked ${recipe.title} by ${recipe.author}.`)
-            setRecipeLikes(recipeLikes + 1)
             return
         }
         if (like) {
@@ -83,7 +80,6 @@ export default function RecipeCard({recipe}:RecipeCardType) {
             }
             setLike(false)
             toast.info(`You unliked ${recipe.title} by ${recipe.author}.`)
-            setRecipeLikes(recipeLikes - 1)
             return
         }
     }
@@ -91,7 +87,9 @@ export default function RecipeCard({recipe}:RecipeCardType) {
     useEffect(() =>{
         //check if recipe is already liked
         const checkLiking = () => {
-            const likedRecipe = recipe.likes.by.find(by => by === user.email)
+            const likedRecipe = recipe.likes.by.find(liker => liker === user.email)
+            console.log(recipe.likes.by)
+            console.log(user.email)
             if (likedRecipe) {
                 setLike(true)
             } else {
@@ -100,7 +98,7 @@ export default function RecipeCard({recipe}:RecipeCardType) {
         }
         checkLiking()
     
-    },[likeSuccess,likeError])
+    },[recipe.likes.by.length])
 
     user.favouriteRecipes && useEffect(() => {
         //check if recipe is already bookmarked
@@ -151,7 +149,7 @@ export default function RecipeCard({recipe}:RecipeCardType) {
             <div className="">
                 <Button onClick={handleLiking} disabled={isLiking}  className={`flex items-center cursor-pointer gap-2 border p-2 mb-3 w-15 rounded-xl ${like ? 'bg-(--success-green) text-(--white) hover:bg-(--success-green) ' : 'bg-(--white) text-(--dark-charcoal) hover:bg-(--light-grey)'} `}>
                     <ThumbsUpIcon/>
-                    <p>{(recipeLikes)}</p>
+                    <p>{recipe.likes.value}</p>
                 </Button>
             </div>
             <Link to={`/recipe/${recipe._id}`} className="bg-(--zesty-orange) md:text-xl text-lg hover:bg-(--rich-brown) rounded-lg text-center text-(--white) py-1 ">View Recipe</Link>
