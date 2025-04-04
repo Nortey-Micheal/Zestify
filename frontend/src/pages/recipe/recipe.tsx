@@ -34,6 +34,7 @@ export default function RecipeContent() {
            }
 
         }
+        window.scrollTo(0,0)
         fetchRecipe()
     },[])
 
