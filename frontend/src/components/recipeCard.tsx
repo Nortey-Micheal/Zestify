@@ -26,68 +26,62 @@ export default function RecipeCard({recipe}:RecipeCardType) {
     //handle bookmarking of recipes
     async function handleBookmarking () {
         
-        if(!user.email) {
+        if(!user?.email) {
             toast.error('You need to be logged in to bookmark a recipe')
-            return
         }
         
-        if (user.email && !bookmark) {
-            await bookmarkRecipe(user.email,recipe)
+        if (user?.email && !bookmark) {
+            await bookmarkRecipe(user?.email,recipe)
             if (error) {
                 setBookmark(false)
-                return
+
             }
             setBookmark(true)
             toast.success(`${recipe.title} by ${recipe.author} has been added to bookmark`)
-            return
         } 
 
-        if (user.email && bookmark) {
-            await removeBookmarkRecipe(user.email,recipe)
+        if (user?.email && bookmark) {
+            await removeBookmarkRecipe(user?.email,recipe)
             if (error) {
                 setBookmark(true)
-                return
+
             }
             setBookmark(false)
             toast.info(`${recipe.title} by ${recipe.author} has been removed from bookmark`)
-            return
         }
     }
 
     //handle liking of recipes
     async function handleLiking () {
 
-        if(!user.email) {
+        if(!user?.email) {
             toast.error('You need to be logged in to like a recipe')
-            return
         }
 
         if (!like) {
-            await likeRecipe(recipe._id,user.email)
+            await likeRecipe(recipe._id,user?.email)
             if (likeError) {
                 setLike(false)
-                return
+
             }
             setLike(true)
             toast.success(`You liked ${recipe.title} by ${recipe.author}.`)
-            return
         }
         if (like) {
-            await unLikeRecipe(recipe._id,user.email)
+            await unLikeRecipe(recipe._id,user?.email)
             if (likeError) {
                 setLike(true)
-                return
+
             }
             setLike(false)
             toast.info(`You unliked ${recipe.title} by ${recipe.author}.`)
-            return
         }
     }
 
     useEffect(() =>{
         //check if recipe is already liked
         const checkLiking = () => {
-            const likedRecipe = recipe.likes.by.find(liker => liker === user.email)
+            const likedRecipe = recipe.likes.by.find(liker => liker === user?.email)
             if (likedRecipe) {
                 setLike(true)
             } else {
@@ -98,18 +92,20 @@ export default function RecipeCard({recipe}:RecipeCardType) {
     
     },[recipe.likes.by.length])
 
-    user.favouriteRecipes && useEffect(() => {
+    useEffect(() => {
         //check if recipe is already bookmarked
         const checkBooking = () => {
-            const bookedRecipe = user.favouriteRecipes.find(favoriteRecipes => recipe._id === favoriteRecipes._id)
-            if (bookedRecipe) {
-                setBookmark(true)
-            } else {
-                setBookmark(false) // remove bookmark 
+            if (user.favouriteRecipes) {
+                    const bookedRecipe = user?.favouriteRecipes.find(favoriteRecipes => recipe._id === favoriteRecipes._id)
+                if (bookedRecipe) {
+                    setBookmark(true)
+                } else {
+                    setBookmark(false) // remove bookmark 
+                }
             }
         }
         checkBooking()
-    },[user.favouriteRecipes.length,success])
+    },[user,success])
 
     return (
         <div className={`p-3 border-(--light-gray) w-full md:max-w-[500px] shadow-xl border flex flex-col rounded-2xl text-(--deep-charcoal) bg-(--white) mx-auto `} >
@@ -118,7 +114,7 @@ export default function RecipeCard({recipe}:RecipeCardType) {
                     <ProfileImage profilePicture={recipe.authorPic || 'defaultProfile_ab13io'} width={50} height={50} />
                 </div>
                 <div>
-                    <p className="border-b-2 mb-1">{(user.email === recipe.author) || (user.name === recipe.author) ? 'You' : recipe.author}</p>
+                    <p className="border-b-2 mb-1">{(user?.email === recipe.author) || (user?.name === recipe.author) ? 'You' : recipe.author}</p>
                     <p className="text-slate-500 ">Posted: {recipe.cookTime} mins</p>
                 </div>
             </div>
