@@ -18,7 +18,7 @@ const useSearchRecipe = () => {
         setSearchingSuccess(false)
 
         try {
-            const response = await axios.post(`http://localhost:5050/api/recipe/searchRecipe/`,{searchItem,page})
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/recipe/searchRecipe/`,{searchItem,page})
             const recipes = response.data
 
             dispatch(setSearchRecipes(recipes))

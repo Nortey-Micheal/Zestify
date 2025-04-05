@@ -14,7 +14,7 @@ const useGetPopularRecipes = () => {
         
         try {
             
-            const response = await axios.post('http://localhost:5050/api/recipe/getPopularRecipes',{limit,page})
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/recipe/getPopularRecipes`,{limit,page})
 
             const recipes = response.data
 

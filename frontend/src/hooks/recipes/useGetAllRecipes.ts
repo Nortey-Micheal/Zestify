@@ -13,7 +13,7 @@ const useGetAllRecipes = () => {
         setIsLoading(true)
 
         try {
-            const response = await axios.post('http://localhost:5050/api/recipe/getAllRecipes', {
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/recipe/getAllRecipes`, {
                 limit,
                 page
             })

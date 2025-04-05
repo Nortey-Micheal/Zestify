@@ -14,7 +14,7 @@ const useGetNewRecipes = () => {
         
         try {
             
-            const response = await axios.post('http://localhost:5050/api/recipe/getNewRecipes', {
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/recipe/getNewRecipes`, {
                 limit,
                 page
             })

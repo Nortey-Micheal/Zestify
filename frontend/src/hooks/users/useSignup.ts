@@ -24,7 +24,7 @@ const useSignup = () => {
             setIsLoading(true)
             setError(null)
 
-            await axios.post('http://localhost:5050/api/user/signup', 
+            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/signup`, 
                 {
                     name,email,password,bio
                 },
@@ -35,7 +35,7 @@ const useSignup = () => {
 
             if (profilePicture) {
                 formData.append('email', email)
-                await axios.post('http://localhost:5050/api/user/upload-profilePic', formData, {
+                await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/upload-profilePic`, formData, {
                     headers: {"Content-Type": "multipart/form-data"},
                 })
             }

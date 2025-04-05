@@ -16,7 +16,7 @@ const useLogin = () => {
         setIsLoading(true)
         
         try {
-            const response = await axios.post('http://localhost:5050/api/user/login',{
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/login`,{
                 email,password
             },{withCredentials:true})
             const data = response.data

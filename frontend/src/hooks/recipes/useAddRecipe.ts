@@ -22,7 +22,7 @@ const useAddRecipe = () => {
             setError(null)
             setIsLoading(true)
 
-            const response = await axios.post("http://localhost:5050/api/recipe/add-recipe",{
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/recipe/add-recipe`,{
                     title,description,
                     author,cookTime,category,
                     ingredients:ingredientsString,instructions:instructionsString,image:undefined
@@ -37,7 +37,7 @@ const useAddRecipe = () => {
             
             if (image) {
                 formData.append("uploadUrl", uploadUrl);
-                await axios.post("http://localhost:5050/api/recipe/upload-image", formData, {
+                await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/recipe/upload-image`, formData, {
                     headers: { "Content-Type": "multipart/form-data" },
                     withCredentials: true,
                 });

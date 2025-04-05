@@ -14,7 +14,7 @@ const useLikeRecipe = () => {
         setLikeError(null)
         setIsLiking(true)
         try {
-            await axios.post('http://localhost:5050/api/recipe/likeRecipe',{
+            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/recipe/likeRecipe`,{
                 id,email
             },{withCredentials: true})
 
@@ -43,7 +43,7 @@ const useLikeRecipe = () => {
         setLikeError(null)
         setIsLiking(true)
         try {
-            await axios.post('http://localhost:5050/api/recipe/unlikeRecipe',{
+            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/recipe/unlikeRecipe`,{
                 id,email
             },{withCredentials: true})
 

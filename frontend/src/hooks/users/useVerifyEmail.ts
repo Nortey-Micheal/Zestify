@@ -12,7 +12,7 @@ const useVerifyEmail = () => {
         setSuccess(false)
 
         try {
-            await axios.post('http://localhost:5050/api/user/verify-email',{verificationToken})
+            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/verify-email`,{verificationToken})
 
             setIsLoading(false)
             setSuccess(true)

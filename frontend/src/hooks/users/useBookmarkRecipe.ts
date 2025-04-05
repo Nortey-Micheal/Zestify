@@ -14,7 +14,7 @@ const useBookmarkRecipe = () => {
         setError(null)
         setIsLoading(true)
         try {
-            const response = await axios.post('http://localhost:5050/api/user/getUserFavorites',{email},{withCredentials: true})
+            const response = await axios.post('${import.meta.env.VITE_BACKEND_URL}/api/user/getUserFavorites',{email},{withCredentials: true})
 
             dispatch(setFavoriteRecipes(response.data))
             setIsLoading(false)
@@ -32,10 +32,10 @@ const useBookmarkRecipe = () => {
         setError(null)
         setIsLoading(true)
         try {
-            await axios.post('http://localhost:5050/api/user/bookmark-recipe',{
+            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/bookmark-recipe`,{
                 recipe, email
             },{withCredentials: true})
-            const response = await axios.post('http://localhost:5050/api/user/getUserFavorites',{email},{withCredentials: true})
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/getUserFavorites`,{email},{withCredentials: true})
 
             dispatch(setFavoriteRecipes(response.data))
             setSuccess(true)
@@ -61,11 +61,11 @@ const useBookmarkRecipe = () => {
         setError(null)
         setIsLoading(true)
         try {
-            await axios.post('http://localhost:5050/api/user/remove-recipeBookmark',{
+            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/remove-recipeBookmark`,{
                 recipe, email
             },{withCredentials: true})
 
-            const response = await axios.post('http://localhost:5050/api/user/getUserFavorites',{email},{withCredentials: true})
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/getUserFavorites`,{email},{withCredentials: true})
 
             dispatch(setFavoriteRecipes(response.data))
             setSuccess(true)

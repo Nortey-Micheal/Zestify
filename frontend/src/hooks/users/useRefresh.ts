@@ -13,7 +13,7 @@ const useRefresh = () => {
         setError(null)
 
         try {
-            const response = await axios.post('http://localhost:5050/api/user/refresh',{ email })
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/refresh`,{ email })
             const userData = response.data
             dispatch(setUser(userData))
             setIsLoading(false)

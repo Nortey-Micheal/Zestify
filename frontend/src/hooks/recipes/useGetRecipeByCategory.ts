@@ -19,7 +19,7 @@ const useGetRecipeByCategory = () => {
         setIsLoading(true)
 
         try {
-            const response = await axios.post('http://localhost:5050/api/recipe/recipesByCategory', {category, limit, page})
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/recipe/recipesByCategory`, {category, limit, page})
             const recipes = response.data
             dispatch(setCategoriesRecipes(recipes))
             setIsLoading(false)

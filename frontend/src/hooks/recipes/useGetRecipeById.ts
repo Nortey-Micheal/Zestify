@@ -13,7 +13,7 @@ const useGetRecipeById = () => {
         setError(null)
 
         try {
-            const response = await axios.get(`http://localhost:5050/api/recipe/getRecipe/${recipe_id}`)
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/recipe/getRecipe/${recipe_id}`)
             const recipe = response.data
 
             dispatch(setRecipePage(recipe))
