@@ -7,13 +7,13 @@ import store, { persistor } from './redux/store.ts'
 const Signup = lazy(() => import('./pages/user/signup.tsx'))
 const Login = lazy(() => import('./pages/user/login.tsx'))
 import { PersistGate } from 'redux-persist/integration/react'
-import AllCategoryRecipes from './pages/recipe/categories/allCate.tsx'
-import BeveragesRecipes from './pages/recipe/categories/beverages.tsx'
-import BreakfastRecipes from './pages/recipe/categories/breakfast.tsx'
-import DessertRecipes from './pages/recipe/categories/dessert.tsx'
-import DinnerRecipes from './pages/recipe/categories/dinner.tsx'
-import LunchRecipes from './pages/recipe/categories/lunch.tsx'
-import SnacksRecipes from './pages/recipe/categories/snacks.tsx'
+const AllCategoryRecipes = lazy(() => import('./pages/recipe/categories/allCate.tsx'))
+const BeveragesRecipes = lazy(() => import('./pages/recipe/categories/beverages.tsx'))
+const BreakfastRecipes = lazy(() => import('./pages/recipe/categories/breakfast.tsx'))
+const DessertRecipes = lazy(() =>import('./pages/recipe/categories/dessert.tsx'))
+const DinnerRecipes = lazy(() => import('./pages/recipe/categories/dinner.tsx'))
+const LunchRecipes = lazy(() => import('./pages/recipe/categories/lunch.tsx'))
+const SnacksRecipes = lazy(() => import('./pages/recipe/categories/snacks.tsx'))
 const SearchRecipes = lazy(() => import('./pages/recipe/searchRecipe.tsx'))
 const ProfilePage = lazy(() => import('./pages/user/withAuth/profilePage.tsx'))
 const RecipeCategoryPage = lazy(() => import('./pages/recipe/categories.tsx'))
