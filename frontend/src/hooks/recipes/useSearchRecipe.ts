@@ -16,7 +16,6 @@ const useSearchRecipe = () => {
         setIsSearching(true)
         setSearchError(null)
         setSearchingSuccess(false)
-        console.log('location',location)
 
         try {
             const response = await axios.post(`http://localhost:5050/api/recipe/searchRecipe/`,{searchItem,page})

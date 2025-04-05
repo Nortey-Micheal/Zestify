@@ -73,10 +73,17 @@ export const getRecipesByCategory = async (req,res) => {
     limit = parseInt(limit);
 
     try {
-        const recipes = await Recipe.find({category})
+        if (!category) {
+            const recipes = await Recipe.find({})
                                     .skip((page - 1) * limit)
                                     .limit(limit)
-        res.status(200).json(recipes)
+            res.status(200).json(recipes)
+        } else {
+            const recipes = await Recipe.find({category})
+                                    .skip((page - 1) * limit)
+                                    .limit(limit)
+            res.status(200).json(recipes)
+        }
     } catch (error) {
         res.status(500).json({message: error.message})
     }

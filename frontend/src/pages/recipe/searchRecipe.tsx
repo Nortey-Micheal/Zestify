@@ -19,7 +19,6 @@ export default function SearchRecipes() {
 
     useEffect(() => {
         return () => {
-            console.log('clearing searched recipes')
             dispatch(removeSearchRecipes())
         }
     },[])
@@ -42,7 +41,7 @@ export default function SearchRecipes() {
                         <div className="bg-(--rose-white) grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:px-5 px-2 py-1 lg:py-3 gap-y-8 gap-x-4 p-2 rounded-xl w-[95vw] lg:w-[80vw] mx-auto mt-5 ">
                             {
                                 searchedRecipes.map(recipe => (
-                                    <RecipeCard recipe={recipe}/>
+                                    <RecipeCard recipe={recipe} key={recipe._id}/>
                                 ))
                             }
                         </div>

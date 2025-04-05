@@ -88,8 +88,6 @@ export default function RecipeCard({recipe}:RecipeCardType) {
         //check if recipe is already liked
         const checkLiking = () => {
             const likedRecipe = recipe.likes.by.find(liker => liker === user.email)
-            console.log(recipe.likes.by)
-            console.log(user.email)
             if (likedRecipe) {
                 setLike(true)
             } else {

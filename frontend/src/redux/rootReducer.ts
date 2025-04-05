@@ -6,6 +6,7 @@ import recipesReducer from './recipe/recipeSlice'
 import recipePageReducer from './recipe/recipePageSlice'
 import isAuthenticatedReducer from './user/isAuthenticated'
 import searchRecipesReducer from './recipe/searchRecipe'
+import categoriesRecipesReducer from './recipe/categories'
 
 const rootReducer = combineReducers({
     user: userReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     recipePage: recipePageReducer,
     isAuthenticated: isAuthenticatedReducer,
     searchRecipes: searchRecipesReducer,
+    categoriesRecipes: categoriesRecipesReducer,
 })
 
 export default rootReducer

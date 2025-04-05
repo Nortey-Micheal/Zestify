@@ -10,9 +10,9 @@ export default function SearchBar ({placeholder,className,page}:any) {
     await searchRecipe(searchItem,page)
   }
 
-  useEffect(() => {
-    handleSearch()
-  },[page])
+  // useEffect(() => {
+  //   handleSearch()
+  // },[page])
 
   useEffect(() => {
     (searchError?.length)! > 0 && toast.error(searchError)
@@ -24,7 +24,7 @@ export default function SearchBar ({placeholder,className,page}:any) {
         <input
           type="text"
           onChange={(e) => setSearchItem(e.target.value)}
-          className="pl-10 text-lg lg:text-2xl p-1 border rounded-lg w-full "
+          className="pl-10 lg:text-2xl p-1 border rounded-lg w-full "
           placeholder={`${placeholder}`}
         />
         <svg
@@ -49,7 +49,7 @@ export default function SearchBar ({placeholder,className,page}:any) {
           <line x1="21" y1="21" x2="16.65" y2="16.65" />
         </svg>
       </div>
-      <button disabled={isSearching} className="bg-(--zesty-orange) disabled:bg-(--light-grey) my-2 py-1 px-3 rounded-xl cursor-pointer font-bold text-lg " onClick={handleSearch} >Search</button>
+      <button disabled={isSearching} className="bg-(--zesty-orange) disabled:bg-(--light-grey) my-2 py-1 px-3 rounded-xl text-(--white) cursor-pointer font-bold lg:text-lg " onClick={handleSearch} >Search</button>
     </div>
   );
 };

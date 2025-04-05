@@ -16,6 +16,7 @@ export default function SignupForm() {
     email: "",
     password: "",
     confirmPassword: "",
+    bio: "",
   })
   const [profileImagePreview, setProfileImagePreview] = useState<string | null>(null)
   const [profileImage, setProfileImage] = useState<File | null>(null)
@@ -71,6 +72,10 @@ export default function SignupForm() {
       newErrors.confirmPassword = "Passwords do not match"
     }
 
+    if (!formData.bio) {
+      newErrors.bio = "Bio is required"
+    }
+
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -86,7 +91,7 @@ export default function SignupForm() {
 
     // Reset form after successful submission
     if (!error && (error?.length)! > 0) {
-      setFormData({ name: "", email: "", password: "", confirmPassword: "" })
+      setFormData({ name: "", email: "", password: "", confirmPassword: "", bio: "" })
       setProfileImagePreview(null)
       setProfileImage(null)
     }
@@ -159,6 +164,21 @@ export default function SignupForm() {
             />
             {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
           </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="bio">Bio</Label>
+            <Input
+              id="bio"
+              name="bio"
+              type="text"
+              value={formData.bio}
+              onChange={handleChange}
+              placeholder="Enter you personal bio"
+              className={errors.bio ? "border-destructive" : ""}
+            />
+            {errors.bio && <p className="text-sm text-destructive">{errors.bio}</p>}
+          </div>
+
 
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>

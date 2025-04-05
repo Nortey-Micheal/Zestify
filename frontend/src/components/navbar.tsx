@@ -19,7 +19,9 @@ export default function Navbar() {
                 <img className="w-20 aspect-square mt-2 rounded-3xl bg-amber-50 mx-auto" src="/assets/zestify-full.svg" alt="" />
                 <TooltipProvider>
                     <Tooltip>
-                        <TooltipTrigger className="flex items-center gap-2  "><Heart className="w-9 h-9 text-(--dark-raspberry) hover:fill-red-300 "/><p className="text-lg">Favorites</p> </TooltipTrigger>
+                        <TooltipTrigger><Link to={'/profile'} className="flex items-center gap-2  ">
+                            <Heart className="w-9 h-9 text-(--dark-raspberry) hover:fill-red-300 "/><p className="text-lg">Favorites</p>
+                        </Link> </TooltipTrigger>
                         <TooltipContent>
                         <p className="text-lg">Favorites</p>
                         </TooltipContent>
@@ -50,7 +52,7 @@ export default function Navbar() {
                 </TooltipProvider>
                 <TooltipProvider>
                     <Tooltip>
-                        <TooltipTrigger><Link className="flex items-center gap-2" to={'/category'}>
+                        <TooltipTrigger><Link className="flex items-center gap-2" to={'/categories'}>
                             <LibraryBigIcon className="w-9 h-9 text-(--dark-raspberry) hover:fill-red-300 "/> <p className="text-lg">Categories</p>
                         </Link> </TooltipTrigger>
                         <TooltipContent>

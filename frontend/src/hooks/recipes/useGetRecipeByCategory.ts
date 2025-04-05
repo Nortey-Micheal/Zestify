@@ -1,21 +1,27 @@
-import { setRecipes } from "@/redux/recipe/recipeSlice"
+import { setCategoriesRecipes } from "@/redux/recipe/categories"
 import axios from "axios"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
+
+interface searchType {
+    category?: string,
+    limit?: number,
+    page?:number
+}
 
 const useGetRecipeByCategory = () => {
     const [error, setError] = useState<string | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const dispatch = useDispatch()
 
-    const getRecipeByCategory = async (category:string,limit?:6,page?:number) => {
+    const getRecipeByCategory = async ({category,limit,page}:searchType) => {
         setError(null)
         setIsLoading(true)
 
         try {
             const response = await axios.post('http://localhost:5050/api/recipe/recipesByCategory', {category, limit, page})
             const recipes = response.data
-            dispatch(setRecipes(recipes))
+            dispatch(setCategoriesRecipes(recipes))
             setIsLoading(false)
         } catch (error:any) {
             if (error.response) {

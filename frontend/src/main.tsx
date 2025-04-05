@@ -7,6 +7,13 @@ import store, { persistor } from './redux/store.ts'
 const Signup = lazy(() => import('./pages/user/signup.tsx'))
 const Login = lazy(() => import('./pages/user/login.tsx'))
 import { PersistGate } from 'redux-persist/integration/react'
+import AllCategoryRecipes from './pages/recipe/categories/allCate.tsx'
+import BeveragesRecipes from './pages/recipe/categories/beverages.tsx'
+import BreakfastRecipes from './pages/recipe/categories/breakfast.tsx'
+import DessertRecipes from './pages/recipe/categories/dessert.tsx'
+import DinnerRecipes from './pages/recipe/categories/dinner.tsx'
+import LunchRecipes from './pages/recipe/categories/lunch.tsx'
+import SnacksRecipes from './pages/recipe/categories/snacks.tsx'
 const SearchRecipes = lazy(() => import('./pages/recipe/searchRecipe.tsx'))
 const ProfilePage = lazy(() => import('./pages/user/withAuth/profilePage.tsx'))
 const RecipeCategoryPage = lazy(() => import('./pages/recipe/categories.tsx'))
@@ -79,7 +86,44 @@ const router = createBrowserRouter([
   {
     path: '/categories',
     element: <RecipeCategoryPage />,
-    errorElement: <NoPageFound />
+    errorElement: <NoPageFound />,
+    children: [
+      {
+        path: '',
+        element: <AllCategoryRecipes />,
+        errorElement: <NoPageFound />
+      },
+      {
+        path: 'beverages',
+        element: <BeveragesRecipes />,
+        errorElement: <NoPageFound />
+      },
+      {
+        path: 'breakfast',
+        element: <BreakfastRecipes />,
+        errorElement: <NoPageFound />
+      },
+      {
+        path: 'dessert',
+        element: <DessertRecipes />,
+        errorElement: <NoPageFound />
+      },
+      {
+        path: 'dinner',
+        element: <DinnerRecipes />,
+        errorElement: <NoPageFound />
+      },
+      {
+        path: 'lunch',
+        element: <LunchRecipes />,
+        errorElement: <NoPageFound />
+      },
+      {
+        path: 'snacks',
+        element: <SnacksRecipes />,
+        errorElement: <NoPageFound />
+      }
+    ]
   },
   {
     path: '/recipe-search',
@@ -89,7 +133,7 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  // <StrictMode>
     <Provider store={store}>
       <Suspense fallback={<div>Loading ...</div>}>
         <PersistGate loading={null} persistor={persistor}>
@@ -97,6 +141,6 @@ createRoot(document.getElementById('root')!).render(
         </PersistGate>
       </Suspense>
     </Provider>
-  </StrictMode>
+  // </StrictMode>
   ,
 )

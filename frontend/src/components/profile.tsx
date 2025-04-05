@@ -46,6 +46,7 @@ export default function Profile({width,display,className}: {width?:string,displa
                 <div className="w-full flex flex-col justify-center items-center mt-10">
                     <ProfileImage width={170} height={170} profilePicture={user.profilePicture}/>
                     <p className="text-(--deep-charcoal) text-3xl font-bold">{user.name}</p>
+                    <p>{user.bio}</p>
                 </div>
             </div>
 

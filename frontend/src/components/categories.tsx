@@ -11,6 +11,7 @@ import RecipeCard from "./recipeCard"
 interface Category {
     name: string,
     Icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
+    link: string
 }
 
 export default function Categories() {
@@ -23,31 +24,38 @@ export default function Categories() {
     const categories:Category[] = [
         {
             name: "All",
-            Icon: ChefHatIcon
+            Icon: ChefHatIcon,
+            link: ''
         },
         {
             name: "Breakfast",
-            Icon: EggFriedIcon
+            Icon: EggFriedIcon,
+            link: 'breakfast'
         },
         {
             name: "Lunch",
-            Icon: SandwichIcon
+            Icon: SandwichIcon,
+            link: 'lunch'
         },
         {
             name: "Dinner",
-            Icon: DrumstickIcon
+            Icon: DrumstickIcon,
+            link: 'dinner'
         },
         {
             name: "Dessert",
-            Icon: IceCreamBowlIcon
+            Icon: IceCreamBowlIcon,
+            link: 'dessert'
         },
         {
-            name: "Snack",
-            Icon: CookieIcon
+            name: "Snacks",
+            Icon: CookieIcon,
+            link: 'snacks'
         },
         {
-            name: "Beverage",
-            Icon: WineIcon
+            name: "Beverages",
+            Icon: WineIcon,
+            link: 'beverages'
         }
     
     ]
@@ -69,7 +77,7 @@ export default function Categories() {
                 <div className="flex gap-8 overflow-scroll w-full">
                     {
                         categories.map((category) => (
-                            <Link to={'/recipes'} className=" bg-amber-100 p-1 pr-4 lg:pr-6 rounded-4xl flex items-center gap-2 min-w-fit text-(--deep-charcoal)" key={category.name}>
+                            <Link to={`/categories/${category.link}`} className=" bg-amber-100 p-1 pr-4 lg:pr-6 rounded-4xl flex items-center gap-2 min-w-fit text-(--deep-charcoal)" key={category.name}>
                                 <category.Icon className="w-10 h-10 lg:h-12 lg:w-12 p-1 bg-red-200 rounded-full"/>
                                 <h3 className="text-lg lg:text-xl font-bold  ">{category.name}</h3>
                             </Link>
