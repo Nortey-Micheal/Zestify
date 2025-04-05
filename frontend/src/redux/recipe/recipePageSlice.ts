@@ -8,6 +8,7 @@ const recipeSlice = createSlice({
     initialState,
     reducers: {
         setRecipePage: (state,action:PayloadAction<Recipe>) => {
+            if (state) console.log('a')
             return action.payload
        },
        removeRecipePage: () => {

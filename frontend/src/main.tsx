@@ -133,7 +133,7 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')!).render(
-  // <StrictMode>
+  <StrictMode>
     <Provider store={store}>
       <Suspense fallback={<div>Loading ...</div>}>
         <PersistGate loading={null} persistor={persistor}>
@@ -141,6 +141,6 @@ createRoot(document.getElementById('root')!).render(
         </PersistGate>
       </Suspense>
     </Provider>
-  // </StrictMode>
+  </StrictMode>
   ,
 )

@@ -18,9 +18,11 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         setUser: (state,action:PayloadAction<User>) => {
+            if (state) console.log('a')
             return action.payload
         },
         removeUser: (state) => {
+            if (state) console.log('a')
             return {} as User
         },
         setFavoriteRecipes: (state,action:PayloadAction<Recipe[]>) => {

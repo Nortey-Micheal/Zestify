@@ -8,6 +8,7 @@ const searchRecipes = createSlice({
     initialState,
     reducers: {
         setSearchRecipes: (state, action:PayloadAction<Recipe[]>) => {
+            if (state) console.log('a')
             return action.payload
         },
         removeSearchRecipes: () => {

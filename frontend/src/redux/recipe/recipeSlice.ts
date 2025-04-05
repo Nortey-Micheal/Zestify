@@ -30,6 +30,7 @@ const recipeSlice = createSlice({
     initialState,
     reducers: {
         setRecipes: (state,action:PayloadAction<Recipe[]>) => {
+            if (state) console.log('a')
             return action.payload
        },
        removeRecipes: () => {

@@ -8,6 +8,7 @@ const newRecipes = createSlice({
     initialState,
     reducers: {
         setNewRecipes: (state, action:PayloadAction<Recipe[]>) => {
+            if (state) console.log('a')
             return action.payload
         }
     }

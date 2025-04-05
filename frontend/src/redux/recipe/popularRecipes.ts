@@ -8,6 +8,7 @@ const popularRecipes = createSlice({
     initialState,
     reducers: {
         setPopularRecipes: (state, action:PayloadAction<Recipe[]>) => {
+            if (state) console.log('a')
             return action.payload
         }
     }
