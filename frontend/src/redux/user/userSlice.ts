@@ -8,6 +8,7 @@ interface User{
     favouriteRecipes: Recipe[],
     postedRecipes: Recipe[],
     isVerified: boolean,
+    bio: string
 }
 
 const initialState: User | null = {} as User

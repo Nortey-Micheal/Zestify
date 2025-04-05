@@ -4,10 +4,10 @@ import fs from 'fs'
 import generateJWTtoken from "../utils/generateJWTtoken.js"
 
 export const signup = async (req,res) => {
-    const { email, password, name } = req.body
+    const { email, password, name, bio } = req.body
 
     try {
-        const user = await User.signup({email,password,name})
+        const user = await User.signup({email,password,name,bio})
         
         res.json({message: 'Thank you for signing up. Please verify your email with the code sent to the email address you provided'}).status(200)
     } catch (error) {

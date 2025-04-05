@@ -8,6 +8,7 @@ interface SignupType {
     password: string;
     confirmPassword: string
     profilePicture: File;
+    bio: string
 }
 
 const useSignup = () => {
@@ -15,7 +16,7 @@ const useSignup = () => {
     const [isLoading,setIsLoading] = useState<boolean>(false)
     const navigate = useNavigate()
 
-    const signup = async({email,name,password,profilePicture}: SignupType) => {
+    const signup = async({email,name,password,bio,profilePicture}: SignupType) => {
         const formData = new FormData()
         formData.append('profilePicture', profilePicture)
 
@@ -25,7 +26,7 @@ const useSignup = () => {
 
             await axios.post('http://localhost:5050/api/user/signup', 
                 {
-                    name,email,password
+                    name,email,password,bio
                 },
                 {
                     headers: { 'Content-Type': 'application/json' },
