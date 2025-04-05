@@ -129,9 +129,9 @@ export default function RecipeCard({recipe}:RecipeCardType) {
                     <div className="bg-(--light-grey) w-15 h-15 rounded-full p-5 flex items-center justify-center mt-1" aria-label="Add to favourite">
                         <TooltipProvider>
                             <Tooltip>
-                                <TooltipTrigger> <button disabled={isLoading} onClick={handleBookmarking} className="flex items-center gap-2">
+                                <TooltipTrigger disabled={isLoading} onClick={handleBookmarking} className="flex items-center gap-2"> 
                                     <BookmarkIcon className={` ${bookmark ? 'fill-(--zesty-orange) hover:fill-(--zesty-orange) ' : 'hover:fill-(--rose-white)'} drop-shadow-lg w-18 h-8  font-extrabold cursor-pointer `} />
-                                </button></TooltipTrigger>
+                                </TooltipTrigger>
                                 <TooltipContent>
                                 <p className="text-lg p-2 rounded-xl bg-(--dark-charcoal) text-(--white) ">Add to favourites</p>
                                 </TooltipContent>
