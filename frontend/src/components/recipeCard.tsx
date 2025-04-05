@@ -28,13 +28,14 @@ export default function RecipeCard({recipe}:RecipeCardType) {
         
         if(!user?.email) {
             toast.error('You need to be logged in to bookmark a recipe')
+            return
         }
         
         if (user?.email && !bookmark) {
             await bookmarkRecipe(user?.email,recipe)
             if (error) {
                 setBookmark(false)
-
+                return
             }
             setBookmark(true)
             toast.success(`${recipe.title} by ${recipe.author} has been added to bookmark`)
@@ -44,7 +45,7 @@ export default function RecipeCard({recipe}:RecipeCardType) {
             await removeBookmarkRecipe(user?.email,recipe)
             if (error) {
                 setBookmark(true)
-
+                return
             }
             setBookmark(false)
             toast.info(`${recipe.title} by ${recipe.author} has been removed from bookmark`)
@@ -56,12 +57,14 @@ export default function RecipeCard({recipe}:RecipeCardType) {
 
         if(!user?.email) {
             toast.error('You need to be logged in to like a recipe')
+            return
         }
 
         if (!like) {
             await likeRecipe(recipe._id,user?.email)
             if (likeError) {
                 setLike(false)
+                return
 
             }
             setLike(true)
@@ -71,7 +74,7 @@ export default function RecipeCard({recipe}:RecipeCardType) {
             await unLikeRecipe(recipe._id,user?.email)
             if (likeError) {
                 setLike(true)
-
+                return
             }
             setLike(false)
             toast.info(`You unliked ${recipe.title} by ${recipe.author}.`)
