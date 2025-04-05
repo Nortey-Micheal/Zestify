@@ -93,7 +93,7 @@ export default function RecipeCard({recipe}:RecipeCardType) {
         }
         checkLiking()
     
-    },[recipe.likes.by.length])
+    },[recipe.likes.by.length,user])
 
     useEffect(() => {
         //check if recipe is already bookmarked
@@ -105,6 +105,8 @@ export default function RecipeCard({recipe}:RecipeCardType) {
                 } else {
                     setBookmark(false) // remove bookmark 
                 }
+            } else {
+                setBookmark(false)
             }
         }
         checkBooking()
