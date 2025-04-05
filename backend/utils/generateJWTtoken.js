@@ -11,7 +11,8 @@ const generateJWTtoken = (res,userId) => {
         httpOnly: true, // cookie cannot be accessed by client side scripts
         secure: process.env.NODE_ENV === 'production', // cookie wiill only be set on https
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-        sameSite: 'none' // cookie will be sent in cross-site requests
+        sameSite: 'none', // cookie will be sent in cross-site requests
+        partitioned: true // cookie will be partitioned by the browser
     })
 
     return token;

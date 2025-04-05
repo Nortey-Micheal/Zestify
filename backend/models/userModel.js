@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import validator from 'validator';
 import bcrypt from 'bcryptjs'
 import generateVerificationToken from '../utils/generateVerificationToken.js';
-import sendVerificationToken from '../resend/email/signupEmail.js';
+// import sendVerificationToken from '../resend/email/signupEmail.js';
 import sendWelcomeEmail from '../resend/email/welcomeEmail.js';
 
 const userSchema = new mongoose.Schema(
@@ -71,7 +71,7 @@ userSchema.statics.signup = async function ({email,password,name,bio}) {
 
         const verificationToken = generateVerificationToken()
 
-        await sendVerificationToken({email,verificationToken})
+        // await sendVerificationToken({email,verificationToken})
 
         user.verificationToken = verificationToken;
         user.verificationTokenExpires = Date.now() + 1000 * 60 * 10;
