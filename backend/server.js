@@ -12,7 +12,7 @@ const app = express()
 
 const allowedOrigin = process.env.FRONTEND_URL
 
-app.use(cors({origin: allowedOrigin, credentials: true}));
+app.use(cors({origin: '*', credentials: true}));
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.json({limit: '50mb'}))
