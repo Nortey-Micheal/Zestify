@@ -9,13 +9,16 @@ const generateJWTtoken = (res,userId) => {
 
     const isProduction = process.env.NODE_ENV === 'production';
 
-    res.cookie('token', token, {
-        httpOnly: true, // cookie cannot be accessed by client side scripts
-        secure:  isProduction,// cookie will only be set on https
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-        sameSite: isProduction ? 'none' : 'lax', // cookie will be sent in cross-site requests
-        
-    })
+    if (isProduction) {
+        res.setHeader('Set-Cookie', `token=${token}; Path=/; HttpOnly; Secure; SameSite=None; Partitioned; Max-Age=604800`);
+    } else {
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'lax',
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        });
+    }
 
     return token;
 }
