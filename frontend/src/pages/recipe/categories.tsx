@@ -56,9 +56,9 @@ export default function RecipeCategoryPage() {
                     <ProfileOrLogin display='hidden lg:block'/>
                 </div>
                 <div className="mt-10 lg:mt-0 borde lg:w-[80vw]  ">
-                    <div className="flex items-center justify-between px-5">
+                    <div className="flex items-center justify-between px-5 gap-5">
                         <p>Categories</p>
-                        <div className="flex items-center gap-5">
+                        <div className="flex items-center gap-3 lg:gap-5">
                             <p>Sort</p>
                             <SearchSort sortBy={categories} />
                         </div>
