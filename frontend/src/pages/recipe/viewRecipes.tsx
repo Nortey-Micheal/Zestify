@@ -37,7 +37,7 @@ export default function ViewRecipes() {
                     <ProfileOrLogin display='hidden lg:block'/>
                 </div>
                 <div className="mt-10 borde lg:w-[80vw] ">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-5 justify-between">
                         <p>RECIPES</p>
                         <div className="flex items-center gap-5">
                             <p>Sort</p>

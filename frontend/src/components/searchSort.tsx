@@ -21,7 +21,7 @@ export default function SearchSort({sortBy}:{sortBy:SortType[]}) {
 
   return (
     <Select onValueChange={(e) => navigate(`${e}`)}>
-      <SelectTrigger className="w-[280px] cursor-pointer">
+      <SelectTrigger className="lg:w-[280px] cursor-pointer">
         <SelectValue placeholder="Sort by ..." />
       </SelectTrigger>
       <SelectContent>
