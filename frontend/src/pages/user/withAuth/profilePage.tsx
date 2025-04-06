@@ -9,14 +9,14 @@ import { useEffect } from "react";
 
 function ProfilePage() {
     const user = useSelector((state:RootState) => state.user)
-    const { getUserFavorites, success } = useBookmarkRecipe()
+    const { getUserFavorites } = useBookmarkRecipe()
 
     useEffect(() => {
         const fetchFavoriteRecipes = async () => {
             await getUserFavorites(user.email)
         }
         fetchFavoriteRecipes()
-    },[success])
+    },[])
     
     return (
         <section className="w-[100vw] min-h-[100vh] flex items-center justify-center ">

@@ -97,9 +97,9 @@ export function NavbarSmallScreen() {
             </Link> : <TooltipProvider>
               <Tooltip>
                   <TooltipTrigger className="mr-2">
-                      <Link to={'/auth/login'} className="flex items-center gap-2 cursor-pointer">
+                      <Link to={'/auth/signup'} className="flex items-center gap-2 cursor-pointer">
                           <UserCircle className="w-10 h-10 text-(--zesty-orange) focus:fill-red-300 "/>
-                          <p className="text-xl">Login</p>
+                          <p className="text-xl">Sign up</p>
                       </Link>
                   </TooltipTrigger>
                   <TooltipContent>
