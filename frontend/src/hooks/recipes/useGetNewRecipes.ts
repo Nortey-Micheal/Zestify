@@ -5,12 +5,12 @@ import { useDispatch } from "react-redux"
 
 const useGetNewRecipes = () => {
     const [error, setError] = useState<string | null>(null)
-    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isNewRecipeLoading, setIsNewRecipeLoading] = useState<boolean>(false)
     const dispatch = useDispatch()
 
     const getNewRecipes = async(page?:number, limit?:number) => {
         setError(null)
-        setIsLoading(true)
+        setIsNewRecipeLoading(true)
         
         try {
             
@@ -22,19 +22,19 @@ const useGetNewRecipes = () => {
             const recipes = response.data
 
             dispatch(setNewRecipes(recipes))
-            setIsLoading(false)
+            setIsNewRecipeLoading(false)
         } catch (error:any) {
             if (error.response) {
                 setError(error.response.data.message)
             } else {
                 setError(error.message)
             }
-            setIsLoading(false)
+            setIsNewRecipeLoading(false)
         } finally {
-            setIsLoading(false)
+            setIsNewRecipeLoading(false)
         }
     }
-    return { getNewRecipes, error, isLoading}
+    return { getNewRecipes, error, isNewRecipeLoading}
 }
 
 export default useGetNewRecipes;

@@ -5,12 +5,12 @@ import { useDispatch } from "react-redux"
 
 const useGetPopularRecipes = () => {
     const [error, setError] = useState<string | null>(null)
-    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isPopularRecipeLoading, setIsPopularRecipeLoading] = useState<boolean>(false)
     const dispatch = useDispatch()
 
     const getPopularRecipes = async(page?:number, limit?:number) => {
         setError(null)
-        setIsLoading(true)
+        setIsPopularRecipeLoading(true)
         
         try {
             
@@ -19,19 +19,19 @@ const useGetPopularRecipes = () => {
             const recipes = response.data
 
             dispatch(setPopularRecipes(recipes))
-            setIsLoading(false)
+            setIsPopularRecipeLoading(false)
         } catch (error:any) {
             if (error.response) {
                 setError(error.response.data.message)
             } else {
                 setError(error.message)
             }
-            setIsLoading(false)
+            setIsPopularRecipeLoading(false)
         } finally {
-            setIsLoading(false)
+            setIsPopularRecipeLoading(false)
         }
     }
-    return { getPopularRecipes, error, isLoading}
+    return { getPopularRecipes, error, isPopularRecipeLoading}
 }
 
 export default useGetPopularRecipes;

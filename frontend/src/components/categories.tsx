@@ -1,7 +1,7 @@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import useGetNewRecipes from "@/hooks/recipes/useGetNewRecipes"
 import { RootState } from "@/redux/store"
-import { ArrowBigRightDashIcon, ChefHatIcon, CookieIcon, DrumstickIcon, EggFriedIcon, IceCreamBowlIcon, LucideProps, SandwichIcon, WineIcon } from "lucide-react"
+import { ArrowBigRightDashIcon, ChefHatIcon, CookieIcon, DrumstickIcon, EggFriedIcon, IceCreamBowlIcon, LoaderPinwheel, LucideProps, SandwichIcon, WineIcon } from "lucide-react"
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import useGetPopularRecipes from "@/hooks/recipes/useGetPopularRecipes"
@@ -18,8 +18,8 @@ export default function Categories() {
     const user = useSelector((state:RootState) => state.user)
     const newRecipes = useSelector((state:RootState) => state.newRecipes)
     const popular = useSelector((state:RootState) => state.popularRecipes)
-    const { getNewRecipes } = useGetNewRecipes()
-    const { getPopularRecipes } = useGetPopularRecipes()
+    const { getNewRecipes,isNewRecipeLoading } = useGetNewRecipes()
+    const { getPopularRecipes,isPopularRecipeLoading } = useGetPopularRecipes()
 
     const categories:Category[] = [
         {
@@ -98,6 +98,13 @@ export default function Categories() {
                             <RecipeCard key={recipe.author + recipe.title + 'popular'} recipe={recipe}/>
                         ))
                     }
+                    {
+                        isPopularRecipeLoading && (
+                            <div className="bg-(--dark-charcoal) h-[100vh] w-[100vw] absolute left-0 top-0 flex items-center justify-center ">
+                            <LoaderPinwheel className=" w-25 h-25"/>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
 
@@ -111,6 +118,13 @@ export default function Categories() {
                        (newRecipes.length > 0) && newRecipes.map((recipe) => (
                             <RecipeCard key={recipe.author + recipe.title + 'new'} recipe={recipe}/>
                         ))
+                    }
+                    {
+                        isNewRecipeLoading && (
+                            <div className="bg-(--dark-charcoal) h-[100vh] w-[100vw] absolute left-0 top-0 flex items-center justify-center ">
+                            <LoaderPinwheel className=" w-25 h-25"/>
+                            </div>
+                        )
                     }
                 </div>
             </div>
