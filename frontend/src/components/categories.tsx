@@ -100,7 +100,7 @@ export default function Categories() {
                     }
                     {
                         isPopularRecipeLoading && (
-                            <div className="bg-(--dark-charcoal) h-[100vh] w-[100vw] absolute left-0 top-0 flex items-center justify-center ">
+                            <div className="bg-(--dark-charcoal) h-[500px] w-full absolute left-0 top-0 flex items-center justify-center ">
                             <LoaderPinwheel className=" w-25 h-25"/>
                             </div>
                         )
@@ -121,7 +121,7 @@ export default function Categories() {
                     }
                     {
                         isNewRecipeLoading && (
-                            <div className="bg-(--dark-charcoal) h-[100vh] w-[100vw] absolute left-0 top-0 flex items-center justify-center ">
+                            <div className="bg-(--dark-charcoal) h-[500px] w-full absolute left-0 top-0 flex items-center justify-center ">
                             <LoaderPinwheel className=" w-25 h-25"/>
                             </div>
                         )
