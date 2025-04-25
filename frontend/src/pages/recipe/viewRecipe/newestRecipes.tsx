@@ -8,7 +8,7 @@ import { toast } from "sonner"
 
 export default function NewRecipes() {
     const newRecipes = useSelector((state:RootState) => state.newRecipes)
-    const { getNewRecipes, error, isLoading } = useGetNewRecipes()
+    const { getNewRecipes, error, isNewRecipeLoading } = useGetNewRecipes()
     const [page,setPage] = useState<number>(1)
 
     useEffect(() => {
@@ -37,12 +37,12 @@ export default function NewRecipes() {
                     <button disabled={page === 1} className="flex items-center gap-2 text-xl hover:bg-(--zesty-orange) hover:text-(--white) font-bold cursor-pointer rounded-lg disabled:bg-(--light-gray) px-2 my-1 disabled:text-(--light-grey) " onClick={() => setPage(prev => Math.max((prev - 1), 1))}><ArrowBigLeftDashIcon /> Prev</button>
                 </li>
                 <li>
-                    <button className="flex items-center gap-2 text-xl hover:bg-(--zesty-orange) hover:text-(--white) font-bold cursor-pointer rounded-lg disabled:bg-(--light-gray) px-2 my-1 disabled:text-(--light-grey) " disabled={(newRecipes.length < 6) || isLoading} onClick={() => setPage(prev => Math.max((prev + 1), 1))}>Next <ArrowBigRightDashIcon /></button>
+                    <button className="flex items-center gap-2 text-xl hover:bg-(--zesty-orange) hover:text-(--white) font-bold cursor-pointer rounded-lg disabled:bg-(--light-gray) px-2 my-1 disabled:text-(--light-grey) " disabled={(newRecipes.length < 6) || isNewRecipeLoading} onClick={() => setPage(prev => Math.max((prev + 1), 1))}>Next <ArrowBigRightDashIcon /></button>
                     
                 </li>
             </ul>
             {
-               isLoading && (
+               isNewRecipeLoading && (
                 <div className="bg-(--dark-charcoal) rounded-2xl h-full w-full absolute left-0 top-0 flex items-center justify-center ">
                   <LoaderPinwheel className=" w-25 h-25"/>
                 </div>
