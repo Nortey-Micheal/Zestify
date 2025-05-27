@@ -161,15 +161,15 @@ export const getRecipeById = async (req,res) => {
 
 export const searchRecipe = async (req,res) => {
     const { searchItem, limit = 6, page = 1 } = req.body
-try {
-    const recipes = await Recipe.find(
-        {$text: {$search: searchItem}},
-        {score: {$meta: "textScore"}} //rank the search results by relevance
-    ).sort({score: {$meta: "textScore"}})
-     .skip((page - 1) * limit)
-     .limit(limit)
-    res.status(200).json(recipes)
-} catch (error) {
-    res.status(500).json({message: error.message})
-}
+    try {
+        const recipes = await Recipe.find(
+            {$text: {$search: searchItem}},
+            {score: {$meta: "textScore"}} //rank the search results by relevance
+        ).sort({score: {$meta: "textScore"}})
+        .skip((page - 1) * limit)
+        .limit(limit)
+        res.status(200).json(recipes)
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
 }
